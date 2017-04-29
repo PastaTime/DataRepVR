@@ -4,18 +4,7 @@ using System.IO;
 using System;
 using UnityEngine;
 
-public class LoadTempData : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
+public class LoadTempData {
 	/// <summary>
 	/// Load a CSV of float data from a relative file path.
 	/// <returns>The data as a grid of non-normalised floats.</returns>
