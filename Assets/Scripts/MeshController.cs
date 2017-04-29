@@ -44,29 +44,29 @@ public class MeshController : MonoBehaviour {
     /// </summary>
     /// <param name="meshWidth"> The width of the mesh in the game world (Along the X Axis).</param>
     /// <param name="meshDepth"> The depth of the mesh in the game world (Along the Z Axis).</param>
-    /// <param name="numRows"> Number of rows of vertices in the mesh</param>
-    /// <param name="numCols"> Number of columns of vertices in the mesh</param>
+    /// <param name="numVertRows"> Number of rows of vertices in the mesh</param>
+    /// <param name="numVertCols"> Number of columns of vertices in the mesh</param>
     /// <returns> The created Mesh</returns>
-    public Mesh initMesh(float meshWidth, float meshDepth, int numRows, int numCols)
+    public Mesh initMesh(float meshWidth, float meshDepth, int numVertRows, int numVertCols)
     {
         Debug.Assert(meshFilter != null, "Mesh Filter not delcared.");
 
-        vertRows = numRows;
-        vertCols = numCols;
+        vertRows = numVertRows;
+        vertCols = numVertCols;
 
         Mesh mesh = new Mesh();
 
-        Vector3[] vertices = new Vector3[numRows * numCols];
-        Vector2[] uvList = new Vector2[numRows * numCols];
+        Vector3[] vertices = new Vector3[numVertRows * numVertCols];
+        Vector2[] uvList = new Vector2[numVertRows * numVertCols];
         int index = 0;
-        for (float i = 0f; i < numRows; i++)
+        for (float i = 0f; i < numVertRows; i++)
         {
-            for (float j = 0f; j < numCols; j++)
+            for (float j = 0f; j < numVertCols; j++)
             {
                 // Generate Vertices
                 Vector3 vect = Vector3.zero;
-                vect.x = Mathf.Lerp(-meshWidth / 2f, meshWidth / 2f, j / numCols);
-                vect.z = Mathf.Lerp(-meshDepth / 2f, meshDepth / 2f, i / numRows);
+                vect.x = Mathf.Lerp(-meshWidth / 2f, meshWidth / 2f, j / numVertCols);
+                vect.z = Mathf.Lerp(-meshDepth / 2f, meshDepth / 2f, i / numVertRows);
                 vertices[index] = vect;
 
                 // Generate UVs
@@ -80,12 +80,12 @@ public class MeshController : MonoBehaviour {
 
         index = 0;
         // Number of triangles for one side of the mesh.
-        int numTriangles = (numCols - 1) * (numRows - 1) * 6;
+        int numTriangles = (numVertCols - 1) * (numVertRows - 1) * 6;
         int[] triangles = new int[numTriangles * 2];
 
-        for (int i = 0; i < numRows - 1; i++)
+        for (int i = 0; i < numVertRows - 1; i++)
         {
-            for (int j = 0; j < numCols - 1; j++)
+            for (int j = 0; j < numVertCols - 1; j++)
             {
                 // Generate Triangle:
                 // (i,j) <---- (i,j+1)
@@ -93,14 +93,14 @@ public class MeshController : MonoBehaviour {
                 //               |
                 //               |
                 //            (i+1,j+1)
-                triangles[index++] = j + i * numCols;
-                triangles[index++] = (j + 1) + (i + 1) * numCols;
-                triangles[index++] = (j + 1) + i * numCols;
+                triangles[index++] = j + i * numVertCols;
+                triangles[index++] = (j + 1) + (i + 1) * numVertCols;
+                triangles[index++] = (j + 1) + i * numVertCols;
 
                 // And for BackFace
-                triangles[index++] = j + i * numCols;
-                triangles[index++] = (j + 1) + i * numCols;
-                triangles[index++] = (j + 1) + (i + 1) * numCols;
+                triangles[index++] = j + i * numVertCols;
+                triangles[index++] = (j + 1) + i * numVertCols;
+                triangles[index++] = (j + 1) + (i + 1) * numVertCols;
 
                 // Generate Triangle:
                 //  (i,j)
@@ -108,14 +108,14 @@ public class MeshController : MonoBehaviour {
                 //    |
                 //    V         
                 // (i+1,j) -----> (i+1,j+1)
-                triangles[index++] = j + i * numCols;
-                triangles[index++] = j + (i + 1) * numCols;
-                triangles[index++] = (j + 1) + (i + 1) * numCols;
+                triangles[index++] = j + i * numVertCols;
+                triangles[index++] = j + (i + 1) * numVertCols;
+                triangles[index++] = (j + 1) + (i + 1) * numVertCols;
 
                 // And for BackFace
-                triangles[index++] = j + i * numCols;
-                triangles[index++] = (j + 1) + (i + 1) * numCols;
-                triangles[index++] = j + (i + 1) * numCols;
+                triangles[index++] = j + i * numVertCols;
+                triangles[index++] = (j + 1) + (i + 1) * numVertCols;
+                triangles[index++] = j + (i + 1) * numVertCols;
             }
         }
 
