@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,7 +31,7 @@ public class MeshController : MonoBehaviour {
     void Start () {
         Debug.Assert(meshFilter != null, "Mesh Filter not delcared.");
         meshFilter.mesh = initMesh(meshWidth, meshHeight, numRows, numCols);
-		colourAndDistortMesh(LoadTempData.normaliseValues(LoadTempData.loadCSV(colourDataPath, false)), LoadTempData.normaliseValues(LoadTempData.loadCSV(heightDataPath, false)));
+		colourAndDistortMesh(LoadTempData.normaliseValues(LoadTempData.loadCSV(heightDataPath, false)), LoadTempData.normaliseValues(LoadTempData.loadCSV(colourDataPath, false)));
     }
 
     // Update is called once per frame
@@ -171,7 +172,7 @@ public class MeshController : MonoBehaviour {
 			for (int j = 0; j < vertCols; j++)
 			{
 				newVertices[j + i * vertCols].y = heightData[i][j] * heightScalar;
-				colours [j + i * vertCols] = Color.Lerp (startColour, endColour, colourData [i] [j]);
+				colours [j + i * vertCols] = Colorx.Slerp (startColour, endColour, colourData [i] [j]);
 			}
 		}
 

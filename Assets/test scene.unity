@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 682183420}
   - component: {fileID: 682183419}
   - component: {fileID: 682183418}
+  - component: {fileID: 682183423}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -262,6 +263,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &682183423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 682183417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaa6bc319dfbfb748807797f13159c9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainSpeed: 100
+  shiftAdd: 250
+  maxShift: 1000
+  camSens: 0.25
 --- !u!1001 &1864990557
 Prefab:
   m_ObjectHideFlags: 0
@@ -301,30 +317,50 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 33508105122307484, guid: 640aac731fc546149bae7478d2fdec5f,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
         type: 2}
-      propertyPath: numRows
-      value: 255
+      propertyPath: startColour.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
         type: 2}
-      propertyPath: numCols
-      value: 255
+      propertyPath: startColour.g
+      value: 0.036470503
       objectReference: {fileID: 0}
-    - target: {fileID: 23253880736371954, guid: 640aac731fc546149bae7478d2fdec5f,
+    - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
         type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: d4eb3063e42b30a4cafbbc864861549f, type: 2}
+      propertyPath: endColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
+        type: 2}
+      propertyPath: endColour.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
+        type: 2}
+      propertyPath: endColour.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
+        type: 2}
+      propertyPath: startColour.b
+      value: 0.496
+      objectReference: {fileID: 0}
+    - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
+        type: 2}
+      propertyPath: colourDataPath
+      value: /Data/Temperature_surface.csv
+      objectReference: {fileID: 0}
+    - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
+        type: 2}
+      propertyPath: heightDataPath
+      value: /Data/Relative_humidity_hybrid.csv
+      objectReference: {fileID: 0}
     - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
         type: 2}
       propertyPath: heightScalar
-      value: 2.5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 640aac731fc546149bae7478d2fdec5f, type: 2}
