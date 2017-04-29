@@ -5,6 +5,8 @@ using UnityEngine;
 public class MeshController : MonoBehaviour {
 
     public MeshFilter meshFilter = null;
+
+    // Public variables for test Mesh.
     public float meshWidth = 20f;
     public float meshHeight = 20f;
     public int numRows = 10;
@@ -18,10 +20,8 @@ public class MeshController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        if (meshFilter == null)
-            Debug.LogError("Mesh Filter not delcared.");
-        else
-            meshFilter.mesh = initMesh(meshWidth, meshHeight, numRows, numCols);
+        Debug.Assert(meshFilter != null, "Mesh Filter not delcared.");
+        meshFilter.mesh = initMesh(meshWidth, meshHeight, numRows, numCols);
 		colourAndDistortMesh(LoadTempData.normaliseValues(LoadTempData.loadCSV("/Data/Temperature_surface.csv", false)));
     }
 
@@ -41,11 +41,8 @@ public class MeshController : MonoBehaviour {
     /// <returns> The created Mesh</returns>
     public Mesh initMesh(float meshWidth, float meshDepth, int numRows, int numCols)
     {
-        if (meshFilter == null)
-        {
-            Debug.LogError("Mesh Filter not delcared.");
-            return null;
-        }
+        Debug.Assert(meshFilter != null, "Mesh Filter not delcared.");
+
         vertRows = numRows;
         vertCols = numCols;
 
@@ -74,29 +71,40 @@ public class MeshController : MonoBehaviour {
         }
 
         index = 0;
+        // Number of triangles for one side of the mesh.
         int numTriangles = (numCols - 1) * (numRows - 1) * 6;
-        int[] triangles = new int[numTriangles];
+        int[] triangles = new int[numTriangles * 2];
 
         for (int i = 0; i < numRows - 1; i++)
         {
             for (int j = 0; j < numCols - 1; j++)
             {
                 // Generate Triangle:
-                // (i,j) ----> (i,j+1)
+                // (i,j) <---- (i,j+1)
+                //               ^
                 //               |
                 //               |
-                //               v
                 //            (i+1,j+1)
+                triangles[index++] = j + i * numCols;
+                triangles[index++] = (j + 1) + (i + 1) * numCols;
+                triangles[index++] = (j + 1) + i * numCols;
+
+                // And for BackFace
                 triangles[index++] = j + i * numCols;
                 triangles[index++] = (j + 1) + i * numCols;
                 triangles[index++] = (j + 1) + (i + 1) * numCols;
 
                 // Generate Triangle:
                 //  (i,j)
-                //    ^            
+                //    |            
                 //    |
-                //    |         
-                // (i+1,j) <----- (i+1,j+1)
+                //    V         
+                // (i+1,j) -----> (i+1,j+1)
+                triangles[index++] = j + i * numCols;
+                triangles[index++] = j + (i + 1) * numCols;
+                triangles[index++] = (j + 1) + (i + 1) * numCols;
+
+                // And for BackFace
                 triangles[index++] = j + i * numCols;
                 triangles[index++] = (j + 1) + (i + 1) * numCols;
                 triangles[index++] = j + (i + 1) * numCols;
