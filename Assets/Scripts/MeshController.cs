@@ -12,6 +12,8 @@ public class MeshController : MonoBehaviour {
     public int numRows = 10;
     public int numCols = 10;
 
+	public float heightScalar = 1f; 
+
     // Internal values for the current number of rows and columns of in the
     private int vertRows = 0;
     private int vertCols = 0;
@@ -20,6 +22,7 @@ public class MeshController : MonoBehaviour {
     void Start () {
         Debug.Assert(meshFilter != null, "Mesh Filter not delcared.");
         meshFilter.mesh = initMesh(meshWidth, meshHeight, numRows, numCols);
+		colourAndDistortMesh(LoadTempData.normaliseValues(LoadTempData.loadCSV("/Data/Temperature_surface.csv", false)));
     }
 
     // Update is called once per frame
@@ -144,4 +147,29 @@ public class MeshController : MonoBehaviour {
         meshFilter.mesh.RecalculateBounds();
         meshFilter.mesh.RecalculateNormals();
     }
+
+	public void colourAndDistortMesh(float[][] data) {
+		Debug.Assert(vertRows != 0, "Mesh has not been initialized yet, please call initMesh()");
+		Debug.Assert(vertCols != 0, "Mesh has not been initialized yet, please call initMesh()");
+		//Debug.Assert(data.Length == vertRows, "Height Map of incorrect row dimensions. cannot be loaded into mesh. ");
+		//Debug.Assert(data[0].Length == vertCols, "Height Map of incorrect column dimensions. cannot be loaded into mesh");
+
+		Vector3[] newVertices = meshFilter.mesh.vertices;
+		Debug.Log (meshFilter.mesh.vertices.Length);
+		Color[] colours = new Color[newVertices.Length];
+		// Loading into Mesh
+		for (int i = 0; i < vertRows; i++)
+		{
+			for (int j = 0; j < vertCols; j++)
+			{
+				newVertices[j + i * vertCols].y = data[i][j] * heightScalar;
+				colours [j + i * vertCols] = Color.Lerp (Color.green, Color.red, data [i] [j]);
+			}
+		}
+
+		meshFilter.mesh.vertices = newVertices;
+		meshFilter.mesh.colors = colours;
+		meshFilter.mesh.RecalculateBounds();
+		meshFilter.mesh.RecalculateNormals();
+	}
 }
