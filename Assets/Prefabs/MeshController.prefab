@@ -55,7 +55,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d4eb3063e42b30a4cafbbc864861549f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,7 +80,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1072087013572726}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &114588899804867932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,5 +95,10 @@ MonoBehaviour:
   meshFilter: {fileID: 33508105122307484}
   meshWidth: 20
   meshHeight: 20
-  numRows: 10
-  numCols: 10
+  numRows: 255
+  numCols: 255
+  startColour: {r: 0.034482718, g: 1, b: 0, a: 1}
+  endColour: {r: 1, g: 0.43448275, b: 0, a: 1}
+  colourDataPath: /Data/Categorical_Rain_surface.csv
+  heightDataPath: /Data/Relative_humidity_hybrid.csv
+  heightScalar: 1
