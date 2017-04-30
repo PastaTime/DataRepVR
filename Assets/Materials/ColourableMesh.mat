@@ -136,4 +136,4 @@ Material:
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
-    - _TintColor: {r: 0.28676468, g: 0.28676468, b: 0.28676468, a: 0.422}
+    - _TintColor: {r: 0.28676468, g: 0.28676468, b: 0.28676468, a: 1}

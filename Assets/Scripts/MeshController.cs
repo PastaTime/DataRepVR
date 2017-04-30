@@ -21,6 +21,10 @@ public class MeshController : MonoBehaviour {
 
 	public string heightDataPath = "";
 
+	public float[][] colourData;
+
+	public float[][] heightData;
+
 	public float heightScalar = 1f; 
 
     // Internal values for the current number of rows and columns of in the
@@ -31,13 +35,13 @@ public class MeshController : MonoBehaviour {
     void Start () {
         Debug.Assert(meshFilter != null, "Mesh Filter not delcared.");
         meshFilter.mesh = initMesh(meshWidth, meshHeight, numRows, numCols);
-		colourAndDistortMesh(LoadTempData.normaliseValues(LoadTempData.loadCSV(heightDataPath, false)), LoadTempData.normaliseValues(LoadTempData.loadCSV(colourDataPath, false)));
+		heightData = LoadData.normaliseValues(LoadData.loadCSV(heightDataPath, false)); 
+		colourData = LoadData.normaliseValues (LoadData.loadCSV(colourDataPath, false));
+		colourAndDistortMesh (heightData, colourData);
     }
 
     // Update is called once per frame
-    void Update() {
-
-    }
+    void Update() {}
 
     /// <summary>
     /// Creates a Mesh with the specified dimensions around the origin (0,0,0).
@@ -164,15 +168,20 @@ public class MeshController : MonoBehaviour {
 		//Debug.Assert(data[0].Length == vertCols, "Height Map of incorrect column dimensions. cannot be loaded into mesh");
 
 		Vector3[] newVertices = meshFilter.mesh.vertices;
-		Debug.Log (meshFilter.mesh.vertices.Length);
 		Color[] colours = new Color[newVertices.Length];
 		// Loading into Mesh
 		for (int i = 0; i < vertRows; i++)
 		{
 			for (int j = 0; j < vertCols; j++)
 			{
-				newVertices[j + i * vertCols].y = heightData[i][j] * heightScalar;
-				colours [j + i * vertCols] = Colorx.Slerp (startColour, endColour, colourData [i] [j]);
+				if (heightData != null) {
+					newVertices[j + i * vertCols].y = heightData[heightData.Length * i / numRows][heightData[heightData.Length * i / numRows].Length * j / numCols] * heightScalar;
+				}
+				if (colourData != null) {
+					colours [j + i * vertCols] = Colorx.Slerp (startColour, endColour, colourData [colourData.Length * i / numRows][colourData[colourData.Length * i / numRows].Length * j / numCols]);
+				} else {
+					colours [j + i * vertCols] = Color.magenta;
+				}
 			}
 		}
 
@@ -180,5 +189,6 @@ public class MeshController : MonoBehaviour {
 		meshFilter.mesh.colors = colours;
 		meshFilter.mesh.RecalculateBounds();
 		meshFilter.mesh.RecalculateNormals();
+		GetComponent<MeshCollider> ().sharedMesh = meshFilter.mesh;
 	}
 }
