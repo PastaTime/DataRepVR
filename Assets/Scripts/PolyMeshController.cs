@@ -180,9 +180,9 @@ public class PolyMeshController : MonoBehaviour {
 					triangles[index++] = (j + 1) + i * numVertCols;
 
 					// And for BackFace
-					triangles[index++] = j + i * numVertCols;
-					triangles[index++] = (j + 1) + i * numVertCols;
-					triangles[index++] = (j + 1) + (i + 1) * numVertCols;
+					//triangles[index++] = j + i * numVertCols;
+					//triangles[index++] = (j + 1) + i * numVertCols;
+					//triangles[index++] = (j + 1) + (i + 1) * numVertCols;
 
 					// Generate Triangle:
 					//  (i,j)
@@ -195,9 +195,9 @@ public class PolyMeshController : MonoBehaviour {
 					triangles[index++] = (j + 1) + (i + 1) * numVertCols;
 
 					// And for BackFace
-					triangles[index++] = j + i * numVertCols;
-					triangles[index++] = (j + 1) + (i + 1) * numVertCols;
-					triangles[index++] = j + (i + 1) * numVertCols;
+					//triangles[index++] = j + i * numVertCols;
+					//triangles[index++] = (j + 1) + (i + 1) * numVertCols;
+					//triangles[index++] = j + (i + 1) * numVertCols;
 				}
 			}
 
