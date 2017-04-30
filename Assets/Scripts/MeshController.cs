@@ -5,40 +5,66 @@ using UnityEngine;
 
 public class MeshController : MonoBehaviour {
 
-    public MeshFilter meshFilter = null;
+    private MeshFilter meshFilter = null;
 
-    // Public variables for test Mesh.
-    public float meshWidth = 20f;
-    public float meshHeight = 20f;
-    public int numRows = 10;
-    public int numCols = 10;
+	private MeshRenderer meshRenderer = null;
 
-	public Color startColour =  Color.red;
+	private int xOffset;
 
-	public Color endColour = Color.green;
+	private int zOffset;
 
-	public string colourDataPath = "";
+	private int totalRows;
 
-	public string heightDataPath = "";
+	private int totalCols;
 
-	public float[][] colourData;
+    private int numRows;
 
-	public float[][] heightData;
+    private int numCols;
 
-	public float heightScalar = 1f; 
+	private Color startColour;
+
+	private Color endColour;
+
+	private float[][] colourData;
+
+	private float[][] heightData;
+
+	private float heightScalar = 1f; 
 
     // Internal values for the current number of rows and columns of in the
     private int vertRows = 0;
+
     private int vertCols = 0;
 
-    // Use this for initialization
-    void Start () {
-        Debug.Assert(meshFilter != null, "Mesh Filter not delcared.");
-        meshFilter.mesh = initMesh(meshWidth, meshHeight, numRows, numCols);
-		heightData = LoadData.normaliseValues(LoadData.loadCSV(heightDataPath, false)); 
-		colourData = LoadData.normaliseValues (LoadData.loadCSV(colourDataPath, false));
+	public void Init(int xOffset, int zOffset, int numRows, int numCols, int totalRows, int totalCols, float[][] colourData, float[][] heightData, float heightScalar, Color startColour, Color endColour, Material renderMaterial) {
+		this.xOffset = xOffset;
+		this.zOffset = zOffset;
+
+		this.numCols = numCols;
+		this.numRows = numRows;
+
+		this.totalRows = totalRows;
+		this.totalCols = totalCols;
+
+		this.colourData = colourData;
+		this.heightData = heightData;
+
+		this.heightScalar = heightScalar;
+
+		this.startColour = startColour;
+		this.endColour = endColour;
+
+		meshFilter = gameObject.AddComponent<MeshFilter> ();
+		meshRenderer = gameObject.AddComponent<MeshRenderer> ();
+		gameObject.GetComponent<MeshRenderer>().material = renderMaterial; 
+
+		gameObject.AddComponent<MeshCollider> ();
+		meshFilter.mesh = initMesh((float)numCols / (float)totalCols, (float)numRows / (float)totalRows, numRows, numCols);
 		colourAndDistortMesh (heightData, colourData);
-    }
+	}
+
+    // Use this for initialization
+    void Start () {}
 
     // Update is called once per frame
     void Update() {}
@@ -164,23 +190,22 @@ public class MeshController : MonoBehaviour {
 	public void colourAndDistortMesh(float[][] heightData, float[][] colourData) {
 		Debug.Assert(vertRows != 0, "Mesh has not been initialized yet, please call initMesh()");
 		Debug.Assert(vertCols != 0, "Mesh has not been initialized yet, please call initMesh()");
-		//Debug.Assert(data.Length == vertRows, "Height Map of incorrect row dimensions. cannot be loaded into mesh. ");
-		//Debug.Assert(data[0].Length == vertCols, "Height Map of incorrect column dimensions. cannot be loaded into mesh");
 
 		Vector3[] newVertices = meshFilter.mesh.vertices;
 		Color[] colours = new Color[newVertices.Length];
+
 		// Loading into Mesh
-		for (int i = 0; i < vertRows; i++)
+		for (int z = 0; z < vertRows; z++)
 		{
-			for (int j = 0; j < vertCols; j++)
+			for (int x = 0; x < vertCols; x++)
 			{
 				if (heightData != null) {
-					newVertices[j + i * vertCols].y = heightData[heightData.Length * i / numRows][heightData[heightData.Length * i / numRows].Length * j / numCols] * heightScalar;
+					newVertices[x + z * vertCols].y = heightData[heightData.Length * (z + zOffset) / totalRows][heightData[0].Length * (x + xOffset) / totalCols] * heightScalar;
 				}
 				if (colourData != null) {
-					colours [j + i * vertCols] = Colorx.Slerp (startColour, endColour, colourData [colourData.Length * i / numRows][colourData[colourData.Length * i / numRows].Length * j / numCols]);
+					colours [x + z * vertCols] = Colorx.Slerp (startColour, endColour, colourData [colourData.Length * (z + zOffset) / totalRows][colourData[0].Length * (x + xOffset) / totalCols]);
 				} else {
-					colours [j + i * vertCols] = Color.magenta;
+					colours [x + z * vertCols] = Color.magenta;
 				}
 			}
 		}
@@ -189,6 +214,6 @@ public class MeshController : MonoBehaviour {
 		meshFilter.mesh.colors = colours;
 		meshFilter.mesh.RecalculateBounds();
 		meshFilter.mesh.RecalculateNormals();
-		GetComponent<MeshCollider> ().sharedMesh = meshFilter.mesh;
+		//GetComponent<MeshCollider> ().sharedMesh = meshFilter.mesh;
 	}
 }

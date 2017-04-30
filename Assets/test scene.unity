@@ -121,7 +121,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4242835226051602, guid: 640aac731fc546149bae7478d2fdec5f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.78
+      value: 20.35
       objectReference: {fileID: 0}
     - target: {fileID: 4242835226051602, guid: 640aac731fc546149bae7478d2fdec5f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -185,7 +185,7 @@ Prefab:
     - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
         type: 2}
       propertyPath: heightDataPath
-      value: /Data/Temperature_surface.csv
+      value: /Data/Geopotential_height_surface.csv
       objectReference: {fileID: 0}
     - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
         type: 2}
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 1525119885}
   - component: {fileID: 1525119884}
   - component: {fileID: 1525119883}
-  - component: {fileID: 1525119886}
+  - component: {fileID: 1525119887}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -443,7 +443,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1525119881}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.79, z: 7.94}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -500,21 +500,25 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1525119881}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &1525119886
-Rigidbody:
+--- !u!114 &1525119887
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1525119881}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 1
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09004a2c11c7b2642b7ca671c2e50ae1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xVerts: 2000
+  zVerts: 2000
+  colourDataPath: /Data/Geopotential_height_surface.csv
+  heightDataPath: /Data/Geopotential_height_surface.csv
+  startColour: {r: 0.30882353, g: 0, b: 0, a: 1}
+  endColour: {r: 0.029411793, g: 0, b: 0.125, a: 1}
+  heightScalar: 0.05
+  renderMaterial: {fileID: 2100000, guid: d4eb3063e42b30a4cafbbc864861549f, type: 2}
 --- !u!1001 &1864990557
 Prefab:
   m_ObjectHideFlags: 0
@@ -528,7 +532,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4242835226051602, guid: 640aac731fc546149bae7478d2fdec5f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 23.41
       objectReference: {fileID: 0}
     - target: {fileID: 4242835226051602, guid: 640aac731fc546149bae7478d2fdec5f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -557,37 +561,37 @@ Prefab:
     - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
         type: 2}
       propertyPath: startColour.r
-      value: 0.2647059
+      value: 0.022058845
       objectReference: {fileID: 0}
     - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
         type: 2}
       propertyPath: startColour.g
-      value: 0
+      value: 0.022058845
       objectReference: {fileID: 0}
     - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
         type: 2}
       propertyPath: endColour.r
-      value: 0.2352941
+      value: 0.36764705
       objectReference: {fileID: 0}
     - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
         type: 2}
       propertyPath: endColour.g
-      value: 0.1868512
+      value: 0.36764705
       objectReference: {fileID: 0}
     - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
         type: 2}
       propertyPath: endColour.b
-      value: 0
+      value: 0.36764705
       objectReference: {fileID: 0}
     - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
         type: 2}
       propertyPath: startColour.b
-      value: 0
+      value: 0.022058845
       objectReference: {fileID: 0}
     - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
         type: 2}
       propertyPath: colourDataPath
-      value: /Data/Geopotential_height_surface.csv
+      value: /Data/Temperature_surface.csv
       objectReference: {fileID: 0}
     - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
         type: 2}
