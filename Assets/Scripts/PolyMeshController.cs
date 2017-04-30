@@ -88,20 +88,13 @@ public class PolyMeshController : MonoBehaviour {
 
 		private MeshFilter meshFilter;
 
-		private MeshRenderer meshRenderer;
-
 		private int xOffset;
 
 		private int zOffset;
 
-		private int numRows;
+		private int numRows = 0;
 
-		private int numCols;
-
-		// Internal values for the current number of rows and columns of in the
-		private int vertRows = 0;
-
-		private int vertCols = 0;
+		private int numCols = 0;
 
 		private PolyMeshController controller;
 
@@ -116,10 +109,10 @@ public class PolyMeshController : MonoBehaviour {
 			this.numRows = numRows;
 
 			meshFilter = gameObject.AddComponent<MeshFilter> ();
-			meshRenderer = gameObject.AddComponent<MeshRenderer> ();
-			gameObject.GetComponent<MeshRenderer>().material = controller.renderMaterial; 
-
+			gameObject.AddComponent<MeshRenderer> ();
+			gameObject.GetComponent<MeshRenderer> ().material = controller.renderMaterial; 
 			gameObject.AddComponent<MeshCollider> ();
+
 			meshFilter.mesh = initMesh((float)numCols / (float)controller.xVerts, (float)numRows / (float)controller.zVerts, numRows, numCols);
 			colourAndDistortMesh (controller.heightData, controller.colourData);
 		}
@@ -142,9 +135,6 @@ public class PolyMeshController : MonoBehaviour {
 		public Mesh initMesh(float meshWidth, float meshDepth, int numVertRows, int numVertCols)
 		{
 			Debug.Assert(meshFilter != null, "Mesh Filter not delcared.");
-
-			vertRows = numVertRows;
-			vertCols = numVertCols;
 
 			Mesh mesh = new Mesh();
 
@@ -221,24 +211,24 @@ public class PolyMeshController : MonoBehaviour {
 		}
 
 		public void colourAndDistortMesh(float[][] heightData, float[][] colourData) {
-			Debug.Assert(vertRows != 0, "Mesh has not been initialized yet, please call initMesh()");
-			Debug.Assert(vertCols != 0, "Mesh has not been initialized yet, please call initMesh()");
+			Debug.Assert(numRows != 0, "Mesh has not been initialized yet, please call initMesh()");
+			Debug.Assert(numCols != 0, "Mesh has not been initialized yet, please call initMesh()");
 
 			Vector3[] newVertices = meshFilter.mesh.vertices;
 			Color[] colours = new Color[newVertices.Length];
 
 			// Loading into Mesh
-			for (int z = 0; z < vertRows; z++)
+			for (int z = 0; z < numRows; z++)
 			{
-				for (int x = 0; x < vertCols; x++)
+				for (int x = 0; x < numCols; x++)
 				{
 					if (heightData != null) {
-						newVertices[x + z * vertCols].y = heightData[heightData.Length * (z + zOffset) / controller.zVerts][heightData[0].Length * (x + xOffset) / controller.xVerts] * controller.heightScalar;
+						newVertices[x + z * numCols].y = heightData[heightData.Length * (z + zOffset) / controller.zVerts][heightData[0].Length * (x + xOffset) / controller.xVerts] * controller.heightScalar;
 					}
 					if (colourData != null) {
-						colours [x + z * vertCols] = Colorx.Slerp (controller.startColour, controller.endColour, colourData [colourData.Length * (z + zOffset) / controller.zVerts][colourData[0].Length * (x + xOffset) / controller.xVerts]);
+						colours [x + z * numCols] = Colorx.Slerp (controller.startColour, controller.endColour, colourData [colourData.Length * (z + zOffset) / controller.zVerts][colourData[0].Length * (x + xOffset) / controller.xVerts]);
 					} else {
-						colours [x + z * vertCols] = Color.magenta;
+						colours [x + z * numCols] = Color.grey;
 					}
 				}
 			}
