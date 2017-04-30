@@ -8,9 +8,9 @@ public class PolyMeshController : MonoBehaviour {
 
 	public int zVerts = 100;
 
-	public float xFudgeFactor = 0.0005f;
+	public float xScale = 1f;
 
-	public float zFudgeFactor = 0.0005f;
+	public float zScale = 1f;
 
 	public string colourDataPath = "";
 
@@ -37,6 +37,7 @@ public class PolyMeshController : MonoBehaviour {
 		heightData = LoadData.normaliseValues(LoadData.loadCSV(heightDataPath, false)); 
 		colourData = LoadData.normaliseValues(LoadData.loadCSV(colourDataPath, false));
 
+
 		gameObject.GetComponent<MeshRenderer> ().enabled = false;
 
 		int xCount = xVerts / maxVertsPerMeshSide;
@@ -61,12 +62,13 @@ public class PolyMeshController : MonoBehaviour {
 				subMesh.transform.parent = gameObject.transform;
 				float xTranslate = ((float)(xOffset + maxVertsPerMeshSide) - 0.5f* (float)(maxVertsPerMeshSide - numCols)) / (float)xVerts;
 				float zTranslate = ((float)(zOffset + maxVertsPerMeshSide) - 0.5f* (float)(maxVertsPerMeshSide - numRows)) / (float)zVerts;
-				subMesh.transform.Translate (xTranslate - xFudgeFactor * i, 0, zTranslate - zFudgeFactor * j); // TODO: add submesh scaling factor to transform
+				subMesh.transform.Translate (xTranslate - (1/(float)xVerts) * i, 0, zTranslate - (1/(float)zVerts) * j); // TODO: add submesh scaling factor to transform
 				subMesh.GetComponent<MeshController>().Init(xOffset, zOffset, numRows, numCols, zVerts, xVerts, colourData, heightData, heightScalar, startColour, endColour, renderMaterial);
 				subMeshes.Add(subMesh);
 			}
 			xVertsRemaining -= numCols;
 		}
+		gameObject.transform.localScale = new Vector3 (xScale, heightScalar, zScale);
 	}
 	
 	// Update is called once per frame
