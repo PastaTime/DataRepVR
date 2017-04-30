@@ -145,7 +145,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4242835226051602, guid: 640aac731fc546149bae7478d2fdec5f, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
         type: 2}
@@ -220,25 +220,6 @@ MeshCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 6621664}
-  m_Material: {fileID: 13400000, guid: ab982ce34c2aebd44824a4767b0ec233, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &347435885 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1072087013572726, guid: 640aac731fc546149bae7478d2fdec5f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1864990557}
---- !u!64 &347435890
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 347435885}
   m_Material: {fileID: 13400000, guid: ab982ce34c2aebd44824a4767b0ec233, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -417,6 +398,108 @@ MonoBehaviour:
   shiftAdd: 250
   maxShift: 1000
   camSens: 0.25
+--- !u!1 &1089051144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1089051149}
+  - component: {fileID: 1089051148}
+  - component: {fileID: 1089051147}
+  - component: {fileID: 1089051146}
+  - component: {fileID: 1089051145}
+  m_Layer: 0
+  m_Name: Cube (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1089051145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1089051144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09004a2c11c7b2642b7ca671c2e50ae1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xVerts: 2000
+  zVerts: 2000
+  colourDataPath: /Data/Temperature_surface.csv
+  heightDataPath: /Data/Temperature_surface.csv
+  startColour: {r: 0.002486986, g: 0, b: 0.16911763, a: 1}
+  endColour: {r: 0.17647058, g: 0, b: 0, a: 1}
+  heightScalar: 0.05
+  renderMaterial: {fileID: 2100000, guid: d4eb3063e42b30a4cafbbc864861549f, type: 2}
+--- !u!23 &1089051146
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1089051144}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!65 &1089051147
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1089051144}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1089051148
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1089051144}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1089051149
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1089051144}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1525119881
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,108 +594,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09004a2c11c7b2642b7ca671c2e50ae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xVerts: 2000
-  zVerts: 2000
+  xVerts: 277
+  zVerts: 345
   colourDataPath: /Data/Geopotential_height_surface.csv
   heightDataPath: /Data/Geopotential_height_surface.csv
-  startColour: {r: 0.30882353, g: 0, b: 0, a: 1}
-  endColour: {r: 0.029411793, g: 0, b: 0.125, a: 1}
+  startColour: {r: 0.021626318, g: 0, b: 0.36764705, a: 1}
+  endColour: {r: 0.44852942, g: 0.44328558, b: 0.37721324, a: 1}
   heightScalar: 0.05
   renderMaterial: {fileID: 2100000, guid: d4eb3063e42b30a4cafbbc864861549f, type: 2}
---- !u!1001 &1864990557
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4242835226051602, guid: 640aac731fc546149bae7478d2fdec5f, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4242835226051602, guid: 640aac731fc546149bae7478d2fdec5f, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 23.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 4242835226051602, guid: 640aac731fc546149bae7478d2fdec5f, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4242835226051602, guid: 640aac731fc546149bae7478d2fdec5f, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4242835226051602, guid: 640aac731fc546149bae7478d2fdec5f, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4242835226051602, guid: 640aac731fc546149bae7478d2fdec5f, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4242835226051602, guid: 640aac731fc546149bae7478d2fdec5f, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4242835226051602, guid: 640aac731fc546149bae7478d2fdec5f, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
-        type: 2}
-      propertyPath: startColour.r
-      value: 0.022058845
-      objectReference: {fileID: 0}
-    - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
-        type: 2}
-      propertyPath: startColour.g
-      value: 0.022058845
-      objectReference: {fileID: 0}
-    - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
-        type: 2}
-      propertyPath: endColour.r
-      value: 0.36764705
-      objectReference: {fileID: 0}
-    - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
-        type: 2}
-      propertyPath: endColour.g
-      value: 0.36764705
-      objectReference: {fileID: 0}
-    - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
-        type: 2}
-      propertyPath: endColour.b
-      value: 0.36764705
-      objectReference: {fileID: 0}
-    - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
-        type: 2}
-      propertyPath: startColour.b
-      value: 0.022058845
-      objectReference: {fileID: 0}
-    - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
-        type: 2}
-      propertyPath: colourDataPath
-      value: /Data/Temperature_surface.csv
-      objectReference: {fileID: 0}
-    - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
-        type: 2}
-      propertyPath: heightDataPath
-      value: /Data/Geopotential_height_surface.csv
-      objectReference: {fileID: 0}
-    - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
-        type: 2}
-      propertyPath: heightScalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
-        type: 2}
-      propertyPath: numRows
-      value: 255
-      objectReference: {fileID: 0}
-    - target: {fileID: 114588899804867932, guid: 640aac731fc546149bae7478d2fdec5f,
-        type: 2}
-      propertyPath: numCols
-      value: 255
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 640aac731fc546149bae7478d2fdec5f, type: 2}
-  m_IsPrefabParent: 0
