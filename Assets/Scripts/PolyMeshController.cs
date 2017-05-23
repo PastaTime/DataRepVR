@@ -76,25 +76,21 @@ public class PolyMeshController : MonoBehaviour {
 				//Set this submesh as a sub-component of the polymesh
 				subMesh.transform.parent = gameObject.transform;
 
-				//Translate from center of parent to bottom-left corner
-				subMesh.transform.Translate (new Vector3 (gameObject.transform.localScale.x / -2f, 0f, gameObject.transform.localScale.z / -2f ));
 				// Calculate translated position for sub-mesh
 				// Includes correction for edge sub-meshes which are smaller and so need to be translated slightly less
-				float xTranslate = ((float)(xOffset + maxVertsPerMeshSide) - 0.5f * (float)(maxVertsPerMeshSide - numCols)) / (float)xVerts;
-				float zTranslate = ((float)(zOffset + maxVertsPerMeshSide) - 0.5f * (float)(maxVertsPerMeshSide - numRows)) / (float)zVerts;
+				// Also includes correction for mesh seams
+				float xTranslate = (xOffset - i + 0.5f * numCols) / (float)xVerts;
+				float zTranslate = (zOffset - j + 0.5f * numRows) / (float)zVerts;
 
-				// 1/xVerts and 1/zVerts are a quad width and depth
-				// Translating back by these removes the mesh seams
+				subMesh.transform.Translate (xTranslate - 0.5f, 0, zTranslate - 0.5f);
 
-				subMesh.transform.Translate (xTranslate - (1/(float)xVerts) * i, 0, zTranslate - (1/(float)zVerts) * j);
-				subMesh.transform.Translate( new Vector3((float)numCols / (-2f * (float)xVerts), 0f, (float)numRows / (-2f * (float)zVerts)));
 				subMesh.GetComponent<SubMesh>().Init(this, xOffset, zOffset, numRows, numCols);
-				//subMeshes.Add(subMesh);
+				subMeshes.Add(subMesh);
 			}
 			xVertsRemaining -= numCols;
 		}
 		// Scale entire object up
-		//gameObject.transform.localScale = new Vector3 (xScale, heightScalar, zScale);
+		gameObject.transform.localScale = new Vector3 (xScale, heightScalar, zScale);
 	}
 	
 	// Update is called once per frame
@@ -130,8 +126,7 @@ public class PolyMeshController : MonoBehaviour {
 
 			meshFilter = gameObject.AddComponent<MeshFilter> ();
 			gameObject.AddComponent<MeshRenderer> ();
-			gameObject.GetComponent<MeshRenderer> ().material = controller.renderMaterial; 
-			gameObject.AddComponent<MeshCollider> ();
+			gameObject.GetComponent<MeshRenderer> ().material = controller.renderMaterial;
 
 			meshFilter.mesh = initMesh((float)numCols / (float)controller.xVerts, (float)numRows / (float)controller.zVerts, numRows, numCols);
 			colourAndDistortMesh (controller.heightData, controller.colourData);
@@ -257,7 +252,6 @@ public class PolyMeshController : MonoBehaviour {
 			meshFilter.mesh.colors = colours;
 			meshFilter.mesh.RecalculateBounds();
 			meshFilter.mesh.RecalculateNormals();
-			//GetComponent<MeshCollider> ().sharedMesh = meshFilter.mesh;
 		}
 	}
 }
