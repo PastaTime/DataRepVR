@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PolyMeshController : MonoBehaviour {
 
+	// Total number of verts to use in polymesh width. Defaults to 100.
 	public int xVerts = 100;
 
+	// Total number of verts to use in polymesh depth. Defaults to 100.
 	public int zVerts = 100;
 
+	//Width of the overall polymesh
 	public float xScale = 1f;
 
+	//Depth of the overall polymesh
 	public float zScale = 1f;
 
 	public string colourDataPath = "";
@@ -26,8 +30,10 @@ public class PolyMeshController : MonoBehaviour {
 
 	public float heightScalar = 1f;
 
+	// Material to make all submeshes out of
 	public Material renderMaterial;
 
+	//Maximum number of verts permitted per side of submesh
 	private int maxVertsPerMeshSide = 255;
 
 	private List<GameObject> subMeshes = new List<GameObject> ();
@@ -41,14 +47,19 @@ public class PolyMeshController : MonoBehaviour {
 		//Hide parent object
 		gameObject.GetComponent<MeshRenderer> ().enabled = false;
 
+		// Determine number of submeshes in x direction
 		int xCount = xVerts / maxVertsPerMeshSide;
 		xCount = (xVerts % maxVertsPerMeshSide == 0) ? xCount : xCount + 1;
+		
+		// Determine number of submeshes in z direction
 		int zCount = zVerts / maxVertsPerMeshSide;
 		zCount = (zVerts % maxVertsPerMeshSide == 0) ? zCount : zCount + 1;
 
+		// xVertsRemaining is the number of verts that have not been allocated to a submesh in the x-direction
 		int xVertsRemaining = xVerts;
 		for (int i = 0; i < xCount; i++) {
 			
+			// xOffset is essentially number of verts from bottom-left corner to bottom-left corner of this mesh
 			int xOffset = i * maxVertsPerMeshSide;
 			int zVertsRemaining = zVerts;
 			int numCols = (xVertsRemaining > maxVertsPerMeshSide) ? maxVertsPerMeshSide : xVertsRemaining;
@@ -61,8 +72,12 @@ public class PolyMeshController : MonoBehaviour {
 
 				GameObject subMesh = new GameObject ("subMesh");
 				subMesh.AddComponent<SubMesh>();
+
+				//Set this submesh as a sub-component of the polymesh
 				subMesh.transform.parent = gameObject.transform;
 
+				//Translate from center of parent to bottom-left corner
+				subMesh.transform.Translate (new Vector3 (gameObject.transform.localScale.x / -2f, 0f, gameObject.transform.localScale.z / -2f ));
 				// Calculate translated position for sub-mesh
 				// Includes correction for edge sub-meshes which are smaller and so need to be translated slightly less
 				float xTranslate = ((float)(xOffset + maxVertsPerMeshSide) - 0.5f * (float)(maxVertsPerMeshSide - numCols)) / (float)xVerts;
@@ -70,19 +85,24 @@ public class PolyMeshController : MonoBehaviour {
 
 				// 1/xVerts and 1/zVerts are a quad width and depth
 				// Translating back by these removes the mesh seams
-				subMesh.transform.Translate (xTranslate - (1/(float)xVerts) * i, 0, zTranslate - (1/(float)zVerts) * j);
 
+				subMesh.transform.Translate (xTranslate - (1/(float)xVerts) * i, 0, zTranslate - (1/(float)zVerts) * j);
+				subMesh.transform.Translate( new Vector3((float)numCols / (-2f * (float)xVerts), 0f, (float)numRows / (-2f * (float)zVerts)));
 				subMesh.GetComponent<SubMesh>().Init(this, xOffset, zOffset, numRows, numCols);
-				subMeshes.Add(subMesh);
+				//subMeshes.Add(subMesh);
 			}
 			xVertsRemaining -= numCols;
 		}
 		// Scale entire object up
-		gameObject.transform.localScale = new Vector3 (xScale, heightScalar, zScale);
+		//gameObject.transform.localScale = new Vector3 (xScale, heightScalar, zScale);
 	}
 	
 	// Update is called once per frame
 	void Update () {}
+	
+	public void logThing() {
+		Debug.Log("Pinch!");
+	}
 
 	private class SubMesh : MonoBehaviour {
 
