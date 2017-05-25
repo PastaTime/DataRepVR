@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65089947962221278}
   - component: {fileID: 23598281446859704}
   - component: {fileID: 114766790167337846}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: DataMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 1487764850064752}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 0.1, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,7 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d4eb3063e42b30a4cafbbc864861549f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,11 +107,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xVerts: 1000
   zVerts: 1000
-  xScale: 50
-  zScale: 50
-  colourDataPath: /Data/Temperature_surface.csv
-  heightDataPath: /Data/Temperature_surface.csv
+  colourDataPath: /Data/Relative_humidity_hybrid.csv
+  heightDataPath: /Data/Relative_humidity_hybrid.csv
   startColour: {r: 0.002486986, g: 0, b: 0.16911763, a: 1}
   endColour: {r: 0.17647058, g: 0, b: 0, a: 1}
-  heightScalar: 1
   renderMaterial: {fileID: 2100000, guid: d4eb3063e42b30a4cafbbc864861549f, type: 2}

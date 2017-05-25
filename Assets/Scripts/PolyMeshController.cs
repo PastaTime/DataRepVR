@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class PolyMeshController : MonoBehaviour {
 
+	// Total number of verts to use in polymesh width. Defaults to 100.
 	public int xVerts = 100;
 
+	// Total number of verts to use in polymesh depth. Defaults to 100.
 	public int zVerts = 100;
-
-	public float xScale = 1f;
-
-	public float zScale = 1f;
 
 	public string colourDataPath = "";
 
@@ -24,10 +22,10 @@ public class PolyMeshController : MonoBehaviour {
 
 	private float[][] heightData;
 
-	public float heightScalar = 1f;
-
+	// Material to make all submeshes out of
 	public Material renderMaterial;
 
+	//Maximum number of verts permitted per side of submesh
 	private int maxVertsPerMeshSide = 255;
 
 	private List<GameObject> subMeshes = new List<GameObject> ();
@@ -41,14 +39,24 @@ public class PolyMeshController : MonoBehaviour {
 		//Hide parent object
 		gameObject.GetComponent<MeshRenderer> ().enabled = false;
 
+		Vector3 originalScale = gameObject.transform.localScale;
+		// Scale down to a 1x1x1 cube while adding meshes
+		gameObject.transform.localScale = new Vector3 (1f, 1f, 1f);
+
+		// Determine number of submeshes in x direction
 		int xCount = xVerts / maxVertsPerMeshSide;
 		xCount = (xVerts % maxVertsPerMeshSide == 0) ? xCount : xCount + 1;
+		
+		// Determine number of submeshes in z direction
 		int zCount = zVerts / maxVertsPerMeshSide;
 		zCount = (zVerts % maxVertsPerMeshSide == 0) ? zCount : zCount + 1;
 
+		// xVertsRemaining is the number of verts that have not been allocated to a submesh in the x-direction
 		int xVertsRemaining = xVerts;
+
 		for (int i = 0; i < xCount; i++) {
 			
+			// xOffset is essentially number of verts from bottom-left corner to bottom-left corner of this mesh
 			int xOffset = i * maxVertsPerMeshSide;
 			int zVertsRemaining = zVerts;
 			int numCols = (xVertsRemaining > maxVertsPerMeshSide) ? maxVertsPerMeshSide : xVertsRemaining;
@@ -61,28 +69,26 @@ public class PolyMeshController : MonoBehaviour {
 
 				GameObject subMesh = new GameObject ("subMesh");
 				subMesh.AddComponent<SubMesh>();
+
+				//Set this submesh as a sub-component of the polymesh
 				subMesh.transform.parent = gameObject.transform;
 
 				// Calculate translated position for sub-mesh
 				// Includes correction for edge sub-meshes which are smaller and so need to be translated slightly less
-				float xTranslate = ((float)(xOffset + maxVertsPerMeshSide) - 0.5f * (float)(maxVertsPerMeshSide - numCols)) / (float)xVerts;
-				float zTranslate = ((float)(zOffset + maxVertsPerMeshSide) - 0.5f * (float)(maxVertsPerMeshSide - numRows)) / (float)zVerts;
+				// Also includes correction for mesh seams
+				float xTranslate = (xOffset - i + 0.5f * numCols) / (float)xVerts;
+				float zTranslate = (zOffset - j + 0.5f * numRows) / (float)zVerts;
 
-				// 1/xVerts and 1/zVerts are a quad width and depth
-				// Translating back by these removes the mesh seams
-				subMesh.transform.Translate (xTranslate - (1/(float)xVerts) * i, 0, zTranslate - (1/(float)zVerts) * j);
+				subMesh.transform.Translate (xTranslate - 0.5f, 0, zTranslate - 0.5f);
 
 				subMesh.GetComponent<SubMesh>().Init(this, xOffset, zOffset, numRows, numCols);
 				subMeshes.Add(subMesh);
 			}
 			xVertsRemaining -= numCols;
 		}
-		// Scale entire object up
-		gameObject.transform.localScale = new Vector3 (xScale, heightScalar, zScale);
+		// Scale polymesh up to original dimensions
+		gameObject.transform.localScale = originalScale;
 	}
-	
-	// Update is called once per frame
-	void Update () {}
 
 	private class SubMesh : MonoBehaviour {
 
@@ -92,9 +98,9 @@ public class PolyMeshController : MonoBehaviour {
 
 		private int zOffset;
 
-		private int numRows = 0;
+		private int numRows;
 
-		private int numCols = 0;
+		private int numCols;
 
 		private PolyMeshController controller;
 
@@ -110,18 +116,11 @@ public class PolyMeshController : MonoBehaviour {
 
 			meshFilter = gameObject.AddComponent<MeshFilter> ();
 			gameObject.AddComponent<MeshRenderer> ();
-			gameObject.GetComponent<MeshRenderer> ().material = controller.renderMaterial; 
-			gameObject.AddComponent<MeshCollider> ();
+			gameObject.GetComponent<MeshRenderer> ().material = controller.renderMaterial;
 
-			meshFilter.mesh = initMesh((float)numCols / (float)controller.xVerts, (float)numRows / (float)controller.zVerts, numRows, numCols);
+			meshFilter.mesh = prepareMesh((float)numCols / (float)controller.xVerts, (float)numRows / (float)controller.zVerts, numRows, numCols);
 			colourAndDistortMesh (controller.heightData, controller.colourData);
 		}
-
-		// Use this for initialization
-		void Start () {}
-
-		// Update is called once per frame
-		void Update() {}
 
 		/// <summary>
 		/// Creates a Mesh with the specified dimensions around the origin (0,0,0).
@@ -132,7 +131,7 @@ public class PolyMeshController : MonoBehaviour {
 		/// <param name="numVertRows"> Number of rows of vertices in the mesh</param>
 		/// <param name="numVertCols"> Number of columns of vertices in the mesh</param>
 		/// <returns> The created Mesh</returns>
-		public Mesh initMesh(float meshWidth, float meshDepth, int numVertRows, int numVertCols)
+		public Mesh prepareMesh(float meshWidth, float meshDepth, int numVertRows, int numVertCols)
 		{
 			Debug.Assert(meshFilter != null, "Mesh Filter not delcared.");
 
@@ -211,9 +210,6 @@ public class PolyMeshController : MonoBehaviour {
 		}
 
 		public void colourAndDistortMesh(float[][] heightData, float[][] colourData) {
-			Debug.Assert(numRows != 0, "Mesh has not been initialized yet, please call initMesh()");
-			Debug.Assert(numCols != 0, "Mesh has not been initialized yet, please call initMesh()");
-
 			Vector3[] newVertices = meshFilter.mesh.vertices;
 			Color[] colours = new Color[newVertices.Length];
 
@@ -223,7 +219,9 @@ public class PolyMeshController : MonoBehaviour {
 				for (int x = 0; x < numCols; x++)
 				{
 					if (heightData != null) {
-						newVertices[x + z * numCols].y = heightData[heightData.Length * (z + zOffset) / controller.zVerts][heightData[0].Length * (x + xOffset) / controller.xVerts] * controller.heightScalar;
+						// -0.5f puts mesh in middle of polymesh cuboid vertically
+						// While this is running polymesh is 1x1x1 cube
+						newVertices[x + z * numCols].y = heightData[heightData.Length * (z + zOffset) / controller.zVerts][heightData[0].Length * (x + xOffset) / controller.xVerts] - 0.5f;
 					}
 					if (colourData != null) {
 						colours [x + z * numCols] = Colorx.Slerp (controller.startColour, controller.endColour, colourData [colourData.Length * (z + zOffset) / controller.zVerts][colourData[0].Length * (x + xOffset) / controller.xVerts]);
@@ -237,7 +235,6 @@ public class PolyMeshController : MonoBehaviour {
 			meshFilter.mesh.colors = colours;
 			meshFilter.mesh.RecalculateBounds();
 			meshFilter.mesh.RecalculateNormals();
-			//GetComponent<MeshCollider> ().sharedMesh = meshFilter.mesh;
 		}
 	}
 }
