@@ -37,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1487764850064752}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 0.1, z: 2}
+  m_LocalPosition: {x: 0, y: -0.15, z: 0}
+  m_LocalScale: {x: 3.4, y: 0.1, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -105,10 +105,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09004a2c11c7b2642b7ca671c2e50ae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xVerts: 1000
-  zVerts: 1000
-  colourDataPath: /Data/Relative_humidity_hybrid.csv
-  heightDataPath: /Data/Relative_humidity_hybrid.csv
-  startColour: {r: 0.002486986, g: 0, b: 0.16911763, a: 1}
-  endColour: {r: 0.17647058, g: 0, b: 0, a: 1}
+  xVerts: 3598
+  zVerts: 2118
+  colourDataPath: /Data/highres/Geopotential_height_surface.csv
+  heightDataPath: /Data/highres/Geopotential_height_surface.csv
+  startColour: {r: 0, g: 0.11547062, b: 0.302, a: 1}
+  endColour: {r: 0.27205884, g: 0.13415316, b: 0.13415316, a: 1}
   renderMaterial: {fileID: 2100000, guid: d4eb3063e42b30a4cafbbc864861549f, type: 2}
