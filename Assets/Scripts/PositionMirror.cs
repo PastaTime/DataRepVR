@@ -41,7 +41,7 @@ public class PositionMirror : MonoBehaviour {
 		}
 		childObject.transform.position = childPosition;
 
-		rotateArc ();
+		//rotateArc ();
 	}
 
 	void rotateArc() {
