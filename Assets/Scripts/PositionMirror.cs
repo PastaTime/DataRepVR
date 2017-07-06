@@ -9,19 +9,15 @@ public class PositionMirror : MonoBehaviour {
 	public bool constrainY = true;
 	public bool constrainZ = false;
 
+	public bool contrainRotation = true;
+
 	public bool lockRotation = true;
 	private Quaternion initialRotation;
-
-	private Vector2 initialArcPosition; /// <summary>
-	/// Heeeey Y = Z matey 
-	/// </summary>
 
 	void Start () {
 		if (lockRotation) {
 			initialRotation = this.gameObject.transform.rotation;
 		}
-			
-		initialArcPosition = ArcPosition (this.gameObject.transform.position);
 	}
 
 	void Update () {
@@ -41,26 +37,10 @@ public class PositionMirror : MonoBehaviour {
 		}
 		childObject.transform.position = childPosition;
 
-		//rotateArc ();
+
+		if (contrainRotation) {
+			childObject.transform.eulerAngles = transform.parent.eulerAngles;
+		}
 	}
 
-	void rotateArc() {
-		Vector2 currentArcPosition = ArcPosition (this.gameObject.transform.position);
-
-		float angle = Vector2.Angle (currentArcPosition, initialArcPosition);
-		Vector3 rotation = new Vector3 (0, angle, 0);
-		this.gameObject.transform.parent.Rotate (rotation);
-	}
-
-	private Vector2 ArcPosition(Vector3 spherePosition) {
-		Vector3 origin = Vector3.zero;
-		Vector3 sphereArcOrientation = origin - spherePosition;
-
-		Vector2 arcOrientationFlat;
-		arcOrientationFlat.x = sphereArcOrientation.x;
-		arcOrientationFlat.y = sphereArcOrientation.z;
-
-		return arcOrientationFlat;
-	}
-		
 }

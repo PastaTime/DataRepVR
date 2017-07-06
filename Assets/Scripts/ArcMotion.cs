@@ -12,29 +12,37 @@ public class ArcMotion : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		initialPosition = transform.position - centreOfRotation;
+		initialPosition = transform.localPosition - centreOfRotation;
 		// Height is not considered
 		initialPosition.y = 0;
 		distance = initialPosition.magnitude;
+		Debug.Log ("Initial "  + initialPosition);
+		Vector3 cross = Vector3.Cross (initialPosition, initialPosition);
+		Debug.Log ("Test " + cross);
 
 	}
 	
 	// Update is called once per frame
 	void LateUpdate () {
-		Vector3 currentPosition = transform.position - centreOfRotation;
-		float height = transform.position.y;
+		Vector3 currentPosition = transform.localPosition - centreOfRotation;
+		float height = transform.localPosition.y;
 
 		currentPosition.y = 0;
 		currentPosition = Vector3.Normalize (currentPosition) * distance;
 
-		float angleFromInitialPos = Vector3.Angle (currentPosition, initialPosition);
-		Debug.Log (angleFromInitialPos);
+		Debug.Log ("Current" + currentPosition);
+
+		int sign = Vector3.Cross(currentPosition, initialPosition).y < 0 ? -1 : 1;
+		float angleFromInitialPos = sign * Vector3.Angle (currentPosition, initialPosition);
+
+
+		Debug.Log (sign);
 		Vector3 rotation = Vector3.zero;
 		rotation.y = -1 * angleFromInitialPos;
 		transform.parent.Rotate(rotation);
 
-		currentPosition = Vector3.Normalize (initialPosition) * distance;
+		currentPosition = initialPosition;
 		currentPosition.y = height;
-		transform.position = currentPosition;
+		transform.localPosition = currentPosition;
 	}
 }
