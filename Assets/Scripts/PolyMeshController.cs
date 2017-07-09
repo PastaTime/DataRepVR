@@ -1,6 +1,8 @@
 ﻿using System.Collections;
+using System.Diagnostics;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class PolyMeshController : MonoBehaviour {
 
@@ -32,9 +34,12 @@ public class PolyMeshController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-		heightData = LoadData.normaliseValues(LoadData.loadCSV(heightDataPath, false)); 
-		colourData = LoadData.normaliseValues(LoadData.loadCSV(colourDataPath, false));
+		if (heightDataPath.Equals (colourDataPath)) {
+			heightData = colourData = LoadData.normaliseValues(LoadData.loadCSV(heightDataPath, false)); 
+		} else {
+			heightData = LoadData.normaliseValues(LoadData.loadCSV(heightDataPath, false)); 
+			colourData = LoadData.normaliseValues(LoadData.loadCSV(colourDataPath, false));
+		}
 
 		//Hide parent object
 		gameObject.GetComponent<MeshRenderer> ().enabled = false;
@@ -105,7 +110,8 @@ public class PolyMeshController : MonoBehaviour {
 		private PolyMeshController controller;
 
 		public void Init(PolyMeshController controller, int xOffset, int zOffset, int numRows, int numCols) {
-
+//			Stopwatch timer = new Stopwatch ();
+//			timer.Start ();
 			this.controller = controller;
 
 			this.xOffset = xOffset;
@@ -120,6 +126,8 @@ public class PolyMeshController : MonoBehaviour {
 
 			meshFilter.mesh = prepareMesh((float)numCols / (float)controller.xVerts, (float)numRows / (float)controller.zVerts, numRows, numCols);
 			colourAndDistortMesh (controller.heightData, controller.colourData);
+//			timer.Stop ();
+//			UnityEngine.Debug.Log ("Init time: " + timer.ElapsedMilliseconds);
 		}
 
 		/// <summary>
@@ -133,108 +141,111 @@ public class PolyMeshController : MonoBehaviour {
 		/// <returns> The created Mesh</returns>
 		public Mesh prepareMesh(float meshWidth, float meshDepth, int numVertRows, int numVertCols)
 		{
-			Debug.Assert(meshFilter != null, "Mesh Filter not delcared.");
+			string meshName = "Rows" + numVertRows + "Cols" + numVertCols + ".asset";
+			Mesh mesh = (Mesh)AssetDatabase.LoadAssetAtPath ("Assets/Meshes/" + meshName, typeof(Mesh));
+			if (mesh == null) {
 
-			Mesh mesh = new Mesh();
+				mesh = new Mesh ();
 
-			Vector3[] vertices = new Vector3[numVertRows * numVertCols];
-			Vector2[] uvList = new Vector2[numVertRows * numVertCols];
-			int index = 0;
-			for (float i = 0f; i < numVertRows; i++)
-			{
-				for (float j = 0f; j < numVertCols; j++)
-				{
-					// Generate Vertices
-					Vector3 vect = Vector3.zero;
-					vect.x = Mathf.Lerp(-meshWidth / 2f, meshWidth / 2f, j / numVertCols);
-					vect.z = Mathf.Lerp(-meshDepth / 2f, meshDepth / 2f, i / numVertRows);
-					vertices[index] = vect;
+				Vector3[] vertices = new Vector3[numVertRows * numVertCols];
+				Vector2[] uvList = new Vector2[numVertRows * numVertCols];
+				int index = 0;
+				for (float i = 0f; i < numVertRows; i++) {
+					for (float j = 0f; j < numVertCols; j++) {
+						// Generate Vertices
+						Vector3 vect = Vector3.zero;
+						vect.x = Mathf.Lerp (-meshWidth / 2f, meshWidth / 2f, j / numVertCols);
+						vect.z = Mathf.Lerp (-meshDepth / 2f, meshDepth / 2f, i / numVertRows);
+						vertices [index] = vect;
 
-					// Generate UVs
-					Vector2 uv = Vector2.zero;
-					uv.x = vect.x;
-					uv.y = vect.y;
-					uvList[index] = uv;
-					index++;
+						// Generate UVs
+						Vector2 uv = Vector2.zero;
+						uv.x = vect.x;
+						uv.y = vect.y;
+						uvList [index] = uv;
+						index++;
+					}
 				}
-			}
 
-			index = 0;
-			// Number of triangles for one side of the mesh.
-			int numTriangles = (numVertCols - 1) * (numVertRows - 1) * 6;
-			int[] triangles = new int[numTriangles * 2];
+				index = 0;
+				// Number of triangles for one side of the mesh.
+				int numTriangles = (numVertCols - 1) * (numVertRows - 1) * 6;
+				int[] triangles = new int[numTriangles * 2];
 
-			for (int i = 0; i < numVertRows - 1; i++)
-			{
-				for (int j = 0; j < numVertCols - 1; j++)
-				{
-					// Generate Triangle:
-					// (i,j) <---- (i,j+1)
-					//               ^
-					//               |
-					//               |
-					//            (i+1,j+1)
-					triangles[index++] = j + i * numVertCols;
-					triangles[index++] = (j + 1) + (i + 1) * numVertCols;
-					triangles[index++] = (j + 1) + i * numVertCols;
+				for (int i = 0; i < numVertRows - 1; i++) {
+					for (int j = 0; j < numVertCols - 1; j++) {
+						// Generate Triangle:
+						// (i,j) <---- (i,j+1)
+						//               ^
+						//               |
+						//               |
+						//            (i+1,j+1)
+						triangles [index++] = j + i * numVertCols;
+						triangles [index++] = (j + 1) + (i + 1) * numVertCols;
+						triangles [index++] = (j + 1) + i * numVertCols;
 
-					// And for BackFace
-					//triangles[index++] = j + i * numVertCols;
-					//triangles[index++] = (j + 1) + i * numVertCols;
-					//triangles[index++] = (j + 1) + (i + 1) * numVertCols;
+						// And for BackFace
+						//triangles[index++] = j + i * numVertCols;
+						//triangles[index++] = (j + 1) + i * numVertCols;
+						//triangles[index++] = (j + 1) + (i + 1) * numVertCols;
 
-					// Generate Triangle:
-					//  (i,j)
-					//    |            
-					//    |
-					//    V         
-					// (i+1,j) -----> (i+1,j+1)
-					triangles[index++] = j + i * numVertCols;
-					triangles[index++] = j + (i + 1) * numVertCols;
-					triangles[index++] = (j + 1) + (i + 1) * numVertCols;
+						// Generate Triangle:
+						//  (i,j)
+						//    |            
+						//    |
+						//    V         
+						// (i+1,j) -----> (i+1,j+1)
+						triangles [index++] = j + i * numVertCols;
+						triangles [index++] = j + (i + 1) * numVertCols;
+						triangles [index++] = (j + 1) + (i + 1) * numVertCols;
 
-					// And for BackFace
-					//triangles[index++] = j + i * numVertCols;
-					//triangles[index++] = (j + 1) + (i + 1) * numVertCols;
-					//triangles[index++] = j + (i + 1) * numVertCols;
+						// And for BackFace
+						//triangles[index++] = j + i * numVertCols;
+						//triangles[index++] = (j + 1) + (i + 1) * numVertCols;
+						//triangles[index++] = j + (i + 1) * numVertCols;
+					}
 				}
+
+				mesh.vertices = vertices;
+				mesh.uv = uvList;
+				mesh.triangles = triangles;
+
+				mesh.RecalculateBounds ();
+				mesh.RecalculateNormals ();
+				AssetDatabase.CreateAsset (mesh, "Assets/Meshes/" + meshName);
+				AssetDatabase.SaveAssets ();
 			}
-
-			mesh.vertices = vertices;
-			mesh.uv = uvList;
-			mesh.triangles = triangles;
-
-			mesh.RecalculateBounds();
-			mesh.RecalculateNormals();
 			return mesh;
 		}
 
 		public void colourAndDistortMesh(float[][] heightData, float[][] colourData) {
 			Vector3[] newVertices = meshFilter.mesh.vertices;
 			Color[] colours = new Color[newVertices.Length];
-
 			// Loading into Mesh
-			for (int z = 0; z < numRows; z++)
-			{
-				for (int x = 0; x < numCols; x++)
+			if (heightData != null) {
+				for (int z = 0; z < numRows; z++)
 				{
-					if (heightData != null) {
-						// -0.5f puts mesh in middle of polymesh cuboid vertically
-						// While this is running polymesh is 1x1x1 cube
+					for (int x = 0; x < numCols; x++)
+					{
 						newVertices[x + z * numCols].y = heightData[heightData.Length * (z + zOffset) / controller.zVerts][heightData[0].Length * (x + xOffset) / controller.xVerts] + 0.375f;
-					}
-					if (colourData != null) {
-						colours [x + z * numCols] = Colorx.Slerp (controller.startColour, controller.endColour, colourData [colourData.Length * (z + zOffset) / controller.zVerts][colourData[0].Length * (x + xOffset) / controller.xVerts]);
-					} else {
-						colours [x + z * numCols] = Color.grey;
 					}
 				}
 			}
-
+//			Stopwatch colourTimer = new Stopwatch();
+//			colourTimer.Start ();
+			if (colourData != null) {
+				for (int z = 0; z < numRows; z++) {
+					for (int x = 0; x < numCols; x++) {
+						colours [x + z * numCols] = Colorx.Slerp (controller.startColour, controller.endColour, colourData [colourData.Length * (z + zOffset) / controller.zVerts] [colourData [0].Length * (x + xOffset) / controller.xVerts]);
+					}
+				}
+			}
+//			colourTimer.Stop ();
+//			UnityEngine.Debug.Log ("colournDistortcolour: " + colourTimer.ElapsedMilliseconds);
 			meshFilter.mesh.vertices = newVertices;
 			meshFilter.mesh.colors = colours;
-			meshFilter.mesh.RecalculateBounds();
-			meshFilter.mesh.RecalculateNormals();
+//			meshFilter.mesh.RecalculateBounds();
+//			meshFilter.mesh.RecalculateNormals();
 		}
 	}
 }
