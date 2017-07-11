@@ -56,21 +56,16 @@ public class PolyMeshController : MonoBehaviour {
 		int zCount = zVerts / maxVertsPerMeshSide;
 		zCount = (zVerts % maxVertsPerMeshSide == 0) ? zCount : zCount + 1;
 
-		// xVertsRemaining is the number of verts that have not been allocated to a submesh in the x-direction
-		int xVertsRemaining = xVerts;
-
 		for (int i = 0; i < xCount; i++) {
-			
+
+			int numCols = (xVerts / maxVertsPerMeshSide > i) ? maxVertsPerMeshSide : xVerts % maxVertsPerMeshSide;
 			// xOffset is essentially number of verts from bottom-left corner to bottom-left corner of this mesh
 			int xOffset = i * maxVertsPerMeshSide;
-			int zVertsRemaining = zVerts;
-			int numCols = (xVertsRemaining > maxVertsPerMeshSide) ? maxVertsPerMeshSide : xVertsRemaining;
 
 			for (int j = 0; j < zCount; j++) {
 				
 				int zOffset = j * maxVertsPerMeshSide;
-				int numRows = (zVertsRemaining > maxVertsPerMeshSide) ? maxVertsPerMeshSide : zVertsRemaining;
-				zVertsRemaining -= numRows;
+				int numRows = (zVerts / maxVertsPerMeshSide > j) ? maxVertsPerMeshSide : zVerts % maxVertsPerMeshSide;
 
 				GameObject subMesh = new GameObject ("subMesh");
 				subMesh.AddComponent<SubMesh>();
@@ -89,7 +84,6 @@ public class PolyMeshController : MonoBehaviour {
 				subMesh.GetComponent<SubMesh>().Init(this, xOffset, zOffset, numRows, numCols);
 				subMeshes.Add(subMesh);
 			}
-			xVertsRemaining -= numCols;
 		}
 		// Scale polymesh up to original dimensions
 		gameObject.transform.localScale = originalScale;
