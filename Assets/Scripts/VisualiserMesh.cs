@@ -1,7 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
-
 
 public class VisualiserMesh : MonoBehaviour
 {

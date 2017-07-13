@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Diagnostics;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
+﻿using UnityEngine;
 
 public class PolyMeshController : MonoBehaviour {
 
@@ -67,26 +63,22 @@ public class PolyMeshController : MonoBehaviour {
 			int subXVerts = (totalXVerts / maxVertsPerMeshSide > i) ? maxVertsPerMeshSide : totalXVerts % maxVertsPerMeshSide;
 			// xOffset is essentially number of verts from bottom-left corner to bottom-left corner of this mesh
 			int xOffset = i * maxVertsPerMeshSide;
-
+			float xTranslate = (xOffset + 0.5f * subXVerts) / totalXVerts;
+			
 			for (int j = 0; j < zCount; j++) {
 				
 				int zOffset = j * maxVertsPerMeshSide;
 				int subZVerts = (totalZVerts / maxVertsPerMeshSide > j) ? maxVertsPerMeshSide : totalZVerts % maxVertsPerMeshSide;
-
+				float zTranslate = (zOffset + 0.5f * subZVerts) / totalZVerts;
+				
 				GameObject subMesh = new GameObject ("subMesh");
 				subMesh.AddComponent<VisualiserMesh>();
-
+				subMesh.GetComponent<VisualiserMesh>().Init(this, i, j, subXVerts, subZVerts);
+				
 				//Set this submesh as a sub-component of the polymesh
 				subMesh.transform.parent = gameObject.transform;
-
-				// Calculate translated position for sub-mesh
-				// Includes correction for edge sub-meshes which are smaller and so need to be translated slightly less
-				float xTranslate = (xOffset + 0.5f * subXVerts) / (float)totalXVerts;
-				float zTranslate = (zOffset + 0.5f * subZVerts) / (float)totalZVerts;
-
+				subMesh.transform.position = subMesh.transform.parent.position;
 				subMesh.transform.Translate (xTranslate - 0.5f, 0, zTranslate - 0.5f);
-
-				subMesh.GetComponent<VisualiserMesh>().Init(this, i, j, subXVerts, subZVerts);
 			}
 		}
 		// Scale polymesh up to original dimensions
