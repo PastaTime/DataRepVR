@@ -81,9 +81,8 @@ public class PolyMeshController : MonoBehaviour {
 
 				// Calculate translated position for sub-mesh
 				// Includes correction for edge sub-meshes which are smaller and so need to be translated slightly less
-				// Also includes correction for mesh seams
-				float xTranslate = (xOffset - i + 0.5f * subXVerts) / (float)totalXVerts;
-				float zTranslate = (zOffset - j + 0.5f * subZVerts) / (float)totalZVerts;
+				float xTranslate = (xOffset + 0.5f * subXVerts) / (float)totalXVerts;
+				float zTranslate = (zOffset + 0.5f * subZVerts) / (float)totalZVerts;
 
 				subMesh.transform.Translate (xTranslate - 0.5f, 0, zTranslate - 0.5f);
 

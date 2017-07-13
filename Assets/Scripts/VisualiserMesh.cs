@@ -15,16 +15,10 @@ public class VisualiserMesh : MonoBehaviour
 
     private int zVerts;
 
-    private float meshWidth;
-
-    private float meshDepth;
-
     private PolyMeshController controller;
 
     public void Init(PolyMeshController controller, int xPos, int zPos, int xVerts, int zVerts)
     {
-        //			Stopwatch timer = new Stopwatch ();
-        //			timer.Start ();
         this.controller = controller;
 
         this.xPos = xPos;
@@ -33,45 +27,52 @@ public class VisualiserMesh : MonoBehaviour
         this.xVerts = xVerts;
         this.zVerts = zVerts;
 
-        this.meshWidth = controller.getWidth() * xVerts / controller.totalXVerts;
-        this.meshDepth = controller.getDepth() * zVerts / controller.totalZVerts;
-
         meshFilter = gameObject.AddComponent<MeshFilter>();
         MeshRenderer meshRenderer = gameObject.AddComponent<MeshRenderer>();
         meshRenderer.material = controller.renderMaterial;
 
         meshFilter.mesh = prepareMesh(xVerts, zVerts);
+        resizeMesh(meshFilter);
         colourAndDistortMesh(controller.getHeightData(), controller.getColourData());
-        //			timer.Stop ();
-        //			UnityEngine.Debug.Log ("Init time: " + timer.ElapsedMilliseconds);
+    }
+
+    private void resizeMesh(MeshFilter meshFilter)
+    {
+        Bounds bounds = meshFilter.mesh.bounds;
+        float xScaling = ((float)xVerts / controller.totalXVerts) / bounds.size.x;
+        float zScaling = ((float)zVerts / controller.totalZVerts) / bounds.size.z;
+        meshFilter.transform.localScale = new Vector3(xScaling, 1f, zScaling);
+        meshFilter.mesh.RecalculateBounds();
     }
 
     /// <summary>
     /// Creates a Mesh with the specified dimensions around the origin (0,0,0).
     /// The Mesh will be orientated along the XZ Plane.
     /// </summary>
-    /// <param name="numVertRows"> Number of rows of vertices in the mesh</param>
-    /// <param name="numVertCols"> Number of columns of vertices in the mesh</param>
+    /// <param name="zVerts"> Number of rows of vertices in the mesh</param>
+    /// <param name="xVerts"> Number of columns of vertices in the mesh</param>
     /// <returns> The created Mesh</returns>
-    public Mesh prepareMesh(int numVertCols, int numVertRows)
+    public Mesh prepareMesh(int xVerts, int zVerts)
     {
-        string meshName = "Rows" + numVertRows + "Cols" + numVertCols + ".asset";
+        float meshWidth = (float)xVerts / controller.totalXVerts;
+        float meshDepth = (float)zVerts / controller.totalZVerts;
+        string meshName = "xVerts" + zVerts + "zVerts" + xVerts + ".asset";
         Mesh mesh = (Mesh) AssetDatabase.LoadAssetAtPath("Assets/Meshes/" + meshName, typeof(Mesh));
         if (mesh == null)
         {
             mesh = new Mesh();
 
-            Vector3[] vertices = new Vector3[numVertRows * numVertCols];
-            Vector2[] uvList = new Vector2[numVertRows * numVertCols];
+            Vector3[] vertices = new Vector3[zVerts * xVerts];
+            Vector2[] uvList = new Vector2[zVerts * xVerts];
             int index = 0;
-            for (float i = 0f; i < numVertRows; i++)
+            for (float i = 0f; i < zVerts; i++)
             {
-                for (float j = 0f; j < numVertCols; j++)
+                for (float j = 0f; j < xVerts; j++)
                 {
                     // Generate Vertices
                     Vector3 vect = Vector3.zero;
-                    vect.x = Mathf.Lerp(-meshWidth / 2f, meshWidth / 2f, j / numVertCols);
-                    vect.z = Mathf.Lerp(-meshDepth / 2f, meshDepth / 2f, i / numVertRows);
+                    vect.x = Mathf.Lerp(-meshWidth / 2f, meshWidth / 2f, j / xVerts);
+                    vect.z = Mathf.Lerp(-meshDepth / 2f, meshDepth / 2f, i / zVerts);
                     vertices[index] = vect;
 
                     // Generate UVs
@@ -85,12 +86,12 @@ public class VisualiserMesh : MonoBehaviour
 
             index = 0;
             // Number of triangles for one side of the mesh.
-            int numTriangles = (numVertCols - 1) * (numVertRows - 1) * 6;
+            int numTriangles = (xVerts - 1) * (zVerts - 1) * 6;
             int[] triangles = new int[numTriangles * 2];
 
-            for (int i = 0; i < numVertRows - 1; i++)
+            for (int i = 0; i < zVerts - 1; i++)
             {
-                for (int j = 0; j < numVertCols - 1; j++)
+                for (int j = 0; j < xVerts - 1; j++)
                 {
                     // Generate Triangle:
                     // (i,j) <---- (i,j+1)
@@ -98,9 +99,9 @@ public class VisualiserMesh : MonoBehaviour
                     //               |
                     //               |
                     //            (i+1,j+1)
-                    triangles[index++] = j + i * numVertCols;
-                    triangles[index++] = (j + 1) + (i + 1) * numVertCols;
-                    triangles[index++] = (j + 1) + i * numVertCols;
+                    triangles[index++] = j + i * xVerts;
+                    triangles[index++] = (j + 1) + (i + 1) * xVerts;
+                    triangles[index++] = (j + 1) + i * xVerts;
 
                     // Generate Triangle:
                     //  (i,j)
@@ -108,9 +109,9 @@ public class VisualiserMesh : MonoBehaviour
                     //    |
                     //    V         
                     // (i+1,j) -----> (i+1,j+1)
-                    triangles[index++] = j + i * numVertCols;
-                    triangles[index++] = j + (i + 1) * numVertCols;
-                    triangles[index++] = (j + 1) + (i + 1) * numVertCols;
+                    triangles[index++] = j + i * xVerts;
+                    triangles[index++] = j + (i + 1) * xVerts;
+                    triangles[index++] = (j + 1) + (i + 1) * xVerts;
                 }
             }
 
@@ -145,8 +146,6 @@ public class VisualiserMesh : MonoBehaviour
                 }
             }
         }
-        //			Stopwatch colourTimer = new Stopwatch();
-        //			colourTimer.Start ();
         if (colourData != null)
         {
             for (int z = 0; z < zVerts; z++)
@@ -159,11 +158,9 @@ public class VisualiserMesh : MonoBehaviour
                 }
             }
         }
-        //			colourTimer.Stop ();
-        //			UnityEngine.Debug.Log ("colournDistortcolour: " + colourTimer.ElapsedMilliseconds);
 		meshFilter.mesh.vertices = newVertices;
         meshFilter.mesh.colors = colours;
-        //			meshFilter.mesh.RecalculateBounds();
-        //			meshFilter.mesh.RecalculateNormals();
+        meshFilter.mesh.RecalculateBounds();
+        meshFilter.mesh.RecalculateNormals();
     }
 }
