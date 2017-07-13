@@ -26,16 +26,10 @@ public class PolyMeshController : MonoBehaviour {
 	//Maximum number of verts permitted per side of submesh
 	private int maxVertsPerMeshSide = 255;
 
-	private float width;
-
-	private float depth;
-
 	// Use this for initialization
 	void Start () {
 
-		width = gameObject.transform.localScale.x;
-		depth = gameObject.transform.localScale.z;
-
+		// If the same data source is being used for height and colour no need to load it twice from disk
 		if (heightDataPath.Equals (colourDataPath)) {
 			heightData = colourData = LoadData.normaliseValues(LoadData.loadCSV(heightDataPath, false)); 
 		} else {
@@ -60,6 +54,7 @@ public class PolyMeshController : MonoBehaviour {
 
 		for (int i = 0; i < xCount; i++) {
 
+			// Determine the maximum number of verts to use for this sub-mesh while not exceeding the max verts possible or vertex count
 			int subXVerts = (totalXVerts / maxVertsPerMeshSide > i) ? maxVertsPerMeshSide : totalXVerts % maxVertsPerMeshSide;
 			// xOffset is essentially number of verts from bottom-left corner to bottom-left corner of this mesh
 			int xOffset = i * maxVertsPerMeshSide;
@@ -85,12 +80,14 @@ public class PolyMeshController : MonoBehaviour {
 		gameObject.transform.localScale = originalScale;
 	}
 
-	public float getWidth() {
-		return width;
+	public float getWidth()
+	{
+		return gameObject.transform.localScale.x;
 	}
 
-	public float getDepth() { 
-		return depth;
+	public float getDepth()
+	{
+		return gameObject.transform.localScale.z;
 	}
 
 	public int getMaxVerts() {

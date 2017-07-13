@@ -4,7 +4,7 @@ using UnityEditor;
 public class VisualiserMesh : MonoBehaviour
 {
     private MeshFilter meshFilter;
-
+    
     private int xPos;
 
     private int zPos;
@@ -29,12 +29,12 @@ public class VisualiserMesh : MonoBehaviour
         MeshRenderer meshRenderer = gameObject.AddComponent<MeshRenderer>();
         meshRenderer.material = controller.renderMaterial;
 
-        meshFilter.mesh = prepareMesh(xVerts, zVerts);
-        resizeMesh(meshFilter);
-        colourAndDistortMesh(controller.getHeightData(), controller.getColourData());
+        meshFilter.mesh = prepareMesh();
+        resizeMesh();
+        colourAndDistortMesh();
     }
 
-    private void resizeMesh(MeshFilter meshFilter)
+    private void resizeMesh()
     {
         Bounds bounds = meshFilter.mesh.bounds;
         float xScaling = ((float)xVerts / controller.totalXVerts) / bounds.size.x;
@@ -50,16 +50,16 @@ public class VisualiserMesh : MonoBehaviour
     /// <param name="zVerts"> Number of rows of vertices in the mesh</param>
     /// <param name="xVerts"> Number of columns of vertices in the mesh</param>
     /// <returns> The created Mesh</returns>
-    public Mesh prepareMesh(int xVerts, int zVerts)
+    public Mesh prepareMesh()
     {
-        float meshWidth = (float)xVerts / controller.totalXVerts;
-        float meshDepth = (float)zVerts / controller.totalZVerts;
         string meshName = "xVerts" + zVerts + "zVerts" + xVerts + ".asset";
         Mesh mesh = (Mesh) AssetDatabase.LoadAssetAtPath("Assets/Meshes/" + meshName, typeof(Mesh));
         if (mesh == null)
         {
             mesh = new Mesh();
-
+            float meshWidth = (float)xVerts / controller.totalXVerts;
+            float meshDepth = (float)zVerts / controller.totalZVerts;
+            
             Vector3[] vertices = new Vector3[zVerts * xVerts];
             Vector2[] uvList = new Vector2[zVerts * xVerts];
             int index = 0;
@@ -125,10 +125,14 @@ public class VisualiserMesh : MonoBehaviour
         return mesh;
     }
 
-    public void colourAndDistortMesh(float[][] heightData, float[][] colourData)
+    public void colourAndDistortMesh()
     {
+        float[][] heightData = controller.getHeightData();
+        float[][] colourData = controller.getColourData();
+        
         Vector3[] newVertices = meshFilter.mesh.vertices;
         Color[] colours = new Color[newVertices.Length];
+        
         int xOffset = xPos * controller.getMaxVerts();
         int zOffset = zPos * controller.getMaxVerts();
         // Loading into Mesh
