@@ -32,7 +32,7 @@ public class UISelect : Selectable {
 
 	public override void WhileSelected () {
 		if (!controllerButton && control.GetButtonDown (Controller.Button.A)) {
-			Debug.Log ("Button Seleected");
+			PressButton ();
 		}
 		controllerButton = control.GetButtonDown (Controller.Button.A);
 	}

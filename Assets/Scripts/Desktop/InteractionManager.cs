@@ -10,6 +10,8 @@ public class InteractionManager : MonoBehaviour {
 
 	public CameraPan camPan;
 
+	public bool invertedNavigation = false;
+
 	public int firstSelected = 0;
 
 	public int selected;
@@ -20,9 +22,9 @@ public class InteractionManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if (selectList.Length <= 0) {
+		if (selectList.Length + menuList.Length <= 0) {
 			Debug.LogError ("Select List is not initialized, please initialize from Editor");
-		} else if (selectList.Length <= firstSelected) {
+		} else if (selectList.Length + menuList.Length - 1 <= firstSelected) {
 			Debug.LogError ("Initial Select Index is larger than the total length of selectables");
 			selected = 0;
 		} else {
@@ -37,7 +39,11 @@ public class InteractionManager : MonoBehaviour {
 
 		Vector2 leftStick = controller.GetJoystickAxis (Controller.Joystick.Left);
 
-		float vert = leftStick.y;
+		float vert = -leftStick.y;
+		// Invert direction of navigation
+		if (invertedNavigation)
+			vert *= -1;
+
 		if (counter >= coolDown)
 			counter = 0f;
 

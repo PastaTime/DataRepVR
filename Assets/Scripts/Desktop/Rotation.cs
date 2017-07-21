@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Rotation : MonoBehaviour {
 
-	public float minSpeed = 5f;
-	public float maxSpeed = 20f;
+	public float minSpeed = 10f;
+	public float maxSpeed = 100f;
 
 	private float counter = 0f;
 	public float speedUpTime = 2f;
