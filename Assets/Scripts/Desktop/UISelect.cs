@@ -13,6 +13,8 @@ public class UISelect : Selectable {
 	public Text buttonLabel;
 	public string buttonUpText = "Off";
 	public string buttonDownText = "On";
+	public AudioClip buttonUpSound;
+	public AudioClip buttonDownSound;
 
 	private Controller control;
 	// Records the position of the A button as the button is highlighted (this avoids rapidly selecting a button while moving)
@@ -47,9 +49,11 @@ public class UISelect : Selectable {
 		if (buttonState) {
 			GetComponent<CompressibleUI> ().Retract ();
 			buttonLabel.text = buttonDownText;
+			GetComponent<AudioSource> ().PlayOneShot (buttonDownSound);
 		} else {
 			GetComponent<CompressibleUI> ().Expand ();
 			buttonLabel.text = buttonUpText;
+			GetComponent<AudioSource> ().PlayOneShot (buttonUpSound);
 		}
 
 	}

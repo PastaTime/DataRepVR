@@ -891,6 +891,8 @@ MonoBehaviour:
   buttonLabel: {fileID: 583670865}
   buttonUpText: Off
   buttonDownText: On
+  buttonUpSound: {fileID: 8300000, guid: 409e434d2f294004794cabc31135207f, type: 3}
+  buttonDownSound: {fileID: 8300000, guid: 950e6e66be1f197459ac2cc4676f2af2, type: 3}
 --- !u!1001 &306984317
 Prefab:
   m_ObjectHideFlags: 0
@@ -1511,6 +1513,8 @@ MonoBehaviour:
   buttonLabel: {fileID: 1963126094}
   buttonUpText: Off
   buttonDownText: On
+  buttonUpSound: {fileID: 8300000, guid: 409e434d2f294004794cabc31135207f, type: 3}
+  buttonDownSound: {fileID: 8300000, guid: 950e6e66be1f197459ac2cc4676f2af2, type: 3}
 --- !u!1 &374029017
 GameObject:
   m_ObjectHideFlags: 0
@@ -3786,6 +3790,8 @@ MonoBehaviour:
   buttonLabel: {fileID: 1676877058}
   buttonUpText: Off
   buttonDownText: On
+  buttonUpSound: {fileID: 8300000, guid: 409e434d2f294004794cabc31135207f, type: 3}
+  buttonDownSound: {fileID: 8300000, guid: 950e6e66be1f197459ac2cc4676f2af2, type: 3}
 --- !u!1 &1601388012
 GameObject:
   m_ObjectHideFlags: 0
@@ -4652,6 +4658,8 @@ MonoBehaviour:
   buttonLabel: {fileID: 1601388014}
   buttonUpText: Off
   buttonDownText: On
+  buttonUpSound: {fileID: 8300000, guid: 409e434d2f294004794cabc31135207f, type: 3}
+  buttonDownSound: {fileID: 8300000, guid: 950e6e66be1f197459ac2cc4676f2af2, type: 3}
 --- !u!1 &1911917232
 GameObject:
   m_ObjectHideFlags: 0
