@@ -5,6 +5,11 @@ using UnityEngine;
 public class InteractionManager : MonoBehaviour {
 
 	public Selectable[] selectList;
+
+	public UISelect[] menuList;
+
+	public CameraPan camPan;
+
 	public int firstSelected = 0;
 
 	public int selected;
@@ -38,11 +43,9 @@ public class InteractionManager : MonoBehaviour {
 
 		// Up
 		if (vert >= Controller.deadZone && counter == 0f) {
-			selectList [selected].Unselect ();
-			selected++;
-			if (selected >= selectList.Length)
-				selected = 0;
-			selectList [selected].Select ();
+			currentSelection().Unselect ();
+			incrementIndex ();
+			currentSelection().Select ();
 			counter += Time.deltaTime;
 		} else if (vert >= Controller.deadZone) {
 			counter += Time.deltaTime;
@@ -55,15 +58,44 @@ public class InteractionManager : MonoBehaviour {
 		
 		// Down
 		if (vert <= - Controller.deadZone && counter == 0f) {
-			selectList [selected].Unselect ();
-			selected--;
-			if (selected < 0)
-				selected = selectList.Length - 1;
-			selectList [selected].Select ();
+			currentSelection().Unselect ();
+			decrementIndex ();
+			currentSelection().Select ();
 			counter += Time.deltaTime;
 		} else if (vert <= - Controller.deadZone) {
 			counter += Time.deltaTime;
 		}
 
+	}
+
+	private Selectable currentSelection() {
+		int index = selected;
+		if (index < selectList.Length)
+			return selectList [index];
+		index -= selectList.Length;
+		if (index >= menuList.Length)
+			Debug.LogError ("Index out of range");
+		return menuList [index];
+	}
+
+	private void incrementIndex() {
+		selected++;
+		if (selected == selectList.Length) {
+			camPan.MoveTo (CameraPan.Position.B);
+		} else if (selected == selectList.Length + menuList.Length) {
+			camPan.MoveTo (CameraPan.Position.A);
+			selected = 0;
+			return;
+		}
+	}
+
+	private void decrementIndex() {
+		selected--;
+		if (selected < 0) {
+			selected = selectList.Length + menuList.Length - 1;
+			camPan.MoveTo (CameraPan.Position.B);
+		} else if (selected == selectList.Length - 1) {
+			camPan.MoveTo (CameraPan.Position.A);
+		}
 	}
 }
