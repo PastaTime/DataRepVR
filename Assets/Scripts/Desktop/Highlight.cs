@@ -6,6 +6,10 @@ public class Highlight : Selectable {
 	public Material def;
 	public Material highlight;
 
+	// Min and Max values to clamp mesh sliders too.
+	public float maxY = 1.4f;
+	public float minY = 0.75f;
+
 	public float speed = 10f;
 
 	public override void OnSelect () {
@@ -21,6 +25,7 @@ public class Highlight : Selectable {
 			Debug.Log ("Moving");
 			Vector3 pos = transform.position;
 			pos.y += rightJoy.y * speed * Time.deltaTime;
+			pos.y = Mathf.Clamp (pos.y, minY, maxY);
 			transform.position = pos;
 		}
 			
