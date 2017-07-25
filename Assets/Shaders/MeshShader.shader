@@ -8,10 +8,8 @@ Shader "Custom/MeshShader" {
          _MaxVariance ("Maximum Variance", Float) = 3.0
          _HighColor ("High Color", Color) = (1.0, 1.0, 1.0, 1.0)
          _LowColor ("Low Color", Color) = (0.0, 0.0, 0.0, 1.0)
-         _x1("Lower X", Float) = 0.0
-         _x2("Upper X", Float) = 0.0
-         _z1("Lower Z", Float) = 0.0
-         _z2("Upper Z", Float) = 0.0
+         _v1 ("Point 1", Vector) = (0.0, 0.0, 0.0)
+         _v2 ("Point 2", Vector) = (0.0, 0.0, 0.0)
      }
      SubShader {
              Tags {"Queue" = "Transparent" "RenderType"="Transparent" }
@@ -28,15 +26,18 @@ Shader "Custom/MeshShader" {
              float4 _LowColor;
              sampler2D _MainTex;
 
-             float _x1;
-			 float _x2;
-		     float _z1;
-			 float _z2;
+             float4 _v1;
+			 float4 _v2;
              
              struct Input{
                  float2 uv_MainTex;
                  float4 color : COLOR;
                  float3 pos_ws : TEXCOORD4;
+             };
+
+             struct Plane{
+             	float d;
+             	float3 n;
              };
 
              // Helper Function
@@ -87,6 +88,21 @@ Shader "Custom/MeshShader" {
              	return float4(HSVtoRGB(hsv_out), _Alpha);
              }
 
+             // Calculates a plane from 3 coordinates.
+             Plane calc_plane(float3 v1, float3 v2, float3 v3)
+             {
+             	Plane output;
+             	output.n = normalize(cross(v2-v1, v3-v1));
+             	output.d = dot(output.n, v1);
+             	return output;
+             }
+
+             // Determines whether a point is above a Plane
+             bool above_plane(Plane p, float3 v1)
+             {
+             	return (dot(p.n, v1) + p.d > 0);
+             }
+
              void vert(inout appdata_full v, out Input o) {
 
 	             UNITY_INITIALIZE_OUTPUT(Input,o);
@@ -102,21 +118,17 @@ Shader "Custom/MeshShader" {
              }
 
              void surf(Input IN, inout SurfaceOutput o){
-	            
+
+             	// This could be bad for performance
+             	float3 _v3 = _v2.xyz;
+             	_v3.y++;
+             	Plane p = calc_plane(_v1.xyz, _v2.xyz, _v3); 
 	            // Use X Pos to cut out object
 
-				if (IN.pos_ws.x < _x1 || _x2 < IN.pos_ws.x)
+				if (above_plane(p, IN.pos_ws))
 				{
 					discard;
 				}
-		
-				// Use Z Pos to cut out object
-
-				if (IN.pos_ws.z < _z1 || _z2 < IN.pos_ws.z)
-				{
-					discard;
-				}
-
                  o.Albedo = tex2D(_MainTex, IN.uv_MainTex).rgb * IN.color; 
                  o.Alpha = _Alpha;  
              }
