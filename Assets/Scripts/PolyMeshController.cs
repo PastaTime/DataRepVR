@@ -223,11 +223,13 @@ public class PolyMeshController : MonoBehaviour {
 						// While this is running polymesh is 1x1x1 cube
 						newVertices[x + z * numCols].y = heightData[heightData.Length * (z + zOffset) / controller.zVerts][heightData[0].Length * (x + xOffset) / controller.xVerts] + 0.375f;
 					}
+					/*
 					if (colourData != null) {
 						colours [x + z * numCols] = Colorx.Slerp (controller.startColour, controller.endColour, colourData [colourData.Length * (z + zOffset) / controller.zVerts][colourData[0].Length * (x + xOffset) / controller.xVerts]);
 					} else {
 						colours [x + z * numCols] = Color.grey;
 					}
+					*/
 				}
 			}
 

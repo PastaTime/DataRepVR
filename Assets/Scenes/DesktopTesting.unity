@@ -211,6 +211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 58513413}
   - component: {fileID: 58513412}
+  - component: {fileID: 58513414}
   m_Layer: 0
   m_Name: Rotator
   m_TagString: Untagged
@@ -243,6 +244,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &58513414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 58513411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f1e3dbb063b40a4296c5dd02a238a03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x1: 0
+  x2: 100
+  z1: -100
+  z2: 100
 --- !u!1001 &107179480
 Prefab:
   m_ObjectHideFlags: 0
@@ -3115,6 +3131,11 @@ Prefab:
       propertyPath: endColour.r
       value: 0.3602941
       objectReference: {fileID: 0}
+    - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
+        type: 2}
+      propertyPath: renderMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 3a825b5ef5f32d943885f830621cc9e0, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
   m_IsPrefabParent: 0
