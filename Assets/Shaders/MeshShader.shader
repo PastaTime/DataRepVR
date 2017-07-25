@@ -94,7 +94,6 @@ Shader "Custom/MeshShader" {
 				o.pos_ws = mul(unity_ObjectToWorld, v.vertex).xyz;
 
                  // Convert to world position
-                 float4 worldPos = mul(unity_ObjectToWorld, v.vertex);
                  float diff = v.vertex.y - _CenterHeight;
                  float cFactor = saturate(diff/(2*_MaxVariance) + 0.5);
                  
