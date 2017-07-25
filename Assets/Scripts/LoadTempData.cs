@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System;
 using UnityEngine;
@@ -11,6 +12,9 @@ public class LoadData {
 	/// <param name="filePath">File path.</param>
 	/// <param name="skipColumns">Controls whether or not included column titles should be skipped.</param>> 
 	public static float[][] loadCSV (string filePath, bool skipColumns) {
+//		Stopwatch timer = new Stopwatch ();
+//		timer.Start ();
+
 		string line = "";
 		List<List<float>> grid = new List<List<float>> ();
 		try {
@@ -36,11 +40,14 @@ public class LoadData {
 			for (int i = 0; i < grid.Count; i++) {
 				outputList[i] = grid [i].ToArray();
 			}
+			float endTime = Time.time;
+//			timer.Stop();
+//			UnityEngine.Debug.Log("loadCSV: " + (timer.ElapsedMilliseconds));
 			return outputList;
 		} catch (IOException e) {
-			Debug.Log (e.Message);
+			UnityEngine.Debug.Log (e.Message);
 		} catch (UnauthorizedAccessException e) {
-			Debug.Log (e.Message);
+			UnityEngine.Debug.Log (e.Message);
 		}
 		return null;
 	}
