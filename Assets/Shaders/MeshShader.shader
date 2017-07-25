@@ -56,7 +56,7 @@ Shader "Custom/MeshShader" {
              
              void surf(Input IN, inout SurfaceOutput o){
 	            
-	            //X pos & size will cutout the object
+	            // Use X Pos to cut out object
 
 				if (IN.pos_ws.x < _x1 || _x2 < IN.pos_ws.x)
 				{
@@ -64,9 +64,9 @@ Shader "Custom/MeshShader" {
 				}
 		
 				
-				//Z pos & size will cutout the object
+				// Use Z Pos to cut out object
 
-				if (IN.pos_ws.z < _z1 || _x2 < IN.pos_ws.z)
+				if (IN.pos_ws.z < _z1 || _z2 < IN.pos_ws.z)
 				{
 					discard;
 				}
