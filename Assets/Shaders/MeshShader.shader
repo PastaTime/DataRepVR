@@ -93,7 +93,7 @@ Shader "Custom/MeshShader" {
 				//compute object vertices position in world space
 				o.pos_ws = mul(unity_ObjectToWorld, v.vertex).xyz;
 
-                 // Convert to world position
+                 // Use Location Position of Mesh
                  float diff = v.vertex.y - _CenterHeight;
                  float cFactor = saturate(diff/(2*_MaxVariance) + 0.5);
                  
@@ -110,14 +110,12 @@ Shader "Custom/MeshShader" {
 					discard;
 				}
 		
-				
 				// Use Z Pos to cut out object
 
 				if (IN.pos_ws.z < _z1 || _z2 < IN.pos_ws.z)
 				{
 					discard;
 				}
-
 
                  o.Albedo = tex2D(_MainTex, IN.uv_MainTex).rgb * IN.color; 
                  o.Alpha = _Alpha;  

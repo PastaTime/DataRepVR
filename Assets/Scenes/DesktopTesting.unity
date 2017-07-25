@@ -323,7 +323,6 @@ GameObject:
   - component: {fileID: 108852395}
   - component: {fileID: 108852394}
   - component: {fileID: 108852399}
-  - component: {fileID: 108852398}
   m_Layer: 0
   m_Name: Temperature mesh control
   m_TagString: Untagged
@@ -412,19 +411,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 108852392}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &108852398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 108852392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffce1885e536aaf4696254f3d6911922, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _manager: {fileID: 0}
-  _material: {fileID: 11400000, guid: 2b36778cd97232c459902ea9b77fd3ec, type: 2}
 --- !u!54 &108852399
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2073,7 +2059,6 @@ GameObject:
   - component: {fileID: 749630696}
   - component: {fileID: 749630695}
   - component: {fileID: 749630700}
-  - component: {fileID: 749630699}
   m_Layer: 0
   m_Name: Rainfall mesh control
   m_TagString: Untagged
@@ -2162,19 +2147,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 749630693}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &749630699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 749630693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffce1885e536aaf4696254f3d6911922, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _manager: {fileID: 0}
-  _material: {fileID: 11400000, guid: 2b36778cd97232c459902ea9b77fd3ec, type: 2}
 --- !u!54 &749630700
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2456,7 +2428,6 @@ GameObject:
   - component: {fileID: 958146534}
   - component: {fileID: 958146538}
   - component: {fileID: 958146537}
-  - component: {fileID: 958146536}
   - component: {fileID: 958146535}
   m_Layer: 0
   m_Name: Main Camera
@@ -2492,19 +2463,6 @@ MonoBehaviour:
   positionA: {fileID: 586045648}
   positionB: {fileID: 1479189957}
   panTime: 2
---- !u!114 &958146536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11462492, guid: 18d6bf9063dcb1842be63f411fd9fc26,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 958146533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4499ae867a57a90449cb9069c466ade0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _depthTextureMode: 0
 --- !u!20 &958146537
 Camera:
   m_ObjectHideFlags: 0
@@ -2717,7 +2675,6 @@ GameObject:
   - component: {fileID: 1068010186}
   - component: {fileID: 1068010185}
   - component: {fileID: 1068010190}
-  - component: {fileID: 1068010189}
   m_Layer: 0
   m_Name: Land height mesh control
   m_TagString: Untagged
@@ -2806,19 +2763,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1068010183}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1068010189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1068010183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffce1885e536aaf4696254f3d6911922, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _manager: {fileID: 0}
-  _material: {fileID: 11400000, guid: 2b36778cd97232c459902ea9b77fd3ec, type: 2}
 --- !u!54 &1068010190
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3794,7 +3738,6 @@ GameObject:
   - component: {fileID: 1660265613}
   - component: {fileID: 1660265612}
   - component: {fileID: 1660265617}
-  - component: {fileID: 1660265616}
   m_Layer: 0
   m_Name: Pressure mesh control
   m_TagString: Untagged
@@ -3883,19 +3826,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1660265610}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1660265616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1660265610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffce1885e536aaf4696254f3d6911922, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _manager: {fileID: 0}
-  _material: {fileID: 11400000, guid: 2b36778cd97232c459902ea9b77fd3ec, type: 2}
 --- !u!54 &1660265617
 Rigidbody:
   m_ObjectHideFlags: 0
