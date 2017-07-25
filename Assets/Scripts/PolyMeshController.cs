@@ -94,9 +94,35 @@ public class PolyMeshController : MonoBehaviour {
 		return maxVertsPerMeshSide;
 	}
 
+
 	public float[][] getHeightData() {
 		return heightData;
 	}
+  
+	public void colourAndDistortMesh(float[][] heightData, float[][] colourData) {
+			Vector3[] newVertices = meshFilter.mesh.vertices;
+			Color[] colours = new Color[newVertices.Length];
+
+			// Loading into Mesh
+			for (int z = 0; z < numRows; z++)
+			{
+				for (int x = 0; x < numCols; x++)
+				{
+					if (heightData != null) {
+						// -0.5f puts mesh in middle of polymesh cuboid vertically
+						// While this is running polymesh is 1x1x1 cube
+						newVertices[x + z * numCols].y = heightData[heightData.Length * (z + zOffset) / controller.zVerts][heightData[0].Length * (x + xOffset) / controller.xVerts] + 0.375f;
+					}
+					/*
+					if (colourData != null) {
+						colours [x + z * numCols] = Colorx.Slerp (controller.startColour, controller.endColour, colourData [colourData.Length * (z + zOffset) / controller.zVerts][colourData[0].Length * (x + xOffset) / controller.xVerts]);
+					} else {
+						colours [x + z * numCols] = Color.grey;
+					}
+					*/
+				}
+			}
+
 
 	public float[][] getColourData() {
 		return colourData;
