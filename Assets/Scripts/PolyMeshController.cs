@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class PolyMeshController : MonoBehaviour {
 
@@ -19,6 +20,8 @@ public class PolyMeshController : MonoBehaviour {
 	private float[][] colourData;
 
 	private float[][] heightData;
+
+	private List<GameObject> subMeshes = new List<GameObject>();
 
 	// Material to make all submeshes out of
 	public Material renderMaterial;
@@ -68,17 +71,35 @@ public class PolyMeshController : MonoBehaviour {
 				
 				GameObject subMesh = new GameObject ("subMesh");
 				subMesh.AddComponent<VisualiserMesh>();
-				subMesh.GetComponent<VisualiserMesh>().Init(this, i, j, subXVerts, subZVerts);
 				
 				//Set this submesh as a sub-component of the polymesh
 				subMesh.transform.parent = gameObject.transform;
 				subMesh.transform.position = subMesh.transform.parent.position;
 				subMesh.transform.Translate (xTranslate - 0.5f, 0, zTranslate - 0.5f);
+				
+				
+				subMesh.GetComponent<VisualiserMesh>().Init(this, i, j, subXVerts, subZVerts);
+				subMeshes.Add(subMesh);
 			}
 		}
 		// Scale polymesh up to original dimensions
 		gameObject.transform.localScale = originalScale;
 	}
+
+	// Example code
+//	void Update()
+//	{
+//		if ((int)Random.Range(1, 500) == 3)
+//		{
+//			float m = Random.Range(-3, 3);
+//			float c = Random.Range(-1, 1);
+//			foreach(GameObject submesh in subMeshes)
+//			{
+//				VisualiserMesh mesh = submesh.GetComponent<VisualiserMesh>();
+//				mesh.setCrossSection(m, c);
+//			}
+//		}
+//	}
 
 	public float getWidth()
 	{

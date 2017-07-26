@@ -4,7 +4,7 @@ using UnityEditor;
 public class VisualiserMesh : MonoBehaviour
 {
     private MeshFilter meshFilter;
-    
+
     private int xPos;
 
     private int zPos;
@@ -12,6 +12,8 @@ public class VisualiserMesh : MonoBehaviour
     private int xVerts;
 
     private int zVerts;
+
+    private Color[] vertexColours;
 
     private PolyMeshController controller;
 
@@ -30,15 +32,41 @@ public class VisualiserMesh : MonoBehaviour
         meshRenderer.material = controller.renderMaterial;
 
         meshFilter.mesh = prepareMesh();
-        resizeMesh();
         colourAndDistortMesh();
+        resizeMesh();
+    }
+
+    // Not an update method, only needs to be called on an actual change
+    public void setCrossSection(float m, float c)
+    {
+        if (vertexColours != null)
+        {
+            Color[] colours = meshFilter.mesh.colors;
+            Vector3[] verts = meshFilter.mesh.vertices;
+            for (int z = 0; z < zVerts; z++)
+            {
+                for (int x = 0; x < xVerts; x++)
+                {
+                    Vector3 vert = transform.position + transform.TransformDirection(verts[x + z * xVerts]);
+                    if (vert.z < (m * vert.x + c))
+                    {
+                        colours[x + z * xVerts] = Color.black;
+                    }
+                    else if (colours[x + z * xVerts] == Color.black)
+                    {
+                        colours[x + z * xVerts] = vertexColours[x + z * xVerts];
+                    }
+                }
+            }
+            meshFilter.mesh.colors = colours;
+        }
     }
 
     private void resizeMesh()
     {
         Bounds bounds = meshFilter.mesh.bounds;
-        float xScaling = ((float)xVerts / controller.totalXVerts) / bounds.size.x;
-        float zScaling = ((float)zVerts / controller.totalZVerts) / bounds.size.z;
+        float xScaling = ((float) xVerts / controller.totalXVerts) / bounds.size.x;
+        float zScaling = ((float) zVerts / controller.totalZVerts) / bounds.size.z;
         meshFilter.transform.localScale = new Vector3(xScaling, 1f, zScaling);
         meshFilter.mesh.RecalculateBounds();
     }
@@ -57,9 +85,9 @@ public class VisualiserMesh : MonoBehaviour
         if (mesh == null)
         {
             mesh = new Mesh();
-            float meshWidth = (float)xVerts / controller.totalXVerts;
-            float meshDepth = (float)zVerts / controller.totalZVerts;
-            
+            float meshWidth = (float) xVerts / controller.totalXVerts;
+            float meshDepth = (float) zVerts / controller.totalZVerts;
+
             Vector3[] vertices = new Vector3[zVerts * xVerts];
             Vector2[] uvList = new Vector2[zVerts * xVerts];
             int index = 0;
@@ -129,10 +157,10 @@ public class VisualiserMesh : MonoBehaviour
     {
         float[][] heightData = controller.getHeightData();
         float[][] colourData = controller.getColourData();
-        
+
         Vector3[] newVertices = meshFilter.mesh.vertices;
         Color[] colours = new Color[newVertices.Length];
-        
+
         int xOffset = xPos * controller.getMaxVerts();
         int zOffset = zPos * controller.getMaxVerts();
         // Loading into Mesh
@@ -160,7 +188,8 @@ public class VisualiserMesh : MonoBehaviour
                 }
             }
         }
-		meshFilter.mesh.vertices = newVertices;
+        meshFilter.mesh.vertices = newVertices;
+        vertexColours = colours;
         meshFilter.mesh.colors = colours;
         meshFilter.mesh.RecalculateBounds();
         meshFilter.mesh.RecalculateNormals();
