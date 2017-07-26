@@ -34,6 +34,18 @@ public class VisualiserMesh : MonoBehaviour
         meshFilter.mesh = prepareMesh();
         colourAndDistortMesh();
         resizeMesh();
+//        setCrossSection(1,0);
+    }
+
+    private int counter = 0;
+    void Update()
+    {
+        if (counter == 100)
+        {
+            setCrossSection(Random.Range(0,1),0);
+            counter = 0;
+        }
+        counter++;
     }
 
     // Not an update method, only needs to be called on an actual change
