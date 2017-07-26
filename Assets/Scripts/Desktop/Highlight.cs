@@ -20,9 +20,9 @@ public class Highlight : Selectable {
 	public override void WhileSelected () {
 		Vector2 rightJoy = Controller.GetInstance ().GetJoystickAxis (Controller.Joystick.Right);
 
-		Debug.Log (rightJoy);
+//		Debug.Log (rightJoy);
 		if (rightJoy.y <= -Controller.deadZone || Controller.deadZone <= rightJoy.y) {
-			Debug.Log ("Moving");
+//			Debug.Log ("Moving");
 			Vector3 pos = transform.position;
 			pos.y += rightJoy.y * speed * Time.deltaTime;
 			pos.y = Mathf.Clamp (pos.y, minY, maxY);
