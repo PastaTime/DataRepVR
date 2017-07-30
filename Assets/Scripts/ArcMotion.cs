@@ -16,9 +16,9 @@ public class ArcMotion : MonoBehaviour {
 		// Height is not considered
 		initialPosition.y = 0;
 		distance = initialPosition.magnitude;
-		Debug.Log ("Initial "  + initialPosition);
+//		Debug.Log ("Initial "  + initialPosition);
 		Vector3 cross = Vector3.Cross (initialPosition, initialPosition);
-		Debug.Log ("Test " + cross);
+//		Debug.Log ("Test " + cross);
 
 	}
 	
@@ -30,13 +30,13 @@ public class ArcMotion : MonoBehaviour {
 		currentPosition.y = 0;
 		currentPosition = Vector3.Normalize (currentPosition) * distance;
 
-		Debug.Log ("Current" + currentPosition);
+		//Debug.Log ("Current" + currentPosition);
 
 		int sign = Vector3.Cross(currentPosition, initialPosition).y < 0 ? -1 : 1;
 		float angleFromInitialPos = sign * Vector3.Angle (currentPosition, initialPosition);
 
 
-		Debug.Log (sign);
+		//Debug.Log (sign);
 		Vector3 rotation = Vector3.zero;
 		rotation.y = -1 * angleFromInitialPos;
 		transform.parent.Rotate(rotation);
