@@ -8,8 +8,8 @@ Shader "Custom/MeshShader" {
          _MaxVariance ("Maximum Variance", Float) = 3.0
          _HighColor ("High Color", Color) = (1.0, 1.0, 1.0, 1.0)
          _LowColor ("Low Color", Color) = (0.0, 0.0, 0.0, 1.0)
-         _v1 ("Point 1", Vector) = (0.0, 0.0, 0.0)
-         _v2 ("Point 2", Vector) = (0.0, 0.0, 0.0)
+         _n ("Normal", Vector) = (0.0, 0.0, 0.0)
+         _d ("distance", Vector) = (0.0, 0.0, 0.0)
      }
      SubShader {
              Tags {"Queue" = "Transparent" "RenderType"="Transparent" }
@@ -26,8 +26,8 @@ Shader "Custom/MeshShader" {
              float4 _LowColor;
              sampler2D _MainTex;
 
-             float4 _v1;
-			 float4 _v2;
+             float4 _n;
+			 float4 _d;
              
              struct Input{
                  float2 uv_MainTex;
@@ -88,19 +88,10 @@ Shader "Custom/MeshShader" {
              	return float4(HSVtoRGB(hsv_out), _Alpha);
              }
 
-             // Calculates a plane from 3 coordinates.
-             Plane calc_plane(float3 v1, float3 v2, float3 v3)
-             {
-             	Plane output;
-             	output.n = normalize(cross(v2-v1, v3-v1));
-             	output.d = dot(output.n, v1);
-             	return output;
-             }
-
              // Determines whether a point is above a Plane
-             bool above_plane(Plane p, float3 v1)
-             {
-             	return (dot(p.n, v1) + p.d > 0);
+             bool above_plane(float3 n, float3 d, float3 v1)
+			 {
+             	return (dot(n, v1) + d > 0);
              }
 
              void vert(inout appdata_full v, out Input o) {
@@ -114,18 +105,14 @@ Shader "Custom/MeshShader" {
                  float cFactor = saturate(diff/(2*_MaxVariance) + 0.5);
                  
                  //lerp by factor
-                 v.color = lerp(_LowColor, _HighColor, cFactor);
+                 v.color = hsv_lerp(_LowColor,_HighColor, cFactor);
              }
 
              void surf(Input IN, inout SurfaceOutput o){
 
-             	// This could be bad for performance
-             	float3 _v3 = _v2.xyz;
-             	_v3.y++;
-             	Plane p = calc_plane(_v1.xyz, _v2.xyz, _v3); 
 	            // Use X Pos to cut out object
 
-				if (above_plane(p, IN.pos_ws))
+				if (above_plane(_n.xyz, _d.xyz, IN.pos_ws))
 				{
 					discard;
 				}
