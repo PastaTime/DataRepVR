@@ -22,8 +22,7 @@ public class Rotation : MonoBehaviour {
 	void Update () {
 
 		float direction = controller.GetTriggerValue (Controller.Trigger.Left) - controller.GetTriggerValue (Controller.Trigger.Right);
-//		Debug.Log (direction);
-		if (-Controller.deadZone <= direction && direction <= Controller.deadZone) {
+		if (direction == 0f) {
 			counter = 0f;
 			return;
 		}
@@ -32,7 +31,6 @@ public class Rotation : MonoBehaviour {
 		rotation.y = direction * getSpeed() * Time.deltaTime;
 
 		transform.Rotate (rotation);
-		
 	}
 
 

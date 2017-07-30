@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Selectable : MonoBehaviour {
 
-	protected bool selected = false;
+	public bool selected = false;
 
 	public void Select() {
 		selected = true;

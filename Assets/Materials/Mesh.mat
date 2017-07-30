@@ -82,3 +82,5 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HighColor: {r: 0, g: 0.33793116, b: 1, a: 1}
     - _LowColor: {r: 0.94482744, g: 1, b: 0, a: 1}
+    - _v1: {r: 0.63, g: 0, b: 1.02, a: 1}
+    - _v2: {r: 0, g: 0, b: 0, a: 1}
