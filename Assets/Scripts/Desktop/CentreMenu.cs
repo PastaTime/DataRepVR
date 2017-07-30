@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,7 +31,15 @@ public class CentreMenu : Menu {
 			deactivate ();
 			return;
 		}
+
 		sort ();
+		for (int i = 0; i < menuItems.Length; i++) {
+			if (menuItems [i].selected) {
+				index = i;
+				break;
+			}
+		}
+
 		menuItems [index].Unselect ();
 		index--;
 		menuItems [index].Select ();
@@ -44,7 +53,15 @@ public class CentreMenu : Menu {
 			deactivate ();
 			return;
 		}
+
 		sort ();
+		for (int i = 0; i < menuItems.Length; i++) {
+			if (menuItems [i].selected) {
+				index = i;
+				break;
+			}
+		}
+
 		menuItems [index].Unselect ();
 		index++;
 		menuItems [index].Select ();
@@ -66,8 +83,11 @@ public class CentreMenu : Menu {
 
 	private void sort() {
 		//sort Menu items;
-		Debug.Log("Unimplemented");
-	}
+
+		Array.Sort (menuItems, delegate(Selectable s1, Selectable s2) {
+			return s2.transform.position.y.CompareTo(s1.transform.position.y);
+		});
+	} 
 
 
 }
