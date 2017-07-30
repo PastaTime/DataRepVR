@@ -31,7 +31,6 @@ public class PolyMeshController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
 		// If the same data source is being used for height and colour no need to load it twice from disk
 		if (heightDataPath.Equals (colourDataPath)) {
 			heightData = colourData = LoadData.normaliseValues(LoadData.loadCSV(heightDataPath, false)); 
@@ -76,8 +75,7 @@ public class PolyMeshController : MonoBehaviour {
 				subMesh.transform.parent = gameObject.transform;
 				subMesh.transform.position = subMesh.transform.parent.position;
 				subMesh.transform.Translate (xTranslate - 0.5f, 0, zTranslate - 0.5f);
-				
-				
+
 				subMesh.GetComponent<VisualiserMesh>().Init(this, i, j, subXVerts, subZVerts);
 				subMeshes.Add(subMesh);
 			}
@@ -85,21 +83,6 @@ public class PolyMeshController : MonoBehaviour {
 		// Scale polymesh up to original dimensions
 		gameObject.transform.localScale = originalScale;
 	}
-
-	// Example code
-//	void Update()
-//	{
-//		if ((int)Random.Range(1, 500) == 3)
-//		{
-//			float m = Random.Range(-3, 3);
-//			float c = Random.Range(-1, 1);
-//			foreach(GameObject submesh in subMeshes)
-//			{
-//				VisualiserMesh mesh = submesh.GetComponent<VisualiserMesh>();
-//				mesh.setCrossSection(m, c);
-//			}
-//		}
-//	}
 
 	public float getWidth()
 	{

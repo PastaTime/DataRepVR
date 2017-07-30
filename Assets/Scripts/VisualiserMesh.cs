@@ -34,18 +34,6 @@ public class VisualiserMesh : MonoBehaviour
         meshFilter.mesh = prepareMesh();
         colourAndDistortMesh();
         resizeMesh();
-//        setCrossSection(1,0);
-    }
-
-    private int counter = 0;
-    void Update()
-    {
-        if (counter == 100)
-        {
-            setCrossSection(Random.Range(0,1),0);
-            counter = 0;
-        }
-        counter++;
     }
 
     // Not an update method, only needs to be called on an actual change
@@ -92,6 +80,10 @@ public class VisualiserMesh : MonoBehaviour
     /// <returns> The created Mesh</returns>
     public Mesh prepareMesh()
     {
+		if (!AssetDatabase.IsValidFolder ("Assets/Meshes")) {
+			Debug.Log ("Created");
+			AssetDatabase.CreateFolder ("Assets", "Meshes");
+		}
         string meshName = "xVerts" + zVerts + "zVerts" + xVerts + ".asset";
         Mesh mesh = (Mesh) AssetDatabase.LoadAssetAtPath("Assets/Meshes/" + meshName, typeof(Mesh));
         if (mesh == null)
