@@ -1532,21 +1532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92184c469f196ae4d8fd1a8638462896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectList:
-  - {fileID: 1749629865}
-  - {fileID: 960029106}
-  - {fileID: 30446596}
-  - {fileID: 1056972710}
-  menuList:
-  - {fileID: 247355687}
-  - {fileID: 1778480199}
-  - {fileID: 1543790147}
-  - {fileID: 361942227}
   camPan: {fileID: 958146535}
   invertedNavigation: 0
-  firstSelected: 0
-  selected: 0
-  coolDown: 2
 --- !u!4 &374029019
 Transform:
   m_ObjectHideFlags: 0
@@ -1554,7 +1541,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 374029017}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.40009382, y: -0.8547461, z: -4.1469955}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1954,8 +1941,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 586045648}
+  - component: {fileID: 586045649}
   m_Layer: 0
-  m_Name: TableFocus
+  m_Name: TableMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1974,6 +1962,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 12, y: -180, z: 0}
+--- !u!114 &586045649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 586045647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c6998aea90736648abd9b7995c711c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 374029018}
+  active: 1
+  aboveMenu: {fileID: 1374017071}
+  belowMenu: {fileID: 1479189958}
+  menuItems:
+  - {fileID: 1749629865}
+  - {fileID: 960029106}
+  - {fileID: 30446596}
+  - {fileID: 1056972710}
 --- !u!1 &613621791
 GameObject:
   m_ObjectHideFlags: 0
@@ -2460,8 +2468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8340f01539645449bc4915924782956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionA: {fileID: 586045648}
-  positionB: {fileID: 1479189957}
+  startingPos: {fileID: 586045648}
   panTime: 2
 --- !u!20 &958146537
 Camera:
@@ -3219,6 +3226,49 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1230951465}
+--- !u!1 &1374017070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1374017072}
+  - component: {fileID: 1374017071}
+  m_Layer: 0
+  m_Name: TopDownMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1374017071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1374017070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 590714d802c5fa045926695993a5b58b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 374029018}
+  active: 0
+  belowMenu: {fileID: 586045649}
+--- !u!4 &1374017072
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1374017070}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: 0, y: 1.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 90, y: -180, z: 0}
 --- !u!1 &1479189956
 GameObject:
   m_ObjectHideFlags: 0
@@ -3227,8 +3277,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1479189957}
+  - component: {fileID: 1479189958}
   m_Layer: 0
-  m_Name: MenuFocus
+  m_Name: UIMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3247,6 +3298,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 35, y: -180, z: 0}
+--- !u!114 &1479189958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1479189956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 515096c08f8c8a340bbf3e3443f66d51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 374029018}
+  active: 0
+  aboveMenu: {fileID: 586045649}
+  menuItems:
+  - {fileID: 247355687}
+  - {fileID: 1778480199}
+  - {fileID: 1543790147}
+  - {fileID: 361942227}
 --- !u!1 &1543790138
 GameObject:
   m_ObjectHideFlags: 0
