@@ -30,14 +30,16 @@ public class BoundLine : MonoBehaviour {
 	}
 
 	public void LeftSliderPositionChanged(float value) {
+		Debug.Log ("Left changed");
 		Vector3 Lrotations = leftSlider.transform.eulerAngles;
-		Vector3 handlePos = leftSlider.transform.position + Quaternion.Euler(-Lrotations.x, 0, 0) * new Vector3 (0, (0f - 0.5f) * leftSliderLength, 0);
+		Vector3 handlePos = leftSlider.transform.position + Quaternion.Euler(-Lrotations.x, 0, 0) * new Vector3 (0, (value - 0.5f) * leftSliderLength, 0);
 		lineRenderer.SetPosition (0, handlePos);
 	}
 
 	public void RightSliderPositionChanged(float value) {
+		Debug.Log ("Right changed");
 		Vector3 Rrotations = rightSlider.transform.eulerAngles;
-		Vector3 handlePos = rightSlider.transform.position + Quaternion.Euler(-Rrotations.x, 0, 0) * new Vector3 (0, (0f - 0.5f) * rightSliderLength, 0);
+		Vector3 handlePos = rightSlider.transform.position + Quaternion.Euler(-Rrotations.x, 0, 0) * new Vector3 (0, (value - 0.5f) * rightSliderLength, 0);
 		lineRenderer.SetPosition (1, handlePos);
 	}
 }
