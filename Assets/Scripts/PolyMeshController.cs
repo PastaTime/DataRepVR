@@ -84,6 +84,14 @@ public class PolyMeshController : MonoBehaviour {
 		gameObject.transform.localScale = originalScale;
 	}
 
+	public void setCrossSection(float m, float c)
+	{
+		foreach (GameObject subMesh in subMeshes)
+		{
+			subMesh.GetComponent<VisualiserMesh>().setCrossSection(m,c);
+		}
+	}
+
 	public float getWidth()
 	{
 		return gameObject.transform.localScale.x;
