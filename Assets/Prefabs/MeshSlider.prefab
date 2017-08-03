@@ -25,13 +25,14 @@ GameObject:
   - component: {fileID: 114011897026721334}
   - component: {fileID: 54493056400352696}
   - component: {fileID: 114569796363821926}
+  - component: {fileID: 114962028320259516}
   m_Layer: 0
   m_Name: MeshSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4051020103481516
 Transform:
   m_ObjectHideFlags: 1
@@ -39,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1050436167165090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.477, y: -0.456, z: 0.457}
+  m_LocalPosition: {x: 0.5, y: 1.02, z: 0.5}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,7 +98,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 1
-  m_Constraints: 122
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &114011897026721334
 MonoBehaviour:
@@ -114,6 +115,8 @@ MonoBehaviour:
   constrainX: 0
   constrainY: 1
   constrainZ: 0
+  contrainRotation: 1
+  lockRotation: 1
 --- !u!114 &114569796363821926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,6 +130,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _manager: {fileID: 0}
   _material: {fileID: 11400000, guid: 2b36778cd97232c459902ea9b77fd3ec, type: 2}
+--- !u!114 &114962028320259516
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1050436167165090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a753790b9d1a79144a23e75d894c7be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  centreOfRotation: {x: 0, y: 0, z: 0}
+  distance: 10
 --- !u!135 &135829420995379670
 SphereCollider:
   m_ObjectHideFlags: 1
