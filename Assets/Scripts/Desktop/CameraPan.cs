@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class CameraPan : MonoBehaviour {
 
-	public enum Position { A, B };
+	public Transform startingPos;
 
-	public Transform positionA;
-	public Transform positionB;
+	private Transform lastPos;
+	private Transform destinationPos;
 
 	public float panTime = 2f;
 
 	private bool panning = false;
 	private float counter = 0f;
 
-	private Position currentPosition;
-
 	void Start () {
 		// Set Camera to Position A
-		Pan (positionA, positionB, 0);
-		currentPosition = Position.A;
+		lastPos = startingPos;
+		transform.position = startingPos.position;
+		transform.eulerAngles = startingPos.eulerAngles;
+		transform.localScale = startingPos.localScale;
 	}
 
 	// Update is called once per frame
@@ -27,41 +27,44 @@ public class CameraPan : MonoBehaviour {
 		if (!panning) {
 			return;
 		}
+		Debug.Log ("Panning...");
 
 		if (counter > panTime) {
 			panning = false;
+			lastPos = destinationPos;
 			counter = 0f;
+			Pan (1);
 			return;
 		}
 			
 		counter += Time.deltaTime;
-
-		switch (currentPosition) {
-		case Position.A:
-			Pan (positionB, positionA, Mathf.Clamp01 (counter / panTime));
-			break;
-		case Position.B:
-			Pan (positionA, positionB, Mathf.Clamp01 (counter / panTime));
-			break;
-		}
-		
+		float t = counter / panTime;
+		Pan (t);		
 	}
 
-	public void MoveTo(Position pos) {
-		if (currentPosition == pos)
+	public bool isPanning()
+	{
+		return false;
+	}
+
+	public void MoveTo(Transform destination) {
+		if (panning)
 			return;
-		currentPosition = pos;
+
+		Debug.Log ("Starting Pan");
+
+		lastPos.position = transform.position;
+		lastPos.eulerAngles = transform.eulerAngles;
+		destinationPos = destination;
+
 		panning = true;
-		if (counter != 0f)
-			counter = panTime - counter;
-		else
-			counter = 0f;
+		counter = 0f;
 	}
 
-	private void Pan(Transform start, Transform end, float fraction) {
-		Vector3 position = Vector3.Lerp (start.position, end.position, fraction);
-		Vector3 eulers = Vector3.Lerp (start.eulerAngles, end.eulerAngles, fraction);
-		Vector3 scale = Vector3.Lerp (start.localScale, end.localScale, fraction);
+	private void Pan(float fraction) {
+		Vector3 position = Vector3.Lerp (lastPos.position, destinationPos.position, fraction);
+		Vector3 eulers = Vector3.Lerp (lastPos.eulerAngles, destinationPos.eulerAngles, fraction);
+		Vector3 scale = Vector3.Lerp (lastPos.localScale, destinationPos.localScale, fraction);
 
 		transform.position = position;
 		transform.eulerAngles = eulers;

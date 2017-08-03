@@ -6,7 +6,9 @@ using GamepadInput;
 public class Controller {
 
 	private static Controller instance;
-	public static float deadZone = 0.5f;
+
+	private static float joystickDeadzone = 0.5f;
+	private static float triggerDeadzone = 0.5f;
 
 	public enum Button { A, B, X, Y, Start, Menu, LB, RB };
 	public enum Joystick { Left, Right, DPad };
@@ -50,12 +52,19 @@ public class Controller {
 
 	public Vector2 GetJoystickAxis(Joystick joy)
 	{
+		Vector2 output;
 		switch (joy)
 		{
 		case Joystick.Left:
-			return GamePad.GetAxis(GamePad.Axis.LeftStick, GamePad.Index.Any, true);
+			output = GamePad.GetAxis (GamePad.Axis.LeftStick, GamePad.Index.Any, true);
+			if (Mathf.Abs (output.x) < joystickDeadzone && Mathf.Abs (output.y) < joystickDeadzone)
+				return Vector2.zero;
+			return output;
 		case Joystick.Right:
-			return GamePad.GetAxis(GamePad.Axis.RightStick, GamePad.Index.Any, true);
+			output = GamePad.GetAxis(GamePad.Axis.RightStick, GamePad.Index.Any, true);
+			if (Mathf.Abs (output.x) < joystickDeadzone && Mathf.Abs (output.y) < joystickDeadzone)
+				return Vector2.zero;
+			return output;
 		}
 		return Vector2.zero;
 	}
@@ -65,14 +74,20 @@ public class Controller {
 	 */
 	public float GetTriggerValue(Trigger trigger)
 	{
+		float output;
 		switch (trigger)
 		{
-			case Trigger.Left:
-				return GamePad.GetTrigger(GamePad.Trigger.LeftTrigger, GamePad.Index.Any, true);
-			case Trigger.Right:
-				return GamePad.GetTrigger(GamePad.Trigger.RightTrigger, GamePad.Index.Any, true);
+		case Trigger.Left:
+			output = GamePad.GetTrigger (GamePad.Trigger.LeftTrigger, GamePad.Index.Any, true);
+			if (output < triggerDeadzone)
+				return 0f;
+			return output;
+		case Trigger.Right:
+			output = GamePad.GetTrigger(GamePad.Trigger.RightTrigger, GamePad.Index.Any, true);
+			if (output < triggerDeadzone)
+				return 0f;
+			return output;
 		}
-
 		return 0f;
 	}
 
