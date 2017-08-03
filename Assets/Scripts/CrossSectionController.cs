@@ -18,11 +18,11 @@ public class CrossSectionController : MonoBehaviour
 		}
 	}
 
-	public void setCrossSection(float gradient, float intercept)
+	public void setCrossSection(float gradient, float intercept, bool lessThan)
 	{
 		foreach (GameObject obj in displayMeshes)
 		{
-			obj.GetComponent<PolyMeshController>().setCrossSection(gradient, intercept);
+			obj.GetComponent<PolyMeshController>().setCrossSection(gradient, intercept, lessThan);
 		}
 	}
 }
