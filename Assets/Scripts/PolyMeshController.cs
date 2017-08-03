@@ -17,6 +17,8 @@ public class PolyMeshController : MonoBehaviour {
 
 	public Color endColour = Color.green;
 
+	public bool activeOnLoad = true;
+
 	private float[][] colourData;
 
 	private float[][] heightData;
@@ -82,6 +84,7 @@ public class PolyMeshController : MonoBehaviour {
 		}
 		// Scale polymesh up to original dimensions
 		gameObject.transform.localScale = originalScale;
+		gameObject.SetActive (activeOnLoad);
 	}
 
 	public void setCrossSection(float m, float c)
