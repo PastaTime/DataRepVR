@@ -19,8 +19,8 @@ public class CrossSectionDisplay : MonoBehaviour {
 	void Start () {
 		lineRenderer = this.GetComponent<LineRenderer> ();
 		
-		LeftSliderPositionChanged(0);
-		RightSliderPositionChanged(0);
+		LeftSliderPositionChanged(leftSlider.GetComponent<Slider>().value);
+		RightSliderPositionChanged(rightSlider.GetComponent<Slider>().value);
 	}
 
 	public void SliderPosChange(float value, GameObject slider, float length, int lineIndex)
@@ -43,15 +43,16 @@ public class CrossSectionDisplay : MonoBehaviour {
 		float leftVal = leftSlider.GetComponent<Slider>().value;
 		float rightVal = rightSlider.GetComponent<Slider>().value;
 
-		Vector3 leftPos = lineRenderer.GetPosition(0);
-		Vector3 rightPos = lineRenderer.GetPosition(1);
+		float gradient = rightVal - leftVal;
+		float intercept = -1 *(leftVal + rightVal - 1f) / 2f;
+		meshSet.GetComponent<CrossSectionController>().setCrossSection(gradient,intercept);
+	}
 
-		Vector3 leftSliderPos = leftSlider.transform.position;
-		Vector3 rightSliderPos = rightSlider.transform.position;
-
-		Vector3 LT =  Quaternion.Euler(31, 0, 0) * (leftSliderPos - leftPos);
-		Debug.Log(LT);
-		
-		meshSet.GetComponent<CrossSectionController>().setCrossSection(0,0);
+	public void Update()
+	{
+		if (Input.GetKeyDown("space"))
+		{
+			OnSlideEnd();
+		}
 	}
 }

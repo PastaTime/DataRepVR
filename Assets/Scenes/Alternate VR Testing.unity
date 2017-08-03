@@ -124,7 +124,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0.5, y: 1, z: 0.5}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 0.525, y: 0.837, z: 0.525}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 1
@@ -417,7 +417,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22428218, guid: b52c66382d0e1104c803a2b8a363e03d, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.652
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 22428218, guid: b52c66382d0e1104c803a2b8a363e03d, type: 2}
       propertyPath: m_AnchorMax.y
@@ -425,11 +425,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22407934, guid: b52c66382d0e1104c803a2b8a363e03d, type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.652
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 22407934, guid: b52c66382d0e1104c803a2b8a363e03d, type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0.652
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 22407934, guid: b52c66382d0e1104c803a2b8a363e03d, type: 2}
       propertyPath: m_AnchorMax.y
@@ -454,6 +454,14 @@ Prefab:
     - target: {fileID: 11475534, guid: b52c66382d0e1104c803a2b8a363e03d, type: 2}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294126, guid: b52c66382d0e1104c803a2b8a363e03d, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11475534, guid: b52c66382d0e1104c803a2b8a363e03d, type: 2}
+      propertyPath: m_Value
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b52c66382d0e1104c803a2b8a363e03d, type: 2}
@@ -603,6 +611,21 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2e4c6a003fcd1a43b91889103145982, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &156980911 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 23eb55b47918ef44d9233e86271df372, type: 3}
+  m_PrefabInternal: {fileID: 306984317}
+--- !u!114 &156980914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 156980911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0679d733ddecf024bb32b978d657db15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &216611611
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,6 +948,10 @@ Prefab:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8294126, guid: b52c66382d0e1104c803a2b8a363e03d, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b52c66382d0e1104c803a2b8a363e03d, type: 2}
   m_IsPrefabParent: 0
@@ -953,11 +980,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 23eb55b47918ef44d9233e86271df372, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 23eb55b47918ef44d9233e86271df372, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 23eb55b47918ef44d9233e86271df372, type: 3}
       propertyPath: m_LocalRotation.w
@@ -990,6 +1017,10 @@ Prefab:
     - target: {fileID: 400000, guid: 23eb55b47918ef44d9233e86271df372, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 23eb55b47918ef44d9233e86271df372, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 23eb55b47918ef44d9233e86271df372, type: 3}
@@ -2164,12 +2195,12 @@ Prefab:
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalXVerts
-      value: 700
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalZVerts
-      value: 700
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 1487764850064752, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
       propertyPath: m_IsActive
@@ -2683,6 +2714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftSlider: {fileID: 1080595731}
   rightSlider: {fileID: 915822886}
+  meshSet: {fileID: 156980911}
   leftSliderLength: 0.2
   rightSliderLength: 0.2
 --- !u!120 &785700072
@@ -3359,7 +3391,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0.5, y: 1, z: 0.5}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 0.525, y: 1.1899999, z: 0.525}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 1
@@ -3663,7 +3695,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0.5, y: 1, z: 0.5}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 0.525, y: 0.95, z: 0.525}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 1
@@ -3942,6 +3974,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11475722, guid: b52c66382d0e1104c803a2b8a363e03d, type: 2}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294126, guid: b52c66382d0e1104c803a2b8a363e03d, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4237,12 +4273,12 @@ Prefab:
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalXVerts
-      value: 700
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalZVerts
-      value: 700
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
@@ -4380,12 +4416,12 @@ Prefab:
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalXVerts
-      value: 700
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalZVerts
-      value: 700
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 1487764850064752, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
       propertyPath: m_IsActive
@@ -5690,12 +5726,12 @@ Prefab:
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalXVerts
-      value: 700
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalZVerts
-      value: 700
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 1487764850064752, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
       propertyPath: m_IsActive
@@ -5869,7 +5905,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0.5, y: 1, z: 0.5}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 0.525, y: 1.0699999, z: 0.525}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 1

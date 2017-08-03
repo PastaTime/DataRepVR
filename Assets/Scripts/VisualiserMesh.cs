@@ -47,8 +47,8 @@ public class VisualiserMesh : MonoBehaviour
             {
                 for (int x = 0; x < xVerts; x++)
                 {
-                    Vector3 vert = transform.position + transform.TransformDirection(verts[x + z * xVerts]);
-                    if (vert.z < (m * vert.x + c))
+                    Vector3 vert = transform.TransformPoint(verts[x + z * xVerts]);
+                    if (vert.z > (m * vert.x + c))
                     {
                         colours[x + z * xVerts] = Color.black;
                     }
