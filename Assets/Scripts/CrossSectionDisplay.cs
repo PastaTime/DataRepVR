@@ -15,6 +15,8 @@ public class CrossSectionDisplay : MonoBehaviour {
 	public float leftSliderLength = 0f;
 	public float rightSliderLength = 0f;
 
+	private int sign = -1;
+
 	// Use this for initialization
 	void Start () {
 		lineRenderer = this.GetComponent<LineRenderer> ();
@@ -42,9 +44,9 @@ public class CrossSectionDisplay : MonoBehaviour {
 	{
 		float leftVal = leftSlider.GetComponent<Slider>().value;
 		float rightVal = rightSlider.GetComponent<Slider>().value;
-
-		float gradient = rightVal - leftVal;
-		float intercept = -1 *(leftVal + rightVal - 1f) / 2f;
+		
+		float gradient = sign * (leftVal - rightVal);
+		float intercept = sign *(leftVal + rightVal - 1f) / 2f;
 		meshSet.GetComponent<CrossSectionController>().setCrossSection(gradient,intercept);
 	}
 
@@ -54,5 +56,10 @@ public class CrossSectionDisplay : MonoBehaviour {
 		{
 			OnSlideEnd();
 		}
+	}
+
+	public void invertSelection()
+	{
+		sign = -1 * sign;
 	}
 }
