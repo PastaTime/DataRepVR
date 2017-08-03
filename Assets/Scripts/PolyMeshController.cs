@@ -23,7 +23,7 @@ public class PolyMeshController : MonoBehaviour {
 
 	private float[][] heightData;
 
-	private List<GameObject> subMeshes = new List<GameObject>();
+	private List<VisualiserMesh> subMeshes = new List<VisualiserMesh>();
 
 	// Material to make all submeshes out of
 	public Material renderMaterial;
@@ -78,8 +78,9 @@ public class PolyMeshController : MonoBehaviour {
 				subMesh.transform.position = subMesh.transform.parent.position;
 				subMesh.transform.Translate (xTranslate - 0.5f, 0, zTranslate - 0.5f);
 
-				subMesh.GetComponent<VisualiserMesh>().Init(this, i, j, subXVerts, subZVerts);
-				subMeshes.Add(subMesh);
+				VisualiserMesh sub = subMesh.GetComponent<VisualiserMesh> ();
+				sub.Init(this, i, j, subXVerts, subZVerts);
+				subMeshes.Add(sub);
 			}
 		}
 		// Scale polymesh up to original dimensions
@@ -89,9 +90,9 @@ public class PolyMeshController : MonoBehaviour {
 
 	public void setCrossSection(float m, float c, bool lessThan)
 	{
-		foreach (GameObject subMesh in subMeshes)
+		foreach (VisualiserMesh subMesh in subMeshes)
 		{
-			subMesh.GetComponent<VisualiserMesh>().setCrossSection(m,c, lessThan);
+			subMesh.setCrossSection(m,c, lessThan);
 		}
 	}
 

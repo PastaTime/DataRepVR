@@ -341,7 +341,7 @@ MonoBehaviour:
   constrainX: 0
   constrainY: 1
   constrainZ: 0
-  contrainRotation: 1
+  constrainRotation: 1
   lockRotation: 1
 --- !u!23 &108852395
 MeshRenderer:
@@ -1062,6 +1062,10 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1050436167165090, guid: 05d20f684c232d54091b7b8159e20c08, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05d20f684c232d54091b7b8159e20c08, type: 2}
@@ -2075,7 +2079,7 @@ MonoBehaviour:
   constrainX: 0
   constrainY: 1
   constrainZ: 0
-  contrainRotation: 1
+  constrainRotation: 1
   lockRotation: 1
 --- !u!23 &749630696
 MeshRenderer:
@@ -2617,7 +2621,7 @@ MonoBehaviour:
   constrainX: 0
   constrainY: 1
   constrainZ: 0
-  contrainRotation: 1
+  constrainRotation: 1
   lockRotation: 1
 --- !u!23 &1056972713
 MeshRenderer:
@@ -2718,7 +2722,7 @@ MonoBehaviour:
   constrainX: 0
   constrainY: 1
   constrainZ: 0
-  contrainRotation: 1
+  constrainRotation: 1
   lockRotation: 1
 --- !u!23 &1068010186
 MeshRenderer:
@@ -3887,7 +3891,7 @@ MonoBehaviour:
   constrainX: 0
   constrainY: 1
   constrainZ: 0
-  contrainRotation: 1
+  constrainRotation: 1
   lockRotation: 1
 --- !u!23 &1660265613
 MeshRenderer:

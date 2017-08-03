@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class CrossSectionDisplay : MonoBehaviour {
 
-	public GameObject leftSlider;
-	public GameObject rightSlider;
+	public Slider leftSlider;
+	public Slider rightSlider;
 
-	public GameObject meshSet;
+	public CrossSectionController meshSet;
 
 	private LineRenderer lineRenderer;
 
@@ -25,7 +25,7 @@ public class CrossSectionDisplay : MonoBehaviour {
 		RightSliderPositionChanged(rightSlider.GetComponent<Slider>().value);
 	}
 
-	public void SliderPosChange(float value, GameObject slider, float length, int lineIndex)
+	public void SliderPosChange(float value, Slider slider, float length, int lineIndex)
 	{
 		Vector3 rotations = slider.transform.eulerAngles;
 		Vector3 handlePos = slider.transform.position + Quaternion.Euler(-rotations.x, 0, 0) * new Vector3 (0, (value - 0.5f) * length, 0);
@@ -42,12 +42,12 @@ public class CrossSectionDisplay : MonoBehaviour {
 
 	public void OnSlideEnd()
 	{
-		float leftVal = leftSlider.GetComponent<Slider>().value;
-		float rightVal = rightSlider.GetComponent<Slider>().value;
+		float leftVal = leftSlider.value;
+		float rightVal = rightSlider.value;
 		
 		float gradient = rightVal - leftVal;
 		float intercept = -1 *(leftVal + rightVal - 1f) / 2f;
-		meshSet.GetComponent<CrossSectionController>().setCrossSection(gradient,intercept, lessThan);
+		meshSet.setCrossSection(gradient,intercept, lessThan);
 	}
 
 	public void Update()

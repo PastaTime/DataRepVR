@@ -9,7 +9,7 @@ public class PositionMirror : MonoBehaviour {
 	public bool constrainY = true;
 	public bool constrainZ = false;
 
-	public bool contrainRotation = true;
+	public bool constrainRotation = true;
 
 	public bool lockRotation = true;
 	private Quaternion initialRotation;
@@ -37,8 +37,7 @@ public class PositionMirror : MonoBehaviour {
 		}
 		childObject.transform.position = childPosition;
 
-
-		if (contrainRotation) {
+		if (constrainRotation) {
 			childObject.transform.eulerAngles = transform.parent.eulerAngles;
 		}
 	}
