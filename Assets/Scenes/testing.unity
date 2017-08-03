@@ -1549,7 +1549,7 @@ MonoBehaviour:
   constrainX: 0
   constrainY: 1
   constrainZ: 0
-  contrainRotation: 1
+  constrainRotation: 1
   lockRotation: 1
 --- !u!23 &1056972713
 MeshRenderer:
@@ -1889,60 +1889,82 @@ Prefab:
         type: 2}
       propertyPath: meshSet
       value: 
-      objectReference: {fileID: 1167338818}
+      objectReference: {fileID: 1167338819}
     - target: {fileID: 224386121163190814, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.47
       objectReference: {fileID: 0}
     - target: {fileID: 224386121163190814, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224375095929231936, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.47
       objectReference: {fileID: 0}
     - target: {fileID: 224375095929231936, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.47
       objectReference: {fileID: 0}
     - target: {fileID: 224375095929231936, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224565335825648008, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 224565335825648008, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224431215389468836, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 224431215389468836, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 224431215389468836, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114180161720383892, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
+        type: 2}
+      propertyPath: leftSlider
+      value: 
+      objectReference: {fileID: 1289065209}
+    - target: {fileID: 114180161720383892, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
+        type: 2}
+      propertyPath: rightSlider
+      value: 
+      objectReference: {fileID: 1289065208}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b70d39cb96c9b7d49ae8f5901db71ba0, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1289065208 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114065202379142876, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1289065207}
+  m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &1289065209 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114530182405945592, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1289065207}
+  m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!114 &1577648369 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11422456, guid: 883db5ea00b778f4e8a59bba5aa8f866,

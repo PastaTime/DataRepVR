@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class CrossSectionController : MonoBehaviour
 {
-	private List<GameObject> displayMeshes = new List<GameObject>();
-	
-	// Use this for initialization
+	private List<PolyMeshController> displayMeshes = new List<PolyMeshController>();
+
 	void Start () {
 		foreach (Transform child in transform)
 		{
-			GameObject childObject = child.gameObject;
-			if (childObject.GetComponent<PolyMeshController>() != null)
+			PolyMeshController mesh = child.GetComponent<PolyMeshController> ();
+			if (mesh != null)
 			{
-				displayMeshes.Add(child.gameObject);
+				displayMeshes.Add(mesh);
 			}
 		}
 	}
 
 	public void setCrossSection(float gradient, float intercept, bool lessThan)
 	{
-		foreach (GameObject obj in displayMeshes)
+		foreach (PolyMeshController mesh in displayMeshes)
 		{
-			obj.GetComponent<PolyMeshController>().setCrossSection(gradient, intercept, lessThan);
+			mesh.setCrossSection(gradient, intercept, lessThan);
 		}
 	}
 }
