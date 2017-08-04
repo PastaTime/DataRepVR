@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using UnityEditor;
 using UnityEngine;
 
 public class CentreMenu : Menu {
@@ -8,14 +10,14 @@ public class CentreMenu : Menu {
 	public Menu aboveMenu;
 	public Menu belowMenu;
 
+	public GameObject nodes;
+
 	public List<Selectable> menuItems = new List<Selectable>();
 
-//	public Selectable[] menuItems;
-
-	private int index = 0;
+	private int index;
 
 	void Start() {
-		foreach (Transform child in transform)
+		foreach (Transform child in nodes.transform)
 		{
 			Highlight item = child.GetComponent<Highlight> ();
 			if (item != null)
@@ -23,6 +25,7 @@ public class CentreMenu : Menu {
 				menuItems.Add (item);
 			}
 		}
+		index = menuItems.Count;
 		if (active)
 			menuItems [index].Select ();
 	}
@@ -33,8 +36,9 @@ public class CentreMenu : Menu {
 
 	public override void OnActivation () {
 		Debug.Log ("Table Menu Selected");
+		sort ();
 		manager.camPan.MoveTo (transform);
-		if (index > 0 && index < menuItems.Count - 1)
+		if (index >= menuItems.Count)
 			moveUp ();
 		else
 			moveDown ();
@@ -45,6 +49,7 @@ public class CentreMenu : Menu {
 		int currentPos = index;
 		Debug.Log ("Centre Menu Up");
 		while (!found) {
+			currentPos++;
 			if (currentPos > menuItems.Count - 1) {
 				return null;
 			}
@@ -52,15 +57,17 @@ public class CentreMenu : Menu {
 				index = currentPos;
 				return menuItems[currentPos];
 			}
-			currentPos++;
+			
 		}
 		return null;
 	}
 
 	private Selectable getPrevious() {
+		
 		int currentPos = index;
 		bool found = false;
 		while (!found) {
+			currentPos--;
 			if (currentPos < 0) {
 				return null;
 			}
@@ -68,87 +75,40 @@ public class CentreMenu : Menu {
 				index = currentPos;
 				return menuItems[currentPos];
 			}
-			currentPos--;
+			
 		}
 		return null;
 	}
 
 	protected override void moveUp () {
-		// Get the next item in the list and select it
-		// If we're out of items activate the next menu up
-
-		//highlighted object get pos
-		//get next pos
-		// if pos is invalid go up
-		// else if pos is disabled keep going
-		// until something is found then stop
+		sort ();
+		if (index >= 0 && index < menuItems.Count)
+		{
+			menuItems[index].Unselect();
+		}
 		Selectable prev = getPrevious();
 		if (prev == null) {
 			Debug.Log ("Panning up from centre");
+			index = -1;
 			aboveMenu.activate ();
 			deactivate ();
 			return;
 		} else {
 			prev.Select ();
 		}
-//		bool found = false;
-//		int currentPos = index;
-//		Debug.Log ("Centre Menu Up");
-//		while (!found) {
-//			if (currentPos < 0) {
-//				Debug.Log ("Panning up from centre");
-//				aboveMenu.activate ();
-//				deactivate ();
-//				return;
-//			}
-//			if (menuItems [currentPos].gameObject.activeSelf) {
-//				Debug.Log ("Selecting " + currentPos);
-//				menuItems [currentPos].Select ();
-//				index = currentPos;
-//				return;
-//			}
-//			currentPos--;
-//		}
 		sort ();
-//		for (int i = 0; i < menuItems.Count; i++) {
-//			if (menuItems [i].selected) {
-//				index = i;
-//				break;
-//			}
-//		}
-//
-//		menuItems [index].Unselect ();
-//		if (menuItems [index].gameObject.activeSelf) {
-//			index--;
-//			menuItems [index].Select ();
-//		}
 	}
 
 	protected override void moveDown () {
-//
-//		bool found = false;
-//		int currentPos = index;
-//		Debug.Log ("Centre Menu Up");
-//		while (!found) {
-//			if (currentPos >= menuItems.Count - 1) {
-//				Debug.Log ("Panning down from centre");
-//				Debug.Log ("Move Down a Menu");
-//				belowMenu.activate ();
-//				deactivate ();
-//				return;
-//			}
-//			if (menuItems [currentPos].gameObject.activeSelf) {
-//				menuItems [currentPos].Select ();
-//				Debug.Log ("Selecting " + currentPos);
-//				index = currentPos;
-//				return;
-//			}
-//			currentPos++;
-//		}
-//		sort ();
-
+		sort ();
+		if (index >= 0 && index < menuItems.Count)
+		{
+			menuItems[index].Unselect();
+		}
 		Selectable next = getNext();
-		if (next == null) {
+		if (next == null)
+		{
+			index = menuItems.Count;
 			Debug.Log ("Panning down from centre");
 			Debug.Log ("Move Down a Menu");
 			belowMenu.activate ();
@@ -158,27 +118,6 @@ public class CentreMenu : Menu {
 			next.Select ();
 		}
 		sort ();
-//		Debug.Log ("Centre Menu Down");
-//		if (index == menuItems.Length - 1) {
-//			Debug.Log ("Move Down a Menu");
-//			belowMenu.activate ();
-//			deactivate ();
-//			return;
-//		}
-//
-//		sort ();
-//		for (int i = 0; i < menuItems.Length; i++) {
-//			if (menuItems [i].selected) {
-//				index = i;
-//				break;
-//			}
-//		}
-//
-//		menuItems [index].Unselect ();
-//		if (menuItems [index].gameObject.activeSelf) {
-//			index++;
-//			menuItems [index].Select ();
-//		}
 	}
 
 	protected override void moveLeft () {
@@ -191,16 +130,16 @@ public class CentreMenu : Menu {
 	}
 
 	public override void OnDeactivation () {
-		menuItems [index].Unselect ();
+//		menuItems [index].Unselect ();
 	}
 		
 
 	private void sort() {
 		//sort Menu items;
 
-//		Array.Sort (menuItems, delegate(Selectable s1, Selectable s2) {
-//			return s2.transform.position.y.CompareTo(s1.transform.position.y);
-//		});
+		menuItems.Sort (delegate(Selectable s1, Selectable s2) {
+			return s2.transform.position.y.CompareTo(s1.transform.position.y);
+		});
 	} 
 
 
