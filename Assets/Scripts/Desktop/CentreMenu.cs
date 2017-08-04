@@ -87,8 +87,8 @@ public class CentreMenu : Menu {
 			menuItems[index].Unselect();
 		}
 		Selectable prev = getPrevious();
-		if (prev == null) {
-			Debug.Log ("Panning up from centre");
+		if (prev == null) 
+		{
 			index = -1;
 			aboveMenu.activate ();
 			deactivate ();
@@ -109,8 +109,6 @@ public class CentreMenu : Menu {
 		if (next == null)
 		{
 			index = menuItems.Count;
-			Debug.Log ("Panning down from centre");
-			Debug.Log ("Move Down a Menu");
 			belowMenu.activate ();
 			deactivate ();
 			return;
