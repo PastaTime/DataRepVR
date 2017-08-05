@@ -9,7 +9,8 @@ using UnityEngine.EventSystems;
 public class UISelect : Selectable {
 	
 	public Color highlight = Color.red;
-	public Color nonhighlight = new Color (0.3f, 0.3f, 0.3f, 1f);
+	public Color nonhighlight = new Color(0.3f,0.3f,0.3f);
+	private Color nonhighlightlabel;
 
 	public Text label;
 	public Text buttonLabel;
@@ -30,7 +31,9 @@ public class UISelect : Selectable {
 
 	private bool buttonState = false;
 
-	void Start() {
+	void Start()
+	{
+		nonhighlightlabel = label.color;
 		control = Controller.GetInstance ();
 	}
 
@@ -49,7 +52,7 @@ public class UISelect : Selectable {
 
 	public override void OnUnselect () {
 		buttonLabel.color = nonhighlight;
-		label.color = nonhighlight;
+		label.color = nonhighlightlabel;
 	}
 
 	private void PressButton() {
