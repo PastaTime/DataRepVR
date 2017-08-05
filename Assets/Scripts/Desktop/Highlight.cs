@@ -13,7 +13,7 @@ public class Highlight : Selectable {
 
 	public float speed = 10f;
 
-	public void Start() {
+	public void Awake() {
 		nonhighlighted = GetComponent<Renderer> ().material;
 	}
 
