@@ -9,6 +9,10 @@ public class UIMenu : Menu {
 
 	private int index = 0;
 
+	void Start() {
+		if (active)
+			menuItems [index].Select ();
+	}
 
 	public override void OnActivation () {
 		Debug.Log ("UI Menu Selected");
@@ -18,6 +22,7 @@ public class UIMenu : Menu {
 	}
 
 	protected override void moveUp () {
+		Debug.Log ("Up");
 		if (index == 0) {
 			Debug.Log ("Move to Table");
 			aboveMenu.activate ();
@@ -31,6 +36,7 @@ public class UIMenu : Menu {
 	}
 
 	protected override void moveDown () {
+		Debug.Log ("Down");
 		if (index == menuItems.Length - 1) {
 			return;
 		}

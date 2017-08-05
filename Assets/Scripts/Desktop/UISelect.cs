@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Leap.Unity.InputModule;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class UISelect : Selectable {
 	
-	public GameObject Mesh;
-
 	public Color highlight = Color.red;
-	public Color def = new Color (0.3f, 0.3f, 0.3f, 1f);
+	public Color nonhighlight = new Color(0.3f,0.3f,0.3f);
+	private Color nonhighlightlabel;
 
 	public Text label;
 	public Text buttonLabel;
@@ -18,7 +19,11 @@ public class UISelect : Selectable {
 	public AudioClip buttonUpSound;
 	public AudioClip buttonDownSound;
 
+	[System.Serializable]
+	public class SelectEvent : UnityEvent<bool> {}
 
+	[SerializeField]
+	public SelectEvent onPress;
 
 	private Controller control;
 	// Records the position of the A button as the button is highlighted (this avoids rapidly selecting a button while moving)
@@ -26,9 +31,10 @@ public class UISelect : Selectable {
 
 	private bool buttonState = false;
 
-	void Start() {
+	void Start()
+	{
+		nonhighlightlabel = label.color;
 		control = Controller.GetInstance ();
-		Mesh.SetActive (buttonState);
 	}
 
 	public override void OnSelect () {
@@ -45,13 +51,13 @@ public class UISelect : Selectable {
 	}
 
 	public override void OnUnselect () {
-		buttonLabel.color = def;
-		label.color = def;
+		buttonLabel.color = nonhighlight;
+		label.color = nonhighlightlabel;
 	}
 
 	private void PressButton() {
 		buttonState = !buttonState;
-		Mesh.SetActive (buttonState);
+		onPress.Invoke (buttonState);
 		if (buttonState) {
 			GetComponent<CompressibleUI> ().Retract ();
 			buttonLabel.text = buttonDownText;
@@ -61,7 +67,5 @@ public class UISelect : Selectable {
 			buttonLabel.text = buttonUpText;
 			GetComponent<AudioSource> ().PlayOneShot (buttonUpSound);
 		}
-
 	}
-
 }

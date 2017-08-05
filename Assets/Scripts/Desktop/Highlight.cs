@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Highlight : Selectable {
-	public Material def;
+
 	public Material highlight;
+	private Material nonhighlighted;
 
 	// Min and Max values to clamp mesh sliders too.
 	public float maxY = 1.4f;
@@ -12,8 +13,12 @@ public class Highlight : Selectable {
 
 	public float speed = 10f;
 
+	public void Awake() {
+		nonhighlighted = GetComponent<Renderer> ().material;
+	}
+
 	public override void OnSelect () {
-		MeshRenderer rend = gameObject.GetComponent<MeshRenderer> ();
+		MeshRenderer rend = GetComponent<MeshRenderer> ();
 		rend.material = highlight;
 	}
 
@@ -26,14 +31,11 @@ public class Highlight : Selectable {
 			pos.y = Mathf.Clamp (pos.y, minY, maxY);
 			transform.position = pos;
 		}
-			
-
-
 	}
 
 	public override void OnUnselect () {
-		MeshRenderer rend = gameObject.GetComponent<MeshRenderer> ();
-		rend.material = def;
+		MeshRenderer rend = GetComponent<MeshRenderer> ();
+		rend.material = nonhighlighted;
 	}
 
 }

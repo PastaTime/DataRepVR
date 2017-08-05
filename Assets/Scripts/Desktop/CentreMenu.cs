@@ -13,6 +13,7 @@ public class CentreMenu : Menu {
 	private int index = 0;
 
 	void Start() {
+		sort ();
 		if (active)
 			menuItems [index].Select ();
 	}
