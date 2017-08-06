@@ -22,10 +22,6 @@ public abstract class Selectable : MonoBehaviour {
 
 	public abstract void OnUnselect ();
 
-
-
-
-
 	void Update()
 	{
 		if (selected) 

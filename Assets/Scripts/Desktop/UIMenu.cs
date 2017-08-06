@@ -15,18 +15,21 @@ public class UIMenu : Menu {
 	}
 
 	public override void OnActivation () {
-		Debug.Log ("UI Menu Selected");
+//		Debug.Log ("UI Menu Selected");
 		manager.camPan.MoveTo (transform);
 		index = 0;
 		menuItems [index].Select ();
 	}
 
 	protected override void moveUp () {
-		Debug.Log ("Up");
+//		Debug.Log ("Up");
 		if (index == 0) {
-			Debug.Log ("Move to Table");
-			aboveMenu.activate ();
-			deactivate ();
+			if (aboveMenu != null)
+			{
+//				Debug.Log ("Move to Table");
+				aboveMenu.activate ();
+				deactivate ();	
+			}
 			return;
 		}
 
@@ -36,7 +39,7 @@ public class UIMenu : Menu {
 	}
 
 	protected override void moveDown () {
-		Debug.Log ("Down");
+//		Debug.Log ("Down");
 		if (index == menuItems.Length - 1) {
 			return;
 		}
@@ -57,6 +60,4 @@ public class UIMenu : Menu {
 	public override void OnDeactivation () {
 		menuItems [index].Unselect ();
 	}
-
-
 }

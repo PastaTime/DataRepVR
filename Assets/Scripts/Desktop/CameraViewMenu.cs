@@ -6,7 +6,7 @@ public class CameraViewMenu : Menu {
 	public Menu belowMenu;
 
 	public override void OnActivation () {
-		Debug.Log ("Top Down Menu Selected");
+//		Debug.Log ("Top Down Menu Selected");
 		manager.camPan.MoveTo (transform);
 	}
 
@@ -16,8 +16,11 @@ public class CameraViewMenu : Menu {
 	}
 
 	protected override void moveDown () {
-		belowMenu.activate ();
-		deactivate ();
+		if (belowMenu != null)
+		{
+			belowMenu.activate ();
+			deactivate ();
+		}
 	}
 
 	protected override void moveLeft () {
