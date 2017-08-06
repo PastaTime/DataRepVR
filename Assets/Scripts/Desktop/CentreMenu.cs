@@ -20,20 +20,22 @@ public class CentreMenu : Menu {
 
 
 	public override void OnActivation () {
-		Debug.Log ("Table Menu Selected");
+//		Debug.Log ("Table Menu Selected");
 		manager.camPan.MoveTo (transform);
 		menuItems [index].Select ();
 	}
 
 	protected override void moveUp () {
-		Debug.Log ("Centre Menu Up");
+		sort ();
 		if (index == 0) {
-			aboveMenu.activate ();
-			deactivate ();
+			if (aboveMenu != null)
+			{
+				aboveMenu.activate();
+				deactivate();
+			}
 			return;
 		}
 
-		sort ();
 		for (int i = 0; i < menuItems.Length; i++) {
 			if (menuItems [i].selected) {
 				index = i;
@@ -47,15 +49,17 @@ public class CentreMenu : Menu {
 	}
 
 	protected override void moveDown () {
-		Debug.Log ("Centre Menu Down");
+		sort ();
 		if (index == menuItems.Length - 1) {
-			Debug.Log ("Move Down a Menu");
-			belowMenu.activate ();
-			deactivate ();
+			if (belowMenu != null)
+			{
+//				Debug.Log ("Move Down a Menu");
+				belowMenu.activate ();
+				deactivate ();
+			}
 			return;
 		}
 
-		sort ();
 		for (int i = 0; i < menuItems.Length; i++) {
 			if (menuItems [i].selected) {
 				index = i;
@@ -84,11 +88,11 @@ public class CentreMenu : Menu {
 
 	private void sort() {
 		//sort Menu items;
-
+		Selectable item = menuItems[index];
 		Array.Sort (menuItems, delegate(Selectable s1, Selectable s2) {
 			return s2.transform.position.y.CompareTo(s1.transform.position.y);
 		});
+		index = Array.IndexOf(menuItems, item);
 	} 
-
 
 }

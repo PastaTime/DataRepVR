@@ -11,8 +11,8 @@ public abstract class Menu : MonoBehaviour {
 	public bool active = false;
 
 	public void activate () {
-		active = true;
 		OnActivation ();
+		active = true;
 	}
 
 	public abstract void OnActivation ();
@@ -26,8 +26,9 @@ public abstract class Menu : MonoBehaviour {
 	protected abstract void moveRight ();
 
 	public void deactivate () {
-		active = false;
+
 		OnDeactivation ();
+		active = false;
 	}
 
 	public abstract void OnDeactivation ();
