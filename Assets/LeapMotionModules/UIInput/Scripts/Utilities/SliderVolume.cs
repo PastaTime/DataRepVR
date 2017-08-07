@@ -31,5 +31,9 @@ namespace Leap.Unity.InputModule {
       currentValue = sliderposition / maxValue;
       TimeLastSlid = Time.time;
     }
+
+		public float getSliderSoundVolume() {
+			return currentValue;
+		}
   }
 }
