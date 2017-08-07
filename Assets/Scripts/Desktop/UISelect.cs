@@ -7,7 +7,9 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class UISelect : Selectable {
-	
+
+	public bool Togglable = true;
+
 	public Color highlight = Color.red;
 	public Color nonhighlight = new Color(0.3f,0.3f,0.3f);
 	private Color nonhighlightlabel;
@@ -45,7 +47,13 @@ public class UISelect : Selectable {
 
 	public override void WhileSelected () {
 		if (!controllerButton && control.GetButtonDown (Controller.Button.A)) {
-			PressButton ();
+			if (Togglable) {
+				PressAnimation ();
+				onPress.Invoke (buttonState);
+			} else {
+				StartCoroutine (TapButton ());
+			}
+
 		}
 		controllerButton = control.GetButtonDown (Controller.Button.A);
 	}
@@ -55,7 +63,8 @@ public class UISelect : Selectable {
 		label.color = nonhighlightlabel;
 	}
 
-	private void PressButton() {
+	private void PressAnimation() {
+		
 		buttonState = !buttonState;
 		onPress.Invoke (buttonState);
 		if (buttonState) {
@@ -67,5 +76,12 @@ public class UISelect : Selectable {
 			buttonLabel.text = buttonUpText;
 			GetComponent<AudioSource> ().PlayOneShot (buttonUpSound);
 		}
+	}
+
+	IEnumerator TapButton() {
+		PressAnimation ();
+		onPress.Invoke (buttonState);
+		yield return new WaitForSeconds(0.1f);
+		PressAnimation ();
 	}
 }
