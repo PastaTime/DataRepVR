@@ -40,14 +40,14 @@ public class UISelect : Selectable {
 	public override void OnSelect () {
 		buttonLabel.color = highlight;
 		label.color = highlight;
-		controllerButton = control.GetButtonDown (Controller.Button.A);
+		controllerButton = control.GetButtonDown (Controller.Button.A) || control.GetButtonDown(Controller.Button.LJ);
 	}
 
 	public override void WhileSelected () {
-		if (!controllerButton && control.GetButtonDown (Controller.Button.A)) {
+		if (!controllerButton && (control.GetButtonDown (Controller.Button.A) || control.GetButtonDown(Controller.Button.LJ))) {
 			PressButton ();
 		}
-		controllerButton = control.GetButtonDown (Controller.Button.A);
+		controllerButton = control.GetButtonDown (Controller.Button.A) || control.GetButtonDown(Controller.Button.LJ);
 	}
 
 	public override void OnUnselect () {
