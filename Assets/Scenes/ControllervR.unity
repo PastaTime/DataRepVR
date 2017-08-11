@@ -4028,15 +4028,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
-  Togglable: 1
+  Togglable: 0
   highlight: {r: 1, g: 0, b: 0, a: 1}
   nonhighlight: {r: 0.3, g: 0.3, b: 0.3, a: 1}
   label: {fileID: 0}
   buttonLabel: {fileID: 891403114}
   buttonUpText: Invert
   buttonDownText: Invert
-  buttonUpSound: {fileID: 0}
-  buttonDownSound: {fileID: 0}
+  buttonUpSound: {fileID: 8300000, guid: 409e434d2f294004794cabc31135207f, type: 3}
+  buttonDownSound: {fileID: 8300000, guid: 950e6e66be1f197459ac2cc4676f2af2, type: 3}
   onPress:
     m_PersistentCalls:
       m_Calls:
@@ -7857,15 +7857,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
-  Togglable: 1
+  Togglable: 0
   highlight: {r: 1, g: 0, b: 0, a: 1}
   nonhighlight: {r: 0.3, g: 0.3, b: 0.3, a: 1}
   label: {fileID: 0}
   buttonLabel: {fileID: 364347544}
   buttonUpText: Apply
   buttonDownText: Apply
-  buttonUpSound: {fileID: 8300000, guid: 950e6e66be1f197459ac2cc4676f2af2, type: 3}
-  buttonDownSound: {fileID: 8300000, guid: af8c38e726b39be40a780e85f9fbef87, type: 3}
+  buttonUpSound: {fileID: 8300000, guid: 409e434d2f294004794cabc31135207f, type: 3}
+  buttonDownSound: {fileID: 8300000, guid: 950e6e66be1f197459ac2cc4676f2af2, type: 3}
   onPress:
     m_PersistentCalls:
       m_Calls:
