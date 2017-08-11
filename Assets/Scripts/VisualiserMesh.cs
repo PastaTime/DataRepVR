@@ -62,6 +62,11 @@ public class VisualiserMesh : MonoBehaviour
             }
             meshFilter.mesh.colors = colours;
         }
+        GameObject loadingIcon = GameObject.FindWithTag("LoadingIcon");
+        if (loadingIcon != null)
+        {
+            loadingIcon.SetActive(false);
+        }
     }
 
     private void resizeMesh()
