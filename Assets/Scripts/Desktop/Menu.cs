@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Menu : MonoBehaviour {
@@ -14,8 +12,6 @@ public abstract class Menu : MonoBehaviour {
 	protected int index = 0;
 
 	public GameObject itemsParent;
-
-//	public List<Selectable> menuItems = new List<Selectable>();
 
 	public Selectable[] menuItems;
 
@@ -32,27 +28,6 @@ public abstract class Menu : MonoBehaviour {
 		active = true;
 	}
 
-//	void Start()
-//	{
-////		populateItems();
-//
-//	}
-
-//	protected void populateItems()
-//	{
-//		if (itemsParent != null)
-//		{
-//			foreach (Transform transform in itemsParent.transform)
-//			{
-//				Selectable s = transform.GetComponent<Selectable>();
-//				if (s != null)
-//				{
-//					menuItems.Add(s);
-//				}
-//			}
-//		}
-//	}
-
 	public abstract void OnActivation ();
 
 	protected void moveUp () {
@@ -65,13 +40,6 @@ public abstract class Menu : MonoBehaviour {
 			}
 			return;
 		}
-
-//		for (int i = 0; i < menuItems.Length; i++) {
-//			if (menuItems [i].selected) {
-//				index = i;
-//				break;
-//			}
-//		}
 
 		menuItems [index].Unselect ();
 		index--;
@@ -88,13 +56,6 @@ public abstract class Menu : MonoBehaviour {
 			}
 			return;
 		}
-
-//		for (int i = 0; i < menuItems.Length; i++) {
-//			if (menuItems [i].selected) {
-//				index = i;
-//				break;
-//			}
-//		}
 
 		menuItems [index].Unselect ();
 		index++;
@@ -129,14 +90,9 @@ public abstract class Menu : MonoBehaviour {
 	protected void sort() {
 		if (menuItems != null && menuItems.Length > 0)
 		{
-			//sort Menu items;
 			Selectable item = menuItems[index];
-//			Array.Sort(menuItems, (s1, s2) => s2.transform.position.y.CompareTo(s1.transform.position.y));
-		Array.Sort (menuItems,  delegate(Selectable s1, Selectable s2) {
-			return s2.transform.position.y.CompareTo(s1.transform.position.y);
-		});
+			Array.Sort(menuItems, (s1, s2) => s2.transform.position.y.CompareTo(s1.transform.position.y));
 			index = Array.IndexOf(menuItems, item);
-//			index = menuItems.IndexOf(item, 0, menuItems.Count -1);
 		}
 	} 
 
