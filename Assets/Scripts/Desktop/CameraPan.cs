@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraPan : MonoBehaviour {
 
@@ -22,12 +20,11 @@ public class CameraPan : MonoBehaviour {
 		transform.localScale = startingPos.localScale;
 	}
 
-	// Update is called once per frame
 	void Update () {
 		if (!panning) {
 			return;
 		}
-		Debug.Log ("Panning...");
+//		Debug.Log ("Panning...");
 
 		if (counter > panTime) {
 			panning = false;
@@ -51,7 +48,7 @@ public class CameraPan : MonoBehaviour {
 		if (panning)
 			return;
 
-		Debug.Log ("Starting Pan");
+//		Debug.Log ("Starting Pan");
 
 		lastPos.position = transform.position;
 		lastPos.eulerAngles = transform.eulerAngles;
