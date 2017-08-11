@@ -304,16 +304,16 @@ GameObject:
   m_Component:
   - component: {fileID: 247355679}
   - component: {fileID: 247355686}
+  - component: {fileID: 247355687}
   - component: {fileID: 247355685}
   - component: {fileID: 247355684}
   - component: {fileID: 247355683}
   - component: {fileID: 247355682}
   - component: {fileID: 247355681}
   - component: {fileID: 247355680}
-  - component: {fileID: 247355687}
   m_Layer: 5
   m_Name: Land height toggle
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -869,16 +869,16 @@ GameObject:
   m_Component:
   - component: {fileID: 361942219}
   - component: {fileID: 361942226}
+  - component: {fileID: 361942227}
   - component: {fileID: 361942225}
   - component: {fileID: 361942224}
   - component: {fileID: 361942223}
   - component: {fileID: 361942222}
   - component: {fileID: 361942221}
   - component: {fileID: 361942220}
-  - component: {fileID: 361942227}
   m_Layer: 5
   m_Name: Pressure toggle
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1537,13 +1537,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 374029018}
   active: 1
-  aboveMenu: {fileID: 1374017071}
-  belowMenu: {fileID: 1479189958}
+  itemsParent: {fileID: 2079852076}
   menuItems:
-  - {fileID: 774528788}
-  - {fileID: 124512397}
-  - {fileID: 1253297096}
   - {fileID: 250076379}
+  - {fileID: 774528788}
+  - {fileID: 1253297096}
+  - {fileID: 124512397}
+  topMenu: {fileID: 0}
+  bottomMenu: {fileID: 0}
+  leftMenu: {fileID: 1479189958}
+  rightMenu: {fileID: 1374017071}
 --- !u!1 &613621791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,6 +1965,10 @@ Prefab:
       propertyPath: constrainRotation
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1050436167165090, guid: 05d20f684c232d54091b7b8159e20c08, type: 2}
+      propertyPath: m_TagString
+      value: Selectable
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114962028320259516, guid: 05d20f684c232d54091b7b8159e20c08, type: 2}
     - {fileID: 114569796363821926, guid: 05d20f684c232d54091b7b8159e20c08, type: 2}
@@ -2167,6 +2174,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.050000012
       objectReference: {fileID: 0}
+    - target: {fileID: 1050436167165090, guid: 05d20f684c232d54091b7b8159e20c08, type: 2}
+      propertyPath: m_TagString
+      value: Selectable
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114962028320259516, guid: 05d20f684c232d54091b7b8159e20c08, type: 2}
     - {fileID: 114569796363821926, guid: 05d20f684c232d54091b7b8159e20c08, type: 2}
@@ -2193,7 +2204,7 @@ Prefab:
     - target: {fileID: 224859261554811918, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
         type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.893
+      value: 0.791
       objectReference: {fileID: 0}
     - target: {fileID: 224859261554811918, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
         type: 2}
@@ -2223,12 +2234,12 @@ Prefab:
     - target: {fileID: 224859261554811918, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -0.27
+      value: -0.586
       objectReference: {fileID: 0}
     - target: {fileID: 224859261554811918, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.475
+      value: 1.005
       objectReference: {fileID: 0}
     - target: {fileID: 224859261554811918, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
         type: 2}
@@ -2395,6 +2406,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1042835864}
   m_Script: {fileID: -113659843, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!1 &1053617032 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1140952272500866, guid: 940d0d337543a71479a6fd0aac395bc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1463227563}
 --- !u!1 &1079457319
 GameObject:
   m_ObjectHideFlags: 0
@@ -2782,6 +2798,10 @@ Prefab:
       propertyPath: constrainRotation
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1050436167165090, guid: 05d20f684c232d54091b7b8159e20c08, type: 2}
+      propertyPath: m_TagString
+      value: Selectable
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114962028320259516, guid: 05d20f684c232d54091b7b8159e20c08, type: 2}
     - {fileID: 114569796363821926, guid: 05d20f684c232d54091b7b8159e20c08, type: 2}
@@ -3080,7 +3100,7 @@ GameObject:
   - component: {fileID: 1253297096}
   m_Layer: 0
   m_Name: Temperature node
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3235,7 +3255,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 374029018}
   active: 0
-  belowMenu: {fileID: 586045649}
+  itemsParent: {fileID: 0}
+  menuItems: []
+  topMenu: {fileID: 0}
+  bottomMenu: {fileID: 586045649}
+  leftMenu: {fileID: 0}
+  rightMenu: {fileID: 0}
 --- !u!4 &1374017072
 Transform:
   m_ObjectHideFlags: 0
@@ -3269,7 +3294,7 @@ Prefab:
     - target: {fileID: 224833540726463364, guid: 940d0d337543a71479a6fd0aac395bc2,
         type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.893
+      value: 0.726
       objectReference: {fileID: 0}
     - target: {fileID: 224833540726463364, guid: 940d0d337543a71479a6fd0aac395bc2,
         type: 2}
@@ -3299,12 +3324,12 @@ Prefab:
     - target: {fileID: 224833540726463364, guid: 940d0d337543a71479a6fd0aac395bc2,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0.27
+      value: 0.802
       objectReference: {fileID: 0}
     - target: {fileID: 224833540726463364, guid: 940d0d337543a71479a6fd0aac395bc2,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.475
+      value: 1.003
       objectReference: {fileID: 0}
     - target: {fileID: 224833540726463364, guid: 940d0d337543a71479a6fd0aac395bc2,
         type: 2}
@@ -3407,7 +3432,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1479189956}
   m_LocalRotation: {x: 0, y: -0.953717, z: 0.30070576, w: 0}
-  m_LocalPosition: {x: 0, y: 0.87, z: 1.354}
+  m_LocalPosition: {x: 0.769, y: 1.207, z: 1.243}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3426,12 +3451,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 374029018}
   active: 0
-  aboveMenu: {fileID: 586045649}
+  itemsParent: {fileID: 1053617032}
   menuItems:
   - {fileID: 247355687}
   - {fileID: 1778480199}
   - {fileID: 1543790147}
   - {fileID: 361942227}
+  topMenu: {fileID: 0}
+  bottomMenu: {fileID: 0}
+  leftMenu: {fileID: 0}
+  rightMenu: {fileID: 586045649}
 --- !u!1 &1543790138
 GameObject:
   m_ObjectHideFlags: 0
@@ -3441,16 +3470,16 @@ GameObject:
   m_Component:
   - component: {fileID: 1543790139}
   - component: {fileID: 1543790146}
+  - component: {fileID: 1543790147}
   - component: {fileID: 1543790145}
   - component: {fileID: 1543790144}
   - component: {fileID: 1543790143}
   - component: {fileID: 1543790142}
   - component: {fileID: 1543790141}
   - component: {fileID: 1543790140}
-  - component: {fileID: 1543790147}
   m_Layer: 5
   m_Name: Rainfall toggle
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4023,16 +4052,16 @@ GameObject:
   m_Component:
   - component: {fileID: 1778480191}
   - component: {fileID: 1778480198}
+  - component: {fileID: 1778480199}
   - component: {fileID: 1778480197}
   - component: {fileID: 1778480196}
   - component: {fileID: 1778480195}
   - component: {fileID: 1778480194}
   - component: {fileID: 1778480193}
   - component: {fileID: 1778480192}
-  - component: {fileID: 1778480199}
   m_Layer: 5
   m_Name: Temperature toggle
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
