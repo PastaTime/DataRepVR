@@ -12,6 +12,8 @@ public class Highlight : Selectable {
 	public float minY = 0.75f;
 
 	public float speed = 10f;
+	
+	public Rotation rotator;
 
 	public void Awake() {
 		nonhighlighted = GetComponent<Renderer> ().material;
@@ -30,6 +32,11 @@ public class Highlight : Selectable {
 			pos.y += rightJoy.y * speed * Time.deltaTime;
 			pos.y = Mathf.Clamp (pos.y, minY, maxY);
 			transform.position = pos;
+		}
+		if (rightJoy.x != 0f)
+		{
+			Rotation.Direction direction = (rightJoy.x < 0f) ? Rotation.Direction.LEFT : Rotation.Direction.RIGHT;
+			rotator.rotate(direction);
 		}
 	}
 
