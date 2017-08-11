@@ -9,7 +9,7 @@ public abstract class Menu : MonoBehaviour {
 
 	public bool active = false;
 
-	protected int index = 0;
+	public int index = 0;
 
 	public GameObject itemsParent;
 
@@ -46,7 +46,7 @@ public abstract class Menu : MonoBehaviour {
 		menuItems [index].Select ();
 	}
 
-	protected void moveDown () {
+	protected virtual void moveDown () {
 		sort ();
 		if (index == menuItems.Length - 1) {
 			if (bottomMenu != null)
@@ -83,7 +83,7 @@ public abstract class Menu : MonoBehaviour {
 		active = false;
 	}
 	
-	public void OnDeactivation () {
+	public virtual void OnDeactivation () {
 		menuItems [index].Unselect ();
 	}
 	

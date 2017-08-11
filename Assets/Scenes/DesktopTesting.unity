@@ -1537,16 +1537,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 374029018}
   active: 1
+  index: 0
   itemsParent: {fileID: 2079852076}
   menuItems:
   - {fileID: 250076379}
   - {fileID: 774528788}
   - {fileID: 1253297096}
   - {fileID: 124512397}
-  topMenu: {fileID: 0}
+  topMenu: {fileID: 1374017071}
   bottomMenu: {fileID: 0}
   leftMenu: {fileID: 1479189958}
-  rightMenu: {fileID: 1374017071}
+  rightMenu: {fileID: 0}
 --- !u!1 &613621791
 GameObject:
   m_ObjectHideFlags: 0
@@ -3255,6 +3256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 374029018}
   active: 0
+  index: 0
   itemsParent: {fileID: 0}
   menuItems: []
   topMenu: {fileID: 0}
@@ -3451,6 +3453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 374029018}
   active: 0
+  index: 0
   itemsParent: {fileID: 1053617032}
   menuItems:
   - {fileID: 247355687}

@@ -27,7 +27,7 @@ public class CameraPan : MonoBehaviour {
 		if (!panning) {
 			return;
 		}
-//		Debug.Log ("Panning...");
+		Debug.Log ("Panning...");
 
 		if (counter > panTime) {
 			panning = false;
@@ -51,7 +51,7 @@ public class CameraPan : MonoBehaviour {
 		if (panning)
 			return;
 
-//		Debug.Log ("Starting Pan");
+		Debug.Log ("Starting Pan");
 
 		lastPos.position = transform.position;
 		lastPos.eulerAngles = transform.eulerAngles;
