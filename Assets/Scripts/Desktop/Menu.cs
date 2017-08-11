@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public abstract class Menu : MonoBehaviour {
@@ -10,6 +9,20 @@ public abstract class Menu : MonoBehaviour {
 
 	public bool active = false;
 
+	public int index = 0;
+
+	public GameObject itemsParent;
+
+	public Selectable[] menuItems;
+
+	public Menu topMenu;
+
+	public Menu bottomMenu;
+
+	public Menu leftMenu;
+
+	public Menu rightMenu;
+
 	public void activate () {
 		OnActivation ();
 		active = true;
@@ -17,21 +30,71 @@ public abstract class Menu : MonoBehaviour {
 
 	public abstract void OnActivation ();
 
-	protected abstract void moveUp ();
+	protected virtual void moveUp () {
+		sort ();
+		if (index == 0) {
+			if (topMenu != null)
+			{
+				topMenu.activate ();
+				deactivate ();
+			}
+			return;
+		}
 
-	protected abstract void moveDown ();
+		menuItems [index].Unselect ();
+		index--;
+		menuItems [index].Select ();
+	}
 
-	protected abstract void moveLeft ();
+	protected virtual void moveDown () {
+		sort ();
+		if (index == menuItems.Length - 1) {
+			if (bottomMenu != null)
+			{
+					bottomMenu.activate();
+					deactivate();
+			}
+			return;
+		}
 
-	protected abstract void moveRight ();
+		menuItems [index].Unselect ();
+		index++;
+		menuItems [index].Select ();
+	}
+
+	protected virtual void moveLeft () {
+		if (leftMenu != null)
+		{
+			leftMenu.activate();
+			deactivate();
+		}
+	}
+
+	protected virtual void moveRight () {
+		if (rightMenu != null)
+		{
+			rightMenu.activate ();
+			deactivate ();
+		}
+	}
 
 	public void deactivate () {
-
 		OnDeactivation ();
 		active = false;
 	}
-
-	public abstract void OnDeactivation ();
+	
+	public virtual void OnDeactivation () {
+		menuItems [index].Unselect ();
+	}
+	
+	protected virtual void sort() {
+		if (menuItems != null && menuItems.Length > 0)
+		{
+			Selectable item = menuItems[index];
+			Array.Sort(menuItems, (s1, s2) => s2.transform.position.y.CompareTo(s1.transform.position.y));
+			index = Array.IndexOf(menuItems, item);
+		}
+	} 
 
 	void Update() {
 		if (active) {
@@ -49,9 +112,9 @@ public abstract class Menu : MonoBehaviour {
 				moveUp ();
 			} else if (leftStick.y < 0) {
 				moveDown ();
-			} else if (leftStick.x > 0) {
-				moveLeft ();
 			} else if (leftStick.x < 0) {
+				moveLeft ();
+			} else if (leftStick.x > 0) {
 				moveRight ();
 			}
 		}

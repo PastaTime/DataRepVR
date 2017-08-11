@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +7,9 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class UISelect : Selectable {
-	
+
+	public bool Togglable = true;
+
 	public Color highlight = Color.red;
 	public Color nonhighlight = new Color(0.3f,0.3f,0.3f);
 	private Color nonhighlightlabel;
@@ -33,29 +35,44 @@ public class UISelect : Selectable {
 
 	void Start()
 	{
-		nonhighlightlabel = label.color;
+		if (label != null)
+		{
+			nonhighlightlabel = label.color;
+		}
 		control = Controller.GetInstance ();
 	}
 
 	public override void OnSelect () {
 		buttonLabel.color = highlight;
-		label.color = highlight;
-		controllerButton = control.GetButtonDown (Controller.Button.A) || control.GetButtonDown(Controller.Button.LJ);
+		if (label != null)
+		{
+			label.color = highlight;
+		}
+		controllerButton =control.GetButtonDown (Controller.Button.A) || control.GetButtonDown(Controller.Button.LJ);
 	}
 
 	public override void WhileSelected () {
-		if (!controllerButton && (control.GetButtonDown (Controller.Button.A) || control.GetButtonDown(Controller.Button.LJ))) {
-			PressButton ();
+    if (!controllerButton && (control.GetButtonDown (Controller.Button.A) || control.GetButtonDown(Controller.Button.LJ))) {
+			if (Togglable) {
+				PressAnimation ();
+				onPress.Invoke (buttonState);
+			} else {
+				StartCoroutine (TapButton ());
+			}
 		}
 		controllerButton = control.GetButtonDown (Controller.Button.A) || control.GetButtonDown(Controller.Button.LJ);
 	}
 
 	public override void OnUnselect () {
 		buttonLabel.color = nonhighlight;
-		label.color = nonhighlightlabel;
+		if (label != null)
+		{
+			label.color = nonhighlightlabel;	
+		}
 	}
 
-	private void PressButton() {
+	private void PressAnimation() {
+		
 		buttonState = !buttonState;
 		onPress.Invoke (buttonState);
 		if (buttonState) {
@@ -67,5 +84,14 @@ public class UISelect : Selectable {
 			buttonLabel.text = buttonUpText;
 			GetComponent<AudioSource> ().PlayOneShot (buttonUpSound);
 		}
+	}
+
+	IEnumerator TapButton() {
+		GetComponent<CompressibleUI> ().Retract ();
+		GetComponent<AudioSource> ().PlayOneShot (buttonDownSound);
+		onPress.Invoke (buttonState);
+		yield return new WaitForSeconds(0.1f);
+		GetComponent<CompressibleUI> ().Expand ();
+		GetComponent<AudioSource> ().PlayOneShot (buttonUpSound);
 	}
 }

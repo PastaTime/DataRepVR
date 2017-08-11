@@ -6,6 +6,10 @@ public class CrossSectionController : MonoBehaviour
 {
 	private List<PolyMeshController> displayMeshes = new List<PolyMeshController>();
 
+	private float _gradient;
+	private float _intercept;
+	private bool _lessThan;
+
 	void Start () {
 		foreach (Transform child in transform)
 		{
@@ -19,9 +23,29 @@ public class CrossSectionController : MonoBehaviour
 
 	public void setCrossSection(float gradient, float intercept, bool lessThan)
 	{
+		setGradient (gradient);
+		setIntercept (intercept);
+		setSelectionSide (lessThan);
+		refreshCrossSection ();
+	}
+
+
+	public void refreshCrossSection() {
 		foreach (PolyMeshController mesh in displayMeshes)
 		{
-			mesh.setCrossSection(gradient, intercept, lessThan);
+			mesh.setCrossSection(_gradient, _intercept, _lessThan);
 		}
+	}
+
+	public void setGradient(float gradient) {
+		_gradient = gradient;
+	}
+
+	public void setIntercept(float intercept) {
+		_intercept = intercept;
+	}
+
+	public void setSelectionSide(bool lessThan) {
+		_lessThan = lessThan;
 	}
 }

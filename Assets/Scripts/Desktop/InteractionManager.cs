@@ -1,21 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InteractionManager : MonoBehaviour {
 
 	public CameraPan camPan;
 
 	public bool invertedNavigation = false;
-
-	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
 
 	// Returns a Vector of filtered joystick data
 	public Vector2 GetAxis (Controller.Joystick joy) {
