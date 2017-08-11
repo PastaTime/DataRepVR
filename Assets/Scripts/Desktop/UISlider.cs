@@ -12,7 +12,7 @@ public class UISlider : Selectable {
 
 	public float speed = 1f;
 
-	public Color highlight = new Color(0.3f,0.3f,0.3f);
+	public Color highlight = Color.red;
 	private Color nonhighlight;
 
 	// Use this for initialization
@@ -42,5 +42,4 @@ public class UISlider : Selectable {
 		// Unhighlight Slider
 		handle.color = nonhighlight;
 	}
-
 }

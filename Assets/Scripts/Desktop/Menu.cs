@@ -30,7 +30,7 @@ public abstract class Menu : MonoBehaviour {
 
 	public abstract void OnActivation ();
 
-	protected void moveUp () {
+	protected virtual void moveUp () {
 		sort ();
 		if (index == 0) {
 			if (topMenu != null)
@@ -62,7 +62,7 @@ public abstract class Menu : MonoBehaviour {
 		menuItems [index].Select ();
 	}
 
-	protected void moveLeft () {
+	protected virtual void moveLeft () {
 		if (leftMenu != null)
 		{
 			leftMenu.activate();
@@ -70,7 +70,7 @@ public abstract class Menu : MonoBehaviour {
 		}
 	}
 
-	protected void moveRight () {
+	protected virtual void moveRight () {
 		if (rightMenu != null)
 		{
 			rightMenu.activate ();
@@ -87,7 +87,7 @@ public abstract class Menu : MonoBehaviour {
 		menuItems [index].Unselect ();
 	}
 	
-	protected void sort() {
+	protected virtual void sort() {
 		if (menuItems != null && menuItems.Length > 0)
 		{
 			Selectable item = menuItems[index];

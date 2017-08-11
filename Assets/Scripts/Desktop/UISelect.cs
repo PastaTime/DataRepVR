@@ -88,9 +88,11 @@ public class UISelect : Selectable {
 	}
 
 	IEnumerator TapButton() {
-		PressAnimation ();
+		GetComponent<CompressibleUI> ().Retract ();
+		GetComponent<AudioSource> ().PlayOneShot (buttonDownSound);
 		onPress.Invoke (buttonState);
 		yield return new WaitForSeconds(0.1f);
-		PressAnimation ();
+		GetComponent<CompressibleUI> ().Expand ();
+		GetComponent<AudioSource> ().PlayOneShot (buttonUpSound);
 	}
 }
