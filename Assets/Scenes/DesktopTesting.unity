@@ -2915,7 +2915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fcd06563be1dcc48b542be162ef017d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selected: 1
+  selected: 0
   highlight: {fileID: 2100000, guid: 0c512de724ccf344c920c9edb912b18a, type: 2}
   maxY: 1.4
   minY: 0.25
