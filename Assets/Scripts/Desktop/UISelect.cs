@@ -35,13 +35,19 @@ public class UISelect : Selectable {
 
 	void Start()
 	{
-		nonhighlightlabel = label.color;
+		if (label != null)
+		{
+			nonhighlightlabel = label.color;
+		}
 		control = Controller.GetInstance ();
 	}
 
 	public override void OnSelect () {
 		buttonLabel.color = highlight;
-		label.color = highlight;
+		if (label != null)
+		{
+			label.color = highlight;
+		}
 		controllerButton = control.GetButtonDown (Controller.Button.A);
 	}
 
@@ -60,7 +66,10 @@ public class UISelect : Selectable {
 
 	public override void OnUnselect () {
 		buttonLabel.color = nonhighlight;
-		label.color = nonhighlightlabel;
+		if (label != null)
+		{
+			label.color = nonhighlightlabel;	
+		}
 	}
 
 	private void PressAnimation() {
