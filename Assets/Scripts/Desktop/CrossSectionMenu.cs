@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrossSectionMenu : Menu {
+public class CrossSectionMenu : Menu
+{
+
+	private int horizontalIndex = 0;
+	private int verticalIndex = 0;
 
 	public override void OnActivation () {
 		manager.camPan.MoveTo (transform);

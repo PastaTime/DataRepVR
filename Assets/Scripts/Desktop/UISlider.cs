@@ -6,8 +6,11 @@ using UnityEngine.UI;
 
 public class UISlider : Selectable {
 
-	public SliderVolume slider;
+//	public SliderVolume slider;
+	private Slider slider;
 	public Image handle;
+
+	public float speed = 1f;
 
 	public Color highlight = new Color(0.3f,0.3f,0.3f);
 	private Color nonhighlight;
@@ -15,6 +18,7 @@ public class UISlider : Selectable {
 	// Use this for initialization
 	void Start () {
 		nonhighlight = handle.color;
+		slider = GetComponent<Slider>();
 	}
 
 	public override void OnSelect () {
@@ -27,10 +31,10 @@ public class UISlider : Selectable {
 		Vector2 rightJoy = Controller.GetInstance ().GetJoystickAxis (Controller.Joystick.Right);
 
 		if (rightJoy.y != 0f) {
-			float currentValue = slider.getSliderSoundVolume();
-			currentValue += rightJoy.y * getSpeed() * Time.deltaTime;
+			float currentValue = slider.value;
+			currentValue += rightJoy.y * speed * Time.deltaTime;
 			currentValue = Mathf.Clamp01(currentValue);
-			slider.setSliderSoundVolume(currentValue);
+			slider.value = currentValue;
 		}
 	}
 
@@ -39,7 +43,4 @@ public class UISlider : Selectable {
 		handle.color = nonhighlight;
 	}
 
-	private float getSpeed() {
-		return 10f;
-	}
 }
