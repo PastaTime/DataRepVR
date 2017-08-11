@@ -10,7 +10,7 @@ public class Controller {
 	private static float joystickDeadzone = 0.5f;
 	private static float triggerDeadzone = 0.5f;
 
-	public enum Button { A, B, X, Y, Start, Menu, LB, RB };
+	public enum Button { A, B, X, Y, Start, Menu, LB, RB, LJ, RJ };
 	public enum Joystick { Left, Right, DPad };
 	public enum Trigger { Left, Right };
 	public enum Axis { Horizontal, Vertical };
@@ -43,7 +43,11 @@ public class Controller {
 		case Button.LB:
 			return GamePad.GetButtonDown (GamePad.Button.LeftShoulder, GamePad.Index.Any);
 		case Button.RB:
-			return GamePad.GetButtonDown (GamePad.Button.RightShoulder, GamePad.Index.Any);;
+			return GamePad.GetButtonDown (GamePad.Button.RightShoulder, GamePad.Index.Any);
+		case Button.LJ:
+			return GamePad.GetButtonDown(GamePad.Button.LeftStick, GamePad.Index.Any);
+		case Button.RJ:
+			return GamePad.GetButtonDown(GamePad.Button.RightStick, GamePad.Index.Any);
 		}
 
 		return true;

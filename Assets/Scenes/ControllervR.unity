@@ -342,6 +342,7 @@ MonoBehaviour:
   maxY: 1.4
   minY: 0.25
   speed: 1
+  rotator: {fileID: 58513414}
 --- !u!114 &124512398
 MonoBehaviour:
   m_ObjectHideFlags: 0

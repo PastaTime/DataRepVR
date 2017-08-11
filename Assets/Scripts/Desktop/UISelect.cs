@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -48,20 +48,19 @@ public class UISelect : Selectable {
 		{
 			label.color = highlight;
 		}
-		controllerButton = control.GetButtonDown (Controller.Button.A);
+		controllerButton = control.GetButtonDown (Controller.Button.A || control.GetButtonDown(Controller.Button.LJ));
 	}
 
 	public override void WhileSelected () {
-		if (!controllerButton && control.GetButtonDown (Controller.Button.A)) {
+    if (!controllerButton && (control.GetButtonDown (Controller.Button.A) || control.GetButtonDown(Controller.Button.LJ))) {
 			if (Togglable) {
 				PressAnimation ();
 				onPress.Invoke (buttonState);
 			} else {
 				StartCoroutine (TapButton ());
 			}
-
 		}
-		controllerButton = control.GetButtonDown (Controller.Button.A);
+		controllerButton = control.GetButtonDown (Controller.Button.A) || control.GetButtonDown(Controller.Button.LJ);
 	}
 
 	public override void OnUnselect () {
