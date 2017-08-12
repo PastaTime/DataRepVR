@@ -12,7 +12,9 @@ public class UISelect : Selectable {
 
 	public Color highlight = Color.red;
 	public Color nonhighlight = new Color(0.3f,0.3f,0.3f);
-	private Color nonhighlightlabel;
+
+    public InstanceColour matchNodeColour;
+    private Color nonhighlightlabel;
 
 	public Text label;
 	public Text buttonLabel;
@@ -39,7 +41,14 @@ public class UISelect : Selectable {
 		{
 			nonhighlightlabel = label.color;
 		}
+
+        if (matchNodeColour != null)
+        {
+            highlight = matchNodeColour.color;
+        }
 		control = Controller.GetInstance ();
+
+        //hi
 	}
 
 	public override void OnSelect () {
