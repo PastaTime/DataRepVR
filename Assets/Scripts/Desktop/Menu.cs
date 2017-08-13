@@ -23,11 +23,14 @@ public abstract class Menu : MonoBehaviour {
 
 	public Menu rightMenu;
 
+	public float transitionDelay = 2f;
+	private float firstActive = 0f;
+
 	public void activate () {
 		OnActivation ();
 		active = true;
 		seenZero = false;
-		firstActive = true;
+		firstActive = transitionDelay;
 	}
 
 	public abstract void OnActivation ();
@@ -100,18 +103,15 @@ public abstract class Menu : MonoBehaviour {
 			index = Array.IndexOf(menuItems, item);
 		}
 	} 
-	private bool firstActive = false;
+
 	void Update() {
-		Vector2 leftStick = manager.GetAxis (Controller.Joystick.Left);
-		if (firstActive && leftStick.y == 0 && leftStick.x == 0) {
-			// Returning dud values for the first part of the transition (very weird)
+		
+		if (manager.camPan.isPanning ()) {
 			return;
-		} else if (firstActive) {
-			firstActive = false;
 		}
 			
 		if (active) {
-
+			Vector2 leftStick = manager.GetAxis (Controller.Joystick.Left);
 			if (!seenZero && leftStick.y == 0 && leftStick.x == 0) {
 				Debug.Log ("Left Stick: " + leftStick);
 				seenZero = true;
