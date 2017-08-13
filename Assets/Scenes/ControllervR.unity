@@ -2569,6 +2569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 374029018}
+  seenZero: 0
   active: 1
   index: 0
   itemsParent: {fileID: 0}
@@ -2577,10 +2578,11 @@ MonoBehaviour:
   - {fileID: 774528788}
   - {fileID: 1253297096}
   - {fileID: 124512397}
-  topMenu: {fileID: 1374017071}
+  topMenu: {fileID: 0}
   bottomMenu: {fileID: 0}
   leftMenu: {fileID: 1479189958}
   rightMenu: {fileID: 1548043305}
+  transitionDelay: 2
 --- !u!1 &613621791
 GameObject:
   m_ObjectHideFlags: 0
@@ -4164,6 +4166,7 @@ GameObject:
   - component: {fileID: 958146538}
   - component: {fileID: 958146537}
   - component: {fileID: 958146535}
+  - component: {fileID: 958146536}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4178,7 +4181,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 958146533}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.00000028088027}
-  m_LocalPosition: {x: -0, y: 1.6, z: 1.363}
+  m_LocalPosition: {x: -0, y: 1.2, z: 0.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4197,6 +4200,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingPos: {fileID: 586045648}
   panTime: 0.1
+--- !u!114 &958146536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 958146533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c5629641a120e479c9eafedc5dc4fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &958146537
 Camera:
   m_ObjectHideFlags: 0
@@ -5776,55 +5790,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1463227563}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!1 &1374017070
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1374017072}
-  - component: {fileID: 1374017071}
-  m_Layer: 0
-  m_Name: TopDownMenu
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1374017071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1374017070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 590714d802c5fa045926695993a5b58b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 374029018}
-  active: 0
-  index: 0
-  itemsParent: {fileID: 0}
-  menuItems: []
-  topMenu: {fileID: 0}
-  bottomMenu: {fileID: 586045649}
-  leftMenu: {fileID: 0}
-  rightMenu: {fileID: 0}
---- !u!4 &1374017072
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1374017070}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 2.077, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 90, y: -180, z: 0}
 --- !u!1 &1419693579
 GameObject:
   m_ObjectHideFlags: 0
@@ -5942,7 +5907,7 @@ Prefab:
     - target: {fileID: 224833540726463364, guid: 940d0d337543a71479a6fd0aac395bc2,
         type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224833540726463364, guid: 940d0d337543a71479a6fd0aac395bc2,
         type: 2}
@@ -6078,6 +6043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 374029018}
+  seenZero: 0
   active: 0
   index: 0
   itemsParent: {fileID: 0}
@@ -6090,6 +6056,7 @@ MonoBehaviour:
   bottomMenu: {fileID: 0}
   leftMenu: {fileID: 0}
   rightMenu: {fileID: 586045649}
+  transitionDelay: 2
 --- !u!1 &1543790138
 GameObject:
   m_ObjectHideFlags: 0
@@ -6548,6 +6515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 374029018}
+  seenZero: 0
   active: 0
   index: 0
   itemsParent: {fileID: 0}
@@ -6560,6 +6528,7 @@ MonoBehaviour:
   bottomMenu: {fileID: 0}
   leftMenu: {fileID: 586045649}
   rightMenu: {fileID: 0}
+  transitionDelay: 2
 --- !u!4 &1548043306
 Transform:
   m_ObjectHideFlags: 0
@@ -6571,7 +6540,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!1 &1618239368
 GameObject:
@@ -7327,7 +7296,7 @@ RectTransform:
   - {fileID: 213519267}
   - {fileID: 24052676}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
