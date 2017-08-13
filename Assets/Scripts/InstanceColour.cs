@@ -7,8 +7,6 @@ public class InstanceColour : MonoBehaviour {
 	public Color color;
 
 	void Awake () {
-		if (color != null) {
-			GetComponent<Renderer> ().material.SetColor ("_Color", color);
-		}
+		GetComponent<Renderer> ().material.SetColor ("_Color", color);
 	}
 }

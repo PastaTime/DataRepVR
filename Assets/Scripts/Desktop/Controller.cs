@@ -25,7 +25,6 @@ public class Controller {
 
 	public bool GetButtonDown(Button button)
 	{
-		string keycode = "";
 		switch (button)
 		{
 		case Button.A:
@@ -56,7 +55,6 @@ public class Controller {
 
 	public bool GetButton(Button button)
 	{
-		string keycode = "";
 		switch (button)
 		{
 		case Button.A:
