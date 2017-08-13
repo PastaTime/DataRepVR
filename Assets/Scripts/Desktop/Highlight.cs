@@ -16,11 +16,16 @@ public class Highlight : Selectable {
 	
 	public Rotation rotator;
 
+	public Vector3 centerPoint = Vector3.zero;
+	public float maxDegree = 45f;
+	public float minDegree = 5f;
 	public float panningSpeed = 30f;
 	public bool panning = false;
 	private Vector3 prePanPosition = Vector3.zero;
 	private Vector3 prePanRotation = Vector3.zero;
 	private CameraPan camPan;
+
+
 
 	void Start() {
 		camPan = GameObject.FindObjectOfType<CameraPan> ();
@@ -81,7 +86,13 @@ public class Highlight : Selectable {
 	private void CameraPan(Vector2 rightjoy) {
 		rightjoy = -rightjoy;
 		Vector3 towardsOrigin = Vector3.zero - Camera.main.transform.position;
-
+		Debug.Log (camPan.transform.eulerAngles.x);
+		if (camPan.transform.eulerAngles.x >= maxDegree) {
+			rightjoy.y = Mathf.Clamp (rightjoy.y, 0f, 1f);
+		}
+		if (camPan.transform.eulerAngles.x <= minDegree) {
+			rightjoy.y = Mathf.Clamp (rightjoy.y, -1f, 0f);
+		}
 		Vector3 directionX = Vector3.Cross (towardsOrigin, Vector3.up);
 		directionX = rightjoy.y * Vector3.Normalize (directionX);
 

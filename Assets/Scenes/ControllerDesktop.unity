@@ -42,7 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 11
+  serializedVersion: 9
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 9
+    serializedVersion: 8
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -88,7 +88,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 112000002, guid: 6d015783b75ee374dac307b345d6aaa9,
     type: 2}
-  m_UseShadowmask: 1
+  m_ShadowMaskMode: 2
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -343,6 +343,11 @@ MonoBehaviour:
   minY: 0.25
   speed: 1
   rotator: {fileID: 58513414}
+  centerPoint: {x: 0, y: 0, z: 0}
+  maxDegree: 45
+  minDegree: 5
+  panningSpeed: 30
+  panning: 0
 --- !u!114 &124512398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1243,6 +1248,11 @@ MonoBehaviour:
   minY: 0.25
   speed: 1
   rotator: {fileID: 58513414}
+  centerPoint: {x: 0, y: 0, z: 0}
+  maxDegree: 45
+  minDegree: 5
+  panningSpeed: 30
+  panning: 0
 --- !u!114 &250076380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1392,7 +1402,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 23eb55b47918ef44d9233e86271df372, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 23eb55b47918ef44d9233e86271df372, type: 3}
       propertyPath: m_Name
@@ -2437,6 +2447,48 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 2}
   m_SizeDelta: {x: -26.100006, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &542173544
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 306984318}
+    m_Modifications:
+    - target: {fileID: 4569320638340320, guid: 77b4e2fbf216d9c49bf0a9f08cf2af69, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569320638340320, guid: 77b4e2fbf216d9c49bf0a9f08cf2af69, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569320638340320, guid: 77b4e2fbf216d9c49bf0a9f08cf2af69, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569320638340320, guid: 77b4e2fbf216d9c49bf0a9f08cf2af69, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569320638340320, guid: 77b4e2fbf216d9c49bf0a9f08cf2af69, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569320638340320, guid: 77b4e2fbf216d9c49bf0a9f08cf2af69, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569320638340320, guid: 77b4e2fbf216d9c49bf0a9f08cf2af69, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569320638340320, guid: 77b4e2fbf216d9c49bf0a9f08cf2af69, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 77b4e2fbf216d9c49bf0a9f08cf2af69, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &586045647
 GameObject:
   m_ObjectHideFlags: 0
@@ -2925,6 +2977,11 @@ MonoBehaviour:
   minY: 0.25
   speed: 1
   rotator: {fileID: 58513414}
+  centerPoint: {x: 0, y: 0, z: 0}
+  maxDegree: 45
+  minDegree: 5
+  panningSpeed: 30
+  panning: 0
 --- !u!114 &774528789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4527,7 +4584,6 @@ LineRenderer:
     numCapVertices: 0
     alignment: 0
     textureMode: 0
-    generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
 --- !u!4 &1042835870
@@ -4949,7 +5005,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.3
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -4971,20 +5027,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -5449,6 +5491,11 @@ MonoBehaviour:
   minY: 0.25
   speed: 1
   rotator: {fileID: 58513414}
+  centerPoint: {x: 0, y: 0, z: 0}
+  maxDegree: 45
+  minDegree: 5
+  panningSpeed: 30
+  panning: 0
 --- !u!114 &1253297097
 MonoBehaviour:
   m_ObjectHideFlags: 0
