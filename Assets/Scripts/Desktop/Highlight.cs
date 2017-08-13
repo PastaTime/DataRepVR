@@ -39,8 +39,7 @@ public class Highlight : Selectable {
 		Controller control = Controller.GetInstance ();
 		Vector2 rightJoy = control.GetJoystickAxis (Controller.Joystick.Right);
 
-		if (control.GetButtonDown (Controller.Button.RB)) {
-			Debug.Log ("Button Down");
+		if (control.GetButton (Controller.Button.RB)) {
 			if (!panning) {
 				startPan ();
 			} else {
@@ -80,7 +79,6 @@ public class Highlight : Selectable {
 	}
 
 	private void CameraPan(Vector2 rightjoy) {
-		Debug.Log ("Moving");
 		rightjoy = -rightjoy;
 		Vector3 towardsOrigin = Vector3.zero - Camera.main.transform.position;
 
@@ -94,7 +92,6 @@ public class Highlight : Selectable {
 	}
 
 	private void endPan() {
-		Debug.Log ("End Pan");
 		camPan.transform.position = prePanPosition;
 		camPan.transform.eulerAngles = prePanRotation;
 

@@ -43,9 +43,40 @@ public class Controller {
 		case Button.LB:
 			return GamePad.GetButtonDown (GamePad.Button.LeftShoulder, GamePad.Index.Any);
 		case Button.RB:
-			return GamePad.GetButton (GamePad.Button.RightShoulder, GamePad.Index.Any);
+			return GamePad.GetButtonDown (GamePad.Button.RightShoulder, GamePad.Index.Any); // Should probably refactor this into another function
 		case Button.LJ:
 			return GamePad.GetButtonDown(GamePad.Button.LeftStick, GamePad.Index.Any);
+		case Button.RJ:
+			return GamePad.GetButtonDown(GamePad.Button.RightStick, GamePad.Index.Any);
+		}
+
+		return true;
+
+	}
+
+	public bool GetButton(Button button)
+	{
+		string keycode = "";
+		switch (button)
+		{
+		case Button.A:
+			return GamePad.GetButton (GamePad.Button.A, GamePad.Index.Any);
+		case Button.B:
+			return GamePad.GetButton (GamePad.Button.B, GamePad.Index.Any);
+		case Button.X:
+			return GamePad.GetButton (GamePad.Button.X, GamePad.Index.Any);
+		case Button.Y:
+			return GamePad.GetButton (GamePad.Button.Y, GamePad.Index.Any);
+		case Button.Start:
+			return GamePad.GetButton (GamePad.Button.Start, GamePad.Index.Any);
+		case Button.Menu:
+			return GamePad.GetButton (GamePad.Button.Back, GamePad.Index.Any);
+		case Button.LB:
+			return GamePad.GetButton (GamePad.Button.LeftShoulder, GamePad.Index.Any);
+		case Button.RB:
+			return GamePad.GetButton (GamePad.Button.RightShoulder, GamePad.Index.Any); // Should probably refactor this into another function
+		case Button.LJ:
+			return GamePad.GetButton(GamePad.Button.LeftStick, GamePad.Index.Any);
 		case Button.RJ:
 			return GamePad.GetButton(GamePad.Button.RightStick, GamePad.Index.Any);
 		}
@@ -53,6 +84,7 @@ public class Controller {
 		return true;
 
 	}
+
 
 	public Vector2 GetJoystickAxis(Joystick joy)
 	{
