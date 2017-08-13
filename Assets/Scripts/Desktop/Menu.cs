@@ -5,7 +5,7 @@ public abstract class Menu : MonoBehaviour {
 
 	public InteractionManager manager;
 
-	protected bool seenZero = true;
+	public bool seenZero = false;
 
 	public bool active = false;
 
@@ -26,6 +26,8 @@ public abstract class Menu : MonoBehaviour {
 	public void activate () {
 		OnActivation ();
 		active = true;
+		seenZero = false;
+		firstActive = true;
 	}
 
 	public abstract void OnActivation ();
@@ -71,16 +73,19 @@ public abstract class Menu : MonoBehaviour {
 	}
 
 	protected virtual void moveRight () {
+		Debug.Log ("Moving Right");
 		if (rightMenu != null)
 		{
 			rightMenu.activate ();
 			deactivate ();
+			Debug.Log ("Menus Seen: " +  rightMenu.seenZero);
 		}
 	}
 
 	public void deactivate () {
 		OnDeactivation ();
 		active = false;
+		seenZero = false;
 	}
 	
 	public virtual void OnDeactivation () {
@@ -95,18 +100,31 @@ public abstract class Menu : MonoBehaviour {
 			index = Array.IndexOf(menuItems, item);
 		}
 	} 
-
+	private bool firstActive = false;
 	void Update() {
+		Vector2 leftStick = manager.GetAxis (Controller.Joystick.Left);
+		if (firstActive && leftStick.y == 0 && leftStick.x == 0) {
+			// Returning dud values for the first part of the transition (very weird)
+			return;
+		} else if (firstActive) {
+			firstActive = false;
+		}
+			
 		if (active) {
-			Vector2 leftStick = manager.GetAxis (Controller.Joystick.Left);
 
-			if (leftStick.y == 0 && leftStick.x == 0) {
+			if (!seenZero && leftStick.y == 0 && leftStick.x == 0) {
+				Debug.Log ("Left Stick: " + leftStick);
 				seenZero = true;
 				return;
 			} else if (!seenZero) {
+				Debug.Log ("block");
 				return;
 			}
-			seenZero = false;
+
+			if (leftStick.y != 0 || leftStick.x != 0) {
+				Debug.Log ("Movement");
+				seenZero = false;
+			}
 
 			if (leftStick.y > 0) {
 				moveUp ();
@@ -117,6 +135,7 @@ public abstract class Menu : MonoBehaviour {
 			} else if (leftStick.x > 0) {
 				moveRight ();
 			}
+
 		}
 	}
 }
