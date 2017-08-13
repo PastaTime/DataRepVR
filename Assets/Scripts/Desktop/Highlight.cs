@@ -86,7 +86,6 @@ public class Highlight : Selectable {
 	private void CameraPan(Vector2 rightjoy) {
 		rightjoy = -rightjoy;
 		Vector3 towardsOrigin = Vector3.zero - Camera.main.transform.position;
-		Debug.Log (camPan.transform.eulerAngles.x);
 		if (camPan.transform.eulerAngles.x >= maxDegree) {
 			rightjoy.y = Mathf.Clamp (rightjoy.y, 0f, 1f);
 		}

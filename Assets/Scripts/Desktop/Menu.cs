@@ -113,16 +113,13 @@ public abstract class Menu : MonoBehaviour {
 		if (active) {
 			Vector2 leftStick = manager.GetAxis (Controller.Joystick.Left);
 			if (!seenZero && leftStick.y == 0 && leftStick.x == 0) {
-				Debug.Log ("Left Stick: " + leftStick);
 				seenZero = true;
 				return;
 			} else if (!seenZero) {
-				Debug.Log ("block");
 				return;
 			}
 
 			if (leftStick.y != 0 || leftStick.x != 0) {
-				Debug.Log ("Movement");
 				seenZero = false;
 			}
 
