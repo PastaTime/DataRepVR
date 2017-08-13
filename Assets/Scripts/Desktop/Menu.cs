@@ -109,6 +109,11 @@ public abstract class Menu : MonoBehaviour {
 		if (manager.camPan.isPanning ()) {
 			return;
 		}
+
+		if (Controller.GetInstance().GetButton(Controller.Button.RB))
+		{
+			return;
+		}
 			
 		if (active) {
 			Vector2 leftStick = manager.GetAxis (Controller.Joystick.Left);
