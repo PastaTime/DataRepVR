@@ -5,6 +5,7 @@ using UnityEngine;
 public class Highlight : Selectable {
 
 	public Material highlight;
+
 	private Material nonhighlighted;
 
 	// Min and Max values to clamp mesh sliders too.
@@ -15,7 +16,8 @@ public class Highlight : Selectable {
 	
 	public Rotation rotator;
 
-	public void Awake() {
+ 
+    public void Awake() {
 		nonhighlighted = GetComponent<Renderer> ().material;
 	}
 

@@ -12,7 +12,9 @@ public class UISelect : Selectable {
 
 	public Color highlight = Color.red;
 	public Color nonhighlight = new Color(0.3f,0.3f,0.3f);
-	private Color nonhighlightlabel;
+
+    public InstanceColour matchNodeColour;
+    private Color nonhighlightlabel;
 
 	public Text label;
 	public Text buttonLabel;
@@ -39,7 +41,14 @@ public class UISelect : Selectable {
 		{
 			nonhighlightlabel = label.color;
 		}
+
+        if (matchNodeColour != null)
+        {
+            highlight = matchNodeColour.color;
+        }
 		control = Controller.GetInstance ();
+
+        //hi
 	}
 
 	public override void OnSelect () {
@@ -53,9 +62,10 @@ public class UISelect : Selectable {
 
 	public override void WhileSelected () {
     if (!controllerButton && (control.GetButtonDown (Controller.Button.A) || control.GetButtonDown(Controller.Button.LJ))) {
-			if (Togglable) {
+            buttonState = !buttonState;
+            onPress.Invoke(buttonState);
+            if (Togglable) {
 				PressAnimation ();
-				onPress.Invoke (buttonState);
 			} else {
 				StartCoroutine (TapButton ());
 			}
@@ -72,9 +82,6 @@ public class UISelect : Selectable {
 	}
 
 	private void PressAnimation() {
-		
-		buttonState = !buttonState;
-		onPress.Invoke (buttonState);
 		if (buttonState) {
 			GetComponent<CompressibleUI> ().Retract ();
 			buttonLabel.text = buttonDownText;
@@ -88,9 +95,10 @@ public class UISelect : Selectable {
 
 	IEnumerator TapButton() {
 		GetComponent<CompressibleUI> ().Retract ();
-		GetComponent<AudioSource> ().PlayOneShot (buttonDownSound);
-		onPress.Invoke (buttonState);
-		yield return new WaitForSeconds(0.1f);
+        GetComponent<AudioSource>().PlayOneShot(buttonDownSound);
+        yield return new WaitForSeconds(1f);
+       
+		
 		GetComponent<CompressibleUI> ().Expand ();
 		GetComponent<AudioSource> ().PlayOneShot (buttonUpSound);
 	}
