@@ -43,11 +43,11 @@ public class Controller {
 		case Button.LB:
 			return GamePad.GetButtonDown (GamePad.Button.LeftShoulder, GamePad.Index.Any);
 		case Button.RB:
-			return GamePad.GetButtonDown (GamePad.Button.RightShoulder, GamePad.Index.Any);
+			return GamePad.GetButton (GamePad.Button.RightShoulder, GamePad.Index.Any);
 		case Button.LJ:
 			return GamePad.GetButtonDown(GamePad.Button.LeftStick, GamePad.Index.Any);
 		case Button.RJ:
-			return GamePad.GetButtonDown(GamePad.Button.RightStick, GamePad.Index.Any);
+			return GamePad.GetButton(GamePad.Button.RightStick, GamePad.Index.Any);
 		}
 
 		return true;
