@@ -92,7 +92,10 @@ public class PolyMeshController : MonoBehaviour {
 	{
 		foreach (VisualiserMesh subMesh in subMeshes)
 		{
-			subMesh.setCrossSection(m,c, lessThan);
+			if (subMesh == isActiveAndEnabled)
+			{
+				StartCoroutine(subMesh.setCrossSection(m,c, lessThan));
+			}
 		}
 	}
 

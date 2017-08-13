@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEditor;
 
 public class VisualiserMesh : MonoBehaviour
@@ -37,7 +38,7 @@ public class VisualiserMesh : MonoBehaviour
     }
 
     // Not an update method, only needs to be called on an actual change
-    public void setCrossSection(float m, float c, bool lessThan)
+    public IEnumerator setCrossSection(float m, float c, bool lessThan)
     {
         if (vertexColours != null)
         {
@@ -57,8 +58,14 @@ public class VisualiserMesh : MonoBehaviour
                         colours[x + z * xVerts] = vertexColours[x + z * xVerts];
                     }
                 }
+                yield return null;
             }
             meshFilter.mesh.colors = colours;
+        }
+        GameObject loadingIcon = GameObject.FindWithTag("LoadingIcon");
+        if (loadingIcon != null)
+        {
+            loadingIcon.SetActive(false);
         }
     }
 
