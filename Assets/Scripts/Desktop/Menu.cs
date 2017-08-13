@@ -5,7 +5,7 @@ public abstract class Menu : MonoBehaviour {
 
 	public InteractionManager manager;
 
-	protected bool seenZero = true;
+	public bool seenZero = false;
 
 	public bool active = false;
 
@@ -23,9 +23,14 @@ public abstract class Menu : MonoBehaviour {
 
 	public Menu rightMenu;
 
+	public float transitionDelay = 2f;
+	private float firstActive = 0f;
+
 	public void activate () {
 		OnActivation ();
 		active = true;
+		seenZero = false;
+		firstActive = transitionDelay;
 	}
 
 	public abstract void OnActivation ();
@@ -71,16 +76,19 @@ public abstract class Menu : MonoBehaviour {
 	}
 
 	protected virtual void moveRight () {
+		Debug.Log ("Moving Right");
 		if (rightMenu != null)
 		{
 			rightMenu.activate ();
 			deactivate ();
+			Debug.Log ("Menus Seen: " +  rightMenu.seenZero);
 		}
 	}
 
 	public void deactivate () {
 		OnDeactivation ();
 		active = false;
+		seenZero = false;
 	}
 	
 	public virtual void OnDeactivation () {
@@ -97,16 +105,23 @@ public abstract class Menu : MonoBehaviour {
 	} 
 
 	void Update() {
+		
+		if (manager.camPan.isPanning ()) {
+			return;
+		}
+			
 		if (active) {
 			Vector2 leftStick = manager.GetAxis (Controller.Joystick.Left);
-
-			if (leftStick.y == 0 && leftStick.x == 0) {
+			if (!seenZero && leftStick.y == 0 && leftStick.x == 0) {
 				seenZero = true;
 				return;
 			} else if (!seenZero) {
 				return;
 			}
-			seenZero = false;
+
+			if (leftStick.y != 0 || leftStick.x != 0) {
+				seenZero = false;
+			}
 
 			if (leftStick.y > 0) {
 				moveUp ();
@@ -117,6 +132,7 @@ public abstract class Menu : MonoBehaviour {
 			} else if (leftStick.x > 0) {
 				moveRight ();
 			}
+
 		}
 	}
 }

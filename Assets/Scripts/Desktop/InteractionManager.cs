@@ -8,9 +8,7 @@ public class InteractionManager : MonoBehaviour {
 
 	// Returns a Vector of filtered joystick data
 	public Vector2 GetAxis (Controller.Joystick joy) {
-		if (camPan.isPanning ())
-			return Vector2.zero;
-		
+
 		Vector2 stick = Controller.GetInstance ().GetJoystickAxis (joy);
 
 		int sign = 1;

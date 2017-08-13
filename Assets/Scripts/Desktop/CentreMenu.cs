@@ -11,5 +11,6 @@ public class CentreMenu : Menu
 	public override void OnActivation () {
 		manager.camPan.MoveTo (transform);
 		menuItems [index].Select ();
+		seenZero = false;
 	}
 }
