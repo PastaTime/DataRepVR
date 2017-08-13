@@ -21,7 +21,7 @@ public class PositionMirror : MonoBehaviour {
 	}
 
 	void Update () {
-		if (lockRotation && initialRotation != null) {
+		if (lockRotation) {
 			this.gameObject.transform.rotation = initialRotation;
 		}
 		Vector3 parentPosition = this.gameObject.transform.position;

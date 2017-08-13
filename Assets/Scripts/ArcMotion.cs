@@ -16,10 +16,6 @@ public class ArcMotion : MonoBehaviour {
 		// Height is not considered
 		initialPosition.y = 0;
 		distance = initialPosition.magnitude;
-//		Debug.Log ("Initial "  + initialPosition);
-		Vector3 cross = Vector3.Cross (initialPosition, initialPosition);
-//		Debug.Log ("Test " + cross);
-
 	}
 	
 	// Update is called once per frame

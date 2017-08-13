@@ -16,6 +16,15 @@ public class Highlight : Selectable {
 	
 	public Rotation rotator;
 
+	public float panningSpeed = 30f;
+	public bool panning = false;
+	private Vector3 prePanPosition = Vector3.zero;
+	private Vector3 prePanRotation = Vector3.zero;
+	private CameraPan camPan;
+
+	void Start() {
+		camPan = GameObject.FindObjectOfType<CameraPan> ();
+	}
  
     public void Awake() {
 		nonhighlighted = GetComponent<Renderer> ().material;
@@ -27,8 +36,20 @@ public class Highlight : Selectable {
 	}
 
 	public override void WhileSelected () {
-		Vector2 rightJoy = Controller.GetInstance ().GetJoystickAxis (Controller.Joystick.Right);
-		
+		Controller control = Controller.GetInstance ();
+		Vector2 rightJoy = control.GetJoystickAxis (Controller.Joystick.Right);
+
+		if (control.GetButton (Controller.Button.RB)) {
+			if (!panning) {
+				startPan ();
+			} else {
+				CameraPan (rightJoy);
+			}
+			return;
+		} else if (panning) {
+			endPan ();
+		}
+			
 		if (rightJoy.y != 0f) {
 			Vector3 pos = transform.position;
 			pos.y += rightJoy.y * speed * Time.deltaTime;
@@ -47,4 +68,34 @@ public class Highlight : Selectable {
 		rend.material = nonhighlighted;
 	}
 
+	private void startPan() {
+		if (panning) {
+			Debug.LogError ("Camera pan did not exit correctly previously");
+			return;
+		}
+		prePanPosition = camPan.transform.position;
+		prePanRotation = camPan.transform.eulerAngles;
+		panning = true;
+	}
+
+	private void CameraPan(Vector2 rightjoy) {
+		rightjoy = -rightjoy;
+		Vector3 towardsOrigin = Vector3.zero - Camera.main.transform.position;
+
+		Vector3 directionX = Vector3.Cross (towardsOrigin, Vector3.up);
+		directionX = rightjoy.y * Vector3.Normalize (directionX);
+
+		Vector3 axis = Vector3.zero + directionX;
+		axis += Vector3.up * rightjoy.x;
+
+		camPan.transform.RotateAround (Vector3.zero, axis, panningSpeed * Time.deltaTime);
+	}
+
+	private void endPan() {
+		camPan.transform.position = prePanPosition;
+		camPan.transform.eulerAngles = prePanRotation;
+
+		panning = false;
+	}
 }
+
