@@ -6,6 +6,8 @@ public class CrossSectionController : MonoBehaviour
 {
 	private List<PolyMeshController> displayMeshes = new List<PolyMeshController>();
 
+	public GameObject rotator;
+
 	private float _gradient;
 	private float _intercept;
 	private bool _lessThan;
@@ -23,6 +25,8 @@ public class CrossSectionController : MonoBehaviour
 
 	public void setCrossSection(float gradient, float intercept, bool lessThan)
 	{
+		float yRotation = rotator.transform.eulerAngles.y;
+		Debug.Log(yRotation);
 		setGradient (gradient);
 		setIntercept (intercept);
 		setSelectionSide (lessThan);

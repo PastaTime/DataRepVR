@@ -40,7 +40,7 @@ public class CrossSectionDisplay : MonoBehaviour {
 		SliderPosChange(value, rightSlider, rightSliderLength, 1);
 	}
 
-	public void OnSlideEnd()
+	public void applyCrossSection()
 	{
 		float leftVal = leftSlider.value;
 		float rightVal = rightSlider.value;
@@ -54,7 +54,7 @@ public class CrossSectionDisplay : MonoBehaviour {
 	{
 		if (Input.GetKeyDown("space"))
 		{
-			OnSlideEnd();
+			applyCrossSection();
 		}
 	}
 
