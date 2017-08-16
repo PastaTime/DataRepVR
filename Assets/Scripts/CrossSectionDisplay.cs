@@ -9,7 +9,7 @@ public class CrossSectionDisplay : MonoBehaviour {
 	public Slider rightSlider;
 
 	public CrossSectionController meshSet;
-
+	
 	private LineRenderer lineRenderer;
 
 	public float leftSliderLength = 0f;
@@ -42,12 +42,9 @@ public class CrossSectionDisplay : MonoBehaviour {
 
 	public void applyCrossSection()
 	{
-		float leftVal = leftSlider.value;
-		float rightVal = rightSlider.value;
-		
-		float gradient = rightVal - leftVal;
-		float intercept = -1 *(leftVal + rightVal - 1f) / 2f;
-		meshSet.setCrossSection(gradient,intercept, lessThan);
+		Vector2 leftPoint = new Vector2(-0.5f, leftSlider.value - 0.5f);
+		Vector2 rightPoint = new Vector2(0.5f, rightSlider.value - 0.5f);
+		meshSet.setCrossSection(leftPoint, rightPoint, lessThan);
 	}
 
 	public void Update()
