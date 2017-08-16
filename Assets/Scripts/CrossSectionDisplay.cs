@@ -42,8 +42,8 @@ public class CrossSectionDisplay : MonoBehaviour {
 
 	public void applyCrossSection()
 	{
-		Vector2 leftPoint = new Vector2(-0.5f, leftSlider.value - 0.5f);
-		Vector2 rightPoint = new Vector2(0.5f, rightSlider.value - 0.5f);
+		Vector2 leftPoint = new Vector2(0.5f, 0.5f - leftSlider.value);
+		Vector2 rightPoint = new Vector2(-0.5f, 0.5f - rightSlider.value);
 		meshSet.setCrossSection(leftPoint, rightPoint, lessThan);
 	}
 
