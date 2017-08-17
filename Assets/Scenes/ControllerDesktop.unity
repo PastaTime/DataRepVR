@@ -2402,12 +2402,22 @@ Prefab:
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalXVerts
-      value: 1000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalZVerts
-      value: 1000
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
+        type: 2}
+      propertyPath: xSuperSamplingFactor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
+        type: 2}
+      propertyPath: zSuperSamplingFactor
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
@@ -5407,12 +5417,22 @@ Prefab:
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalXVerts
-      value: 1000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalZVerts
-      value: 1000
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
+        type: 2}
+      propertyPath: xSuperSamplingFactor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
+        type: 2}
+      propertyPath: zSuperSamplingFactor
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
@@ -5556,12 +5576,22 @@ Prefab:
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalXVerts
-      value: 1000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalZVerts
-      value: 1000
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
+        type: 2}
+      propertyPath: xSuperSamplingFactor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
+        type: 2}
+      propertyPath: zSuperSamplingFactor
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
@@ -6883,12 +6913,22 @@ Prefab:
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalXVerts
-      value: 1000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalZVerts
-      value: 1000
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
+        type: 2}
+      propertyPath: xSuperSamplingFactor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
+        type: 2}
+      propertyPath: zSuperSamplingFactor
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}

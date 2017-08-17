@@ -23,6 +23,10 @@ public class PolyMeshController : MonoBehaviour {
 
 	private float[][] heightData;
 
+	public float xSuperSamplingFactor = 2f;
+
+	public float zSuperSamplingFactor = 2f;
+
 	private List<VisualiserMesh> subMeshes = new List<VisualiserMesh>();
 
 	// Material to make all submeshes out of
@@ -35,10 +39,10 @@ public class PolyMeshController : MonoBehaviour {
 	void Start () {
 		// If the same data source is being used for height and colour no need to load it twice from disk
 		if (heightDataPath.Equals (colourDataPath)) {
-			heightData = colourData = LoadData.normaliseValues(LoadData.loadCSV(heightDataPath, false)); 
+			heightData = colourData = DataProcessing.resize(DataProcessing.normaliseValues(DataProcessing.loadCSV(heightDataPath, false)),xSuperSamplingFactor, zSuperSamplingFactor); 
 		} else {
-			heightData = LoadData.normaliseValues(LoadData.loadCSV(heightDataPath, false)); 
-			colourData = LoadData.normaliseValues(LoadData.loadCSV(colourDataPath, false));
+			heightData = DataProcessing.resize(DataProcessing.normaliseValues(DataProcessing.loadCSV(heightDataPath, false)), xSuperSamplingFactor, zSuperSamplingFactor); 
+			colourData = DataProcessing.resize(DataProcessing.normaliseValues(DataProcessing.loadCSV(colourDataPath, false)), xSuperSamplingFactor, zSuperSamplingFactor);
 		}
 
 		//Hide parent object
