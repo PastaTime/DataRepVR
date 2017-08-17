@@ -34,8 +34,8 @@ public class CrossSectionDisplay : MonoBehaviour {
 		Vector3 rotations = slider.transform.eulerAngles;
 		Vector3 handlePos = slider.transform.position + Quaternion.Euler(-rotations.x, 0, 0) * new Vector3 (0, (value - 0.5f) * length, 0);
 		UILine.SetPosition (lineIndex, handlePos);
-		float xPos = (slider == leftSlider) ? -0.5f : 0.5f;
-		Vector3 worldPos = new Vector3(xPos, sliderHeight, value - 0.5f);
+		float xPos = (slider == leftSlider) ? 0.5f : -0.5f;
+		Vector3 worldPos = new Vector3(xPos, sliderHeight, -1f * value + 0.5f);
 		worldSpaceLine.SetPosition(lineIndex, worldPos);
 	}
 
