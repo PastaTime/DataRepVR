@@ -10,16 +10,20 @@ public class CrossSectionDisplay : MonoBehaviour {
 
 	public CrossSectionController meshSet;
 	
-	private LineRenderer lineRenderer;
+	private LineRenderer UILine;
+
+	public LineRenderer worldSpaceLine;
 
 	public float leftSliderLength = 0f;
 	public float rightSliderLength = 0f;
 
 	private bool lessThan = true;
 
+	public float sliderHeight = 0.24f;
+
 	// Use this for initialization
 	void Start () {
-		lineRenderer = this.GetComponent<LineRenderer> ();
+		UILine = this.GetComponent<LineRenderer> ();
 		
 		LeftSliderPositionChanged(leftSlider.GetComponent<Slider>().value);
 		RightSliderPositionChanged(rightSlider.GetComponent<Slider>().value);
@@ -29,7 +33,10 @@ public class CrossSectionDisplay : MonoBehaviour {
 	{
 		Vector3 rotations = slider.transform.eulerAngles;
 		Vector3 handlePos = slider.transform.position + Quaternion.Euler(-rotations.x, 0, 0) * new Vector3 (0, (value - 0.5f) * length, 0);
-		lineRenderer.SetPosition (lineIndex, handlePos);
+		UILine.SetPosition (lineIndex, handlePos);
+		float xPos = (slider == leftSlider) ? 0.5f : -0.5f;
+		Vector3 worldPos = new Vector3(xPos, sliderHeight, -1f * value + 0.5f);
+		worldSpaceLine.SetPosition(lineIndex, worldPos);
 	}
 
 	public void LeftSliderPositionChanged(float value) {
