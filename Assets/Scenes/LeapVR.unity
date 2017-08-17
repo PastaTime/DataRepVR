@@ -544,6 +544,16 @@ Prefab:
       propertyPath: m_Name
       value: Temperature mesh
       objectReference: {fileID: 0}
+    - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
+        type: 2}
+      propertyPath: xSuperSamplingFactor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
+        type: 2}
+      propertyPath: zSuperSamplingFactor
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
   m_IsPrefabParent: 0
@@ -966,6 +976,8 @@ MonoBehaviour:
   startColour: {r: 0.018598635, g: 0, b: 0.31617647, a: 1}
   endColour: {r: 0.31617647, g: 0, b: 0, a: 1}
   activeOnLoad: 0
+  xSuperSamplingFactor: 3
+  zSuperSamplingFactor: 3
   renderMaterial: {fileID: 2100000, guid: d4eb3063e42b30a4cafbbc864861549f, type: 2}
 --- !u!23 &497319882
 MeshRenderer:
@@ -2373,6 +2385,8 @@ MonoBehaviour:
   startColour: {r: 0, g: 0, b: 0, a: 1}
   endColour: {r: 0.44117647, g: 0.44117647, b: 0.44117647, a: 1}
   activeOnLoad: 0
+  xSuperSamplingFactor: 3
+  zSuperSamplingFactor: 3
   renderMaterial: {fileID: 2100000, guid: d4eb3063e42b30a4cafbbc864861549f, type: 2}
 --- !u!23 &1661556935
 MeshRenderer:
@@ -2481,6 +2495,8 @@ MonoBehaviour:
   startColour: {r: 0.2352941, g: 0.19330628, b: 0.11115617, a: 1}
   endColour: {r: 0.021626318, g: 0, b: 0.36764705, a: 1}
   activeOnLoad: 0
+  xSuperSamplingFactor: 3
+  zSuperSamplingFactor: 3
   renderMaterial: {fileID: 2100000, guid: d4eb3063e42b30a4cafbbc864861549f, type: 2}
 --- !u!23 &1676302800
 MeshRenderer:

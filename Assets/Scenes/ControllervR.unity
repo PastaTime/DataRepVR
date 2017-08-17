@@ -429,6 +429,8 @@ MonoBehaviour:
   maxDegree: 45
   minDegree: 5
   panningSpeed: 30
+  zoomSpeed: 2
+  centreDeadZoneRadius: 0.3
   panning: 0
 --- !u!114 &124512398
 MonoBehaviour:
@@ -1334,6 +1336,8 @@ MonoBehaviour:
   maxDegree: 45
   minDegree: 5
   panningSpeed: 30
+  zoomSpeed: 2
+  centreDeadZoneRadius: 0.3
   panning: 0
 --- !u!114 &250076380
 MonoBehaviour:
@@ -2479,12 +2483,22 @@ Prefab:
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalXVerts
-      value: 1000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalZVerts
-      value: 1000
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
+        type: 2}
+      propertyPath: xSuperSamplingFactor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
+        type: 2}
+      propertyPath: zSuperSamplingFactor
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
@@ -3138,6 +3152,8 @@ MonoBehaviour:
   maxDegree: 45
   minDegree: 5
   panningSpeed: 30
+  zoomSpeed: 2
+  centreDeadZoneRadius: 0.3
   panning: 0
 --- !u!114 &774528789
 MonoBehaviour:
@@ -5447,12 +5463,22 @@ Prefab:
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalXVerts
-      value: 1000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalZVerts
-      value: 1000
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
+        type: 2}
+      propertyPath: xSuperSamplingFactor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
+        type: 2}
+      propertyPath: zSuperSamplingFactor
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
@@ -5596,12 +5622,22 @@ Prefab:
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalXVerts
-      value: 1000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalZVerts
-      value: 1000
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
+        type: 2}
+      propertyPath: xSuperSamplingFactor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
+        type: 2}
+      propertyPath: zSuperSamplingFactor
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
@@ -5661,6 +5697,8 @@ MonoBehaviour:
   maxDegree: 45
   minDegree: 5
   panningSpeed: 30
+  zoomSpeed: 2
+  centreDeadZoneRadius: 0.3
   panning: 0
 --- !u!114 &1253297097
 MonoBehaviour:
@@ -6870,12 +6908,22 @@ Prefab:
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalXVerts
-      value: 1000
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: totalZVerts
-      value: 1000
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
+        type: 2}
+      propertyPath: xSuperSamplingFactor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
+        type: 2}
+      propertyPath: zSuperSamplingFactor
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
