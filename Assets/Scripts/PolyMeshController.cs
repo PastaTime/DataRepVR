@@ -103,6 +103,11 @@ public class PolyMeshController : MonoBehaviour {
 		}
 	}
 
+	public float getCornerVerticalOffset()
+	{
+		return transform.position.y - transform.TransformPoint(subMeshes[0].getMesh().vertices[0]).y;
+	}
+
 	public float getWidth()
 	{
 		return gameObject.transform.localScale.x;
