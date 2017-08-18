@@ -8,6 +8,9 @@ public class ArcMotion : MonoBehaviour {
 	public Vector3 centreOfRotation = Vector3.zero;
 
 	private Vector3 initialPosition;
+
+	public GameObject toRotate;
+	
 	public float distance = 10f;
 
 	// Use this for initialization
@@ -35,7 +38,7 @@ public class ArcMotion : MonoBehaviour {
 		//Debug.Log (sign);
 		Vector3 rotation = Vector3.zero;
 		rotation.y = -1 * angleFromInitialPos;
-		transform.parent.Rotate(rotation);
+		toRotate.transform.Rotate(rotation);
 
 		currentPosition = initialPosition;
 		currentPosition.y = height;
