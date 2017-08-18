@@ -183,7 +183,7 @@ public class VisualiserMesh : MonoBehaviour
                 {
                     newVertices[x + z * xVerts].y =
                         heightData[heightData.Length * (z + zOffset) / controller.totalZVerts][
-                            heightData[0].Length * (x + xOffset) / controller.totalXVerts] + 0.375f;
+                            heightData[0].Length * (x + xOffset) / controller.totalXVerts] - 0.5f;
                 }
             }
         }
@@ -204,5 +204,10 @@ public class VisualiserMesh : MonoBehaviour
         meshFilter.mesh.colors = colours;
         meshFilter.mesh.RecalculateBounds();
         meshFilter.mesh.RecalculateNormals();
+    }
+
+    public Mesh getMesh()
+    {
+        return meshFilter.mesh;
     }
 }
