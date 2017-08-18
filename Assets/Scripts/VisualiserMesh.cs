@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEditor;
+//#if UNITY_EDITOR
+//using UnityEditor;
+//#endif
 
 public class VisualiserMesh : MonoBehaviour
 {
@@ -87,15 +89,11 @@ public class VisualiserMesh : MonoBehaviour
     /// <returns> The created Mesh</returns>
     public Mesh prepareMesh()
     {
-		if (!AssetDatabase.IsValidFolder ("Assets/Meshes")) {
-			Debug.Log ("Created");
-			AssetDatabase.CreateFolder ("Assets", "Meshes");
-		}
-        string meshName = "xVerts" + zVerts + "zVerts" + xVerts + ".asset";
-        Mesh mesh = (Mesh) AssetDatabase.LoadAssetAtPath("Assets/Meshes/" + meshName, typeof(Mesh));
-        if (mesh == null)
-        {
-            mesh = new Mesh();
+//        string meshName = "xVerts" + zVerts + "zVerts" + xVerts;
+//        Mesh mesh = Resources.Load<Mesh>(meshName);
+//        if (mesh == null)
+//        {
+            Mesh mesh = new Mesh();
             float meshWidth = (float) xVerts / controller.totalXVerts;
             float meshDepth = (float) zVerts / controller.totalZVerts;
 
@@ -158,9 +156,10 @@ public class VisualiserMesh : MonoBehaviour
 
             mesh.RecalculateBounds();
             mesh.RecalculateNormals();
-            AssetDatabase.CreateAsset(mesh, "Assets/Meshes/" + meshName);
-            AssetDatabase.SaveAssets();
-        }
+//            Resources.Save
+//            AssetDatabase.CreateAsset(mesh, "Assets/Meshes/" + meshName);
+//            AssetDatabase.SaveAssets();
+//        }
         return mesh;
     }
 

@@ -16,7 +16,7 @@ public class DataProcessing
         List<List<float>> grid = new List<List<float>>();
         try
         {
-            using (StreamReader reader = new StreamReader((Application.dataPath) + filePath))
+            using (StreamReader reader = new StreamReader((Application.streamingAssetsPath) + filePath))
             {
                 int count = 0;
                 if (skipColumns)
