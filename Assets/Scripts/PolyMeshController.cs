@@ -105,6 +105,7 @@ public class PolyMeshController : MonoBehaviour {
 
 	public float getCornerVerticalOffset()
 	{
+		if (subMeshes.Count < 1 || subMeshes[0].getMesh() == null || subMeshes[0].getMesh().vertices.Length < 1) return 0;
 		return transform.position.y - transform.TransformPoint(subMeshes[0].getMesh().vertices[0]).y;
 	}
 
