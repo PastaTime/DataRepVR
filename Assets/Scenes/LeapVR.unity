@@ -2423,7 +2423,7 @@ Prefab:
     - target: {fileID: 114180161720383892, guid: b70d39cb96c9b7d49ae8f5901db71ba0,
         type: 2}
       propertyPath: sliderHeight
-      value: 0.47
+      value: 0.77
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b70d39cb96c9b7d49ae8f5901db71ba0, type: 2}
