@@ -375,7 +375,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 58513411}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.416, z: 0}
+  m_LocalPosition: {x: 0, y: 0.726, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2079852077}
@@ -421,8 +421,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selected: 0
   highlight: {fileID: 2100000, guid: 0c512de724ccf344c920c9edb912b18a, type: 2}
-  maxY: 1.4
-  minY: 0.25
+  maxY: 2
+  minY: 1.2
   speed: 1
   rotator: {fileID: 58513414}
   centerPoint: {x: 0, y: 0, z: 0}
@@ -456,6 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centreOfRotation: {x: 0, y: 0, z: 0}
+  toRotate: {fileID: 0}
   distance: 10
 --- !u!1 &213519266
 GameObject:
@@ -1328,8 +1329,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selected: 0
   highlight: {fileID: 2100000, guid: 0c512de724ccf344c920c9edb912b18a, type: 2}
-  maxY: 1.4
-  minY: 0.25
+  maxY: 2
+  minY: 1.2
   speed: 1
   rotator: {fileID: 58513414}
   centerPoint: {x: 0, y: 0, z: 0}
@@ -1363,6 +1364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centreOfRotation: {x: 0, y: 0, z: 0}
+  toRotate: {fileID: 0}
   distance: 10
 --- !u!1 &266370263
 GameObject:
@@ -1508,7 +1510,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 23eb55b47918ef44d9233e86271df372, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 23eb55b47918ef44d9233e86271df372, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2395,7 +2397,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4961414039072162, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.066670015
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 4961414039072162, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
       propertyPath: m_LocalScale.z
@@ -3144,8 +3146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selected: 0
   highlight: {fileID: 2100000, guid: 0c512de724ccf344c920c9edb912b18a, type: 2}
-  maxY: 1.4
-  minY: 0.25
+  maxY: 2
+  minY: 1.2
   speed: 1
   rotator: {fileID: 58513414}
   centerPoint: {x: 0, y: 0, z: 0}
@@ -3179,6 +3181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centreOfRotation: {x: 0, y: 0, z: 0}
+  toRotate: {fileID: 0}
   distance: 10
 --- !u!1 &799727818
 GameObject:
@@ -3808,7 +3811,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4051020103481516, guid: 05d20f684c232d54091b7b8159e20c08, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.37099993
+      value: 0.567
       objectReference: {fileID: 0}
     - target: {fileID: 4051020103481516, guid: 05d20f684c232d54091b7b8159e20c08, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4313,7 +4316,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 958146533}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.00000028088027}
-  m_LocalPosition: {x: -0, y: 1.2, z: 0.9}
+  m_LocalPosition: {x: -0, y: 1.7, z: 0.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4401,7 +4404,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4051020103481516, guid: 05d20f684c232d54091b7b8159e20c08, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.604
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4051020103481516, guid: 05d20f684c232d54091b7b8159e20c08, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4686,7 +4689,7 @@ MonoBehaviour:
   worldSpaceLine: {fileID: 706066107}
   leftSliderLength: 0.2
   rightSliderLength: 0.2
-  sliderHeight: 0.24
+  sliderHeight: 0.47
 --- !u!120 &1042835869
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -5244,7 +5247,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4051020103481516, guid: 05d20f684c232d54091b7b8159e20c08, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.724
+      value: 0.92
       objectReference: {fileID: 0}
     - target: {fileID: 4051020103481516, guid: 05d20f684c232d54091b7b8159e20c08, type: 2}
       propertyPath: m_LocalPosition.z
@@ -5391,7 +5394,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4961414039072162, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.06666669
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 4961414039072162, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
       propertyPath: m_LocalScale.z
@@ -5534,7 +5537,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4961414039072162, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.06666669
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 4961414039072162, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
       propertyPath: m_LocalScale.z
@@ -5670,7 +5673,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1253297094}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5000002, y: 0.4839999, z: 0.49999976}
+  m_LocalPosition: {x: 0.5000002, y: 0.68, z: 0.49999976}
   m_LocalScale: {x: 0.050000027, y: 0.050000004, z: 0.050000012}
   m_Children: []
   m_Father: {fileID: 2079852077}
@@ -5689,8 +5692,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selected: 0
   highlight: {fileID: 2100000, guid: 0c512de724ccf344c920c9edb912b18a, type: 2}
-  maxY: 1.4
-  minY: 0.25
+  maxY: 2
+  minY: 1.2
   speed: 1
   rotator: {fileID: 58513414}
   centerPoint: {x: 0, y: 0, z: 0}
@@ -6073,7 +6076,7 @@ Prefab:
     - target: {fileID: 224833540726463364, guid: 940d0d337543a71479a6fd0aac395bc2,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 224833540726463364, guid: 940d0d337543a71479a6fd0aac395bc2,
         type: 2}
@@ -6820,7 +6823,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4961414039072162, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.066670015
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 4961414039072162, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
       propertyPath: m_LocalScale.z
@@ -7466,7 +7469,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.8, y: 1}
+  m_AnchoredPosition: {x: -0.8, y: 1.5}
   m_SizeDelta: {x: 500, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1911917232
@@ -7798,6 +7801,10 @@ Prefab:
     - target: {fileID: 4569320638340320, guid: 77b4e2fbf216d9c49bf0a9f08cf2af69, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180.00002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569320638340320, guid: 77b4e2fbf216d9c49bf0a9f08cf2af69, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 77b4e2fbf216d9c49bf0a9f08cf2af69, type: 2}
