@@ -47,7 +47,10 @@ public class Highlight : Selectable {
 		Controller control = Controller.GetInstance ();
 		Vector2 rightJoy = control.GetJoystickAxis (Controller.Joystick.Right);
 		Vector2 leftJoy = control.GetJoystickAxis(Controller.Joystick.Left);
-
+        if (camPan.isPanning())
+        {
+            return;
+        }
 		if (control.GetButton (Controller.Button.RB)) {
 			if (!panning) {
 				startPan ();
