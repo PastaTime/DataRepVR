@@ -341,7 +341,7 @@ MonoBehaviour:
   selected: 0
   highlight: {fileID: 2100000, guid: 0c512de724ccf344c920c9edb912b18a, type: 2}
   maxY: 1.4
-  minY: 0.25
+  minY: 0.65
   speed: 1
   rotator: {fileID: 58513414}
   centerPoint: {x: 0, y: 0.4, z: 0}
@@ -1249,7 +1249,7 @@ MonoBehaviour:
   selected: 0
   highlight: {fileID: 2100000, guid: 0c512de724ccf344c920c9edb912b18a, type: 2}
   maxY: 1.4
-  minY: 0.25
+  minY: 0.65
   speed: 1
   rotator: {fileID: 58513414}
   centerPoint: {x: 0, y: 0.4, z: 0}
@@ -2994,7 +2994,7 @@ MonoBehaviour:
   selected: 0
   highlight: {fileID: 2100000, guid: 0c512de724ccf344c920c9edb912b18a, type: 2}
   maxY: 1.4
-  minY: 0.25
+  minY: 0.65
   speed: 1
   rotator: {fileID: 58513414}
   centerPoint: {x: 0, y: 0.4, z: 0}
@@ -5647,7 +5647,7 @@ MonoBehaviour:
   selected: 0
   highlight: {fileID: 2100000, guid: 0c512de724ccf344c920c9edb912b18a, type: 2}
   maxY: 1.4
-  minY: 0.25
+  minY: 0.65
   speed: 1
   rotator: {fileID: 58513414}
   centerPoint: {x: 0, y: 0.4, z: 0}
