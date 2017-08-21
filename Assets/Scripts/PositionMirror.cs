@@ -14,6 +14,8 @@ public class PositionMirror : MonoBehaviour {
 	public bool lockRotation = true;
 	private Quaternion initialRotation;
 
+	private float cornerAlignOffset;
+
 	void Start () {
 		if (lockRotation) {
 			initialRotation = this.gameObject.transform.rotation;
@@ -30,7 +32,8 @@ public class PositionMirror : MonoBehaviour {
 			childPosition.x = parentPosition.x;
 		}
 		if (constrainY) {
-			childPosition.y = parentPosition.y;
+			Debug.Log(childObject.GetComponent<PolyMeshController>().getCornerVerticalOffset());
+			childPosition.y = parentPosition.y + (childObject.GetComponent<PolyMeshController>().getCornerVerticalOffset());
 		}
 		if (constrainZ) {
 			childPosition.z = parentPosition.z;
