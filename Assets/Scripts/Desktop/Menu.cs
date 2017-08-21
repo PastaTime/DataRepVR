@@ -110,7 +110,7 @@ public abstract class Menu : MonoBehaviour {
 			return;
 		}
 
-		if (Controller.GetInstance().GetButton(Controller.Button.RB))
+		if (Controller.GetInstance().GetButton(Controller.Button.RB) || Controller.GetInstance().GetButtonUp(Controller.Button.RB))
 		{
 			return;
 		}
