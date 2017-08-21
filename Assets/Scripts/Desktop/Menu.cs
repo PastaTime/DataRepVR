@@ -76,12 +76,12 @@ public abstract class Menu : MonoBehaviour {
 	}
 
 	protected virtual void moveRight () {
-		Debug.Log ("Moving Right");
+//		Debug.Log ("Moving Right");
 		if (rightMenu != null)
 		{
 			rightMenu.activate ();
 			deactivate ();
-			Debug.Log ("Menus Seen: " +  rightMenu.seenZero);
+//			Debug.Log ("Menus Seen: " +  rightMenu.seenZero);
 		}
 	}
 
