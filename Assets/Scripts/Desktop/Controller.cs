@@ -23,6 +23,36 @@ public class Controller {
 		return instance;
 	}
 
+	public bool GetButtonUp(Button button)
+	{
+		switch (button)
+		{
+			case Button.A:
+				return GamePad.GetButtonUp (GamePad.Button.A, GamePad.Index.Any);
+			case Button.B:
+				return GamePad.GetButtonUp (GamePad.Button.B, GamePad.Index.Any);
+			case Button.X:
+				return GamePad.GetButtonUp (GamePad.Button.X, GamePad.Index.Any);
+			case Button.Y:
+				return GamePad.GetButtonUp (GamePad.Button.Y, GamePad.Index.Any);
+			case Button.Start:
+				return GamePad.GetButtonUp (GamePad.Button.Start, GamePad.Index.Any);
+			case Button.Menu:
+				return GamePad.GetButtonUp (GamePad.Button.Back, GamePad.Index.Any);
+			case Button.LB:
+				return GamePad.GetButtonUp (GamePad.Button.LeftShoulder, GamePad.Index.Any);
+			case Button.RB:
+				return GamePad.GetButtonUp (GamePad.Button.RightShoulder, GamePad.Index.Any); // Should probably refactor this into another function
+			case Button.LJ:
+				return GamePad.GetButtonUp(GamePad.Button.LeftStick, GamePad.Index.Any);
+			case Button.RJ:
+				return GamePad.GetButtonUp(GamePad.Button.RightStick, GamePad.Index.Any);
+		}
+
+		return true;
+
+	}
+	
 	public bool GetButtonDown(Button button)
 	{
 		switch (button)

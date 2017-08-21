@@ -24,6 +24,8 @@ public class Highlight : Selectable {
 	public float zoomSpeed = 2f;
 	public float centreDeadZoneRadius = 0.3f;
 	public bool panning = false;
+	
+	public Transform initialPosition;
 	private Vector3 prePanPosition = Vector3.zero;
 	private Vector3 prePanRotation = Vector3.zero;
 	private CameraPan camPan;
@@ -32,6 +34,8 @@ public class Highlight : Selectable {
 
 	void Start() {
 		camPan = GameObject.FindObjectOfType<CameraPan> ();
+		prePanPosition = initialPosition.position;
+		prePanRotation = initialPosition.eulerAngles;
 	}
  
     public void Awake() {
@@ -87,8 +91,6 @@ public class Highlight : Selectable {
 			Debug.LogError ("Camera pan did not exit correctly previously");
 			return;
 		}
-		prePanPosition = camPan.transform.position;
-		prePanRotation = camPan.transform.eulerAngles;
 		panning = true;
 	}
 
