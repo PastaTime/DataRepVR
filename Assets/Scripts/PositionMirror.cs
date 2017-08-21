@@ -32,7 +32,6 @@ public class PositionMirror : MonoBehaviour {
 			childPosition.x = parentPosition.x;
 		}
 		if (constrainY) {
-			Debug.Log(childObject.GetComponent<PolyMeshController>().getCornerVerticalOffset());
 			childPosition.y = parentPosition.y + (childObject.GetComponent<PolyMeshController>().getCornerVerticalOffset());
 		}
 		if (constrainZ) {

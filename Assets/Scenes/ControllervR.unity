@@ -432,6 +432,7 @@ MonoBehaviour:
   zoomSpeed: 2
   centreDeadZoneRadius: 0.3
   panning: 0
+  initialPosition: {fileID: 586045648}
 --- !u!114 &124512398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1340,6 +1341,7 @@ MonoBehaviour:
   zoomSpeed: 2
   centreDeadZoneRadius: 0.3
   panning: 0
+  initialPosition: {fileID: 586045648}
 --- !u!114 &250076380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3157,6 +3159,7 @@ MonoBehaviour:
   zoomSpeed: 2
   centreDeadZoneRadius: 0.3
   panning: 0
+  initialPosition: {fileID: 586045648}
 --- !u!114 &774528789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5703,6 +5706,7 @@ MonoBehaviour:
   zoomSpeed: 2
   centreDeadZoneRadius: 0.3
   panning: 0
+  initialPosition: {fileID: 586045648}
 --- !u!114 &1253297097
 MonoBehaviour:
   m_ObjectHideFlags: 0
