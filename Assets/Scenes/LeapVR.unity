@@ -2505,8 +2505,8 @@ MonoBehaviour:
   totalZVerts: 500
   colourDataPath: /Data/Geopotential_height_surface.csv
   heightDataPath: /Data/Geopotential_height_surface.csv
-  startColour: {r: 0, g: 0, b: 0, a: 1}
-  endColour: {r: 0.44117647, g: 0.44117647, b: 0.44117647, a: 1}
+  startColour: {r: 0, g: 0.043137256, b: 0.20784314, a: 1}
+  endColour: {r: 0.25490198, g: 0.29411766, b: 0.019607844, a: 1}
   activeOnLoad: 0
   xSuperSamplingFactor: 3
   zSuperSamplingFactor: 3
@@ -2615,8 +2615,8 @@ MonoBehaviour:
   totalZVerts: 500
   colourDataPath: /Data/Categorical_rain_surface.csv
   heightDataPath: /Data/Categorical_rain_surface.csv
-  startColour: {r: 0.2352941, g: 0.19330628, b: 0.11115617, a: 1}
-  endColour: {r: 0.021626318, g: 0, b: 0.36764705, a: 1}
+  startColour: {r: 0, g: 0, b: 0, a: 1}
+  endColour: {r: 0, g: 0.41568628, b: 0.52156866, a: 1}
   activeOnLoad: 0
   xSuperSamplingFactor: 3
   zSuperSamplingFactor: 3
@@ -2691,7 +2691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e8e2756934fa684dbbec5cb85bdd269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0.5955882, g: 0.5955882, b: 0.5955882, a: 0.666}
+  color: {r: 0.7607843, g: 0.8666667, b: 0.11372549, a: 1}
 --- !u!4 &1749629865 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4051020103481516, guid: 05d20f684c232d54091b7b8159e20c08,
