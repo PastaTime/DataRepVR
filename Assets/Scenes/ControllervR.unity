@@ -2416,12 +2416,12 @@ Prefab:
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: colourDataPath
-      value: /Data/Pressure_surface.csv
+      value: /Data/Pressure_tropopause.csv
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: heightDataPath
-      value: /Data/Pressure_surface.csv
+      value: /Data/Pressure_tropopause.csv
       objectReference: {fileID: 0}
     - target: {fileID: 65089947962221278, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
@@ -2446,7 +2446,7 @@ Prefab:
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: startColour.r
-      value: 0.018598635
+      value: 0.31617647
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
@@ -2456,12 +2456,12 @@ Prefab:
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: startColour.b
-      value: 0.31617647
+      value: 0.2789792
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: endColour.g
-      value: 0
+      value: 0.36764705
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
@@ -2471,7 +2471,7 @@ Prefab:
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: endColour.r
-      value: 0.31617647
+      value: 0.2324827
       objectReference: {fileID: 0}
     - target: {fileID: 1487764850064752, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
       propertyPath: m_Name
@@ -5591,27 +5591,27 @@ Prefab:
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: startColour.g
-      value: 0.043137256
+      value: 0.044016216
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: startColour.b
-      value: 0.20784314
+      value: 0.20588237
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: endColour.g
-      value: 0.29411766
+      value: 0.29411763
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: endColour.b
-      value: 0.019607844
+      value: 0.01946365
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: endColour.r
-      value: 0.25490198
+      value: 0.25623435
       objectReference: {fileID: 0}
     - target: {fileID: 1487764850064752, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
       propertyPath: m_Name
@@ -6157,6 +6157,21 @@ Prefab:
         type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114891465947334472, guid: 940d0d337543a71479a6fd0aac395bc2,
+        type: 2}
+      propertyPath: m_Text
+      value: Surface Temperature
+      objectReference: {fileID: 0}
+    - target: {fileID: 114767117848334714, guid: 940d0d337543a71479a6fd0aac395bc2,
+        type: 2}
+      propertyPath: m_Text
+      value: Total Precipitable Water
+      objectReference: {fileID: 0}
+    - target: {fileID: 114146588645173512, guid: 940d0d337543a71479a6fd0aac395bc2,
+        type: 2}
+      propertyPath: m_Text
+      value: Pressure at Tropopause
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 940d0d337543a71479a6fd0aac395bc2, type: 2}
@@ -6842,12 +6857,12 @@ Prefab:
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: colourDataPath
-      value: /Data/Categorical_rain_surface.csv
+      value: /Data/Precipitable_water_entire_atmosphere_single_layer.csv
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: heightDataPath
-      value: /Data/Categorical_rain_surface.csv
+      value: /Data/Precipitable_water_entire_atmosphere_single_layer.csv
       objectReference: {fileID: 0}
     - target: {fileID: 65089947962221278, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
@@ -6872,32 +6887,32 @@ Prefab:
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: startColour.r
-      value: 0
+      value: 0.06275354
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: startColour.g
-      value: 0
+      value: 0.24264705
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: startColour.b
-      value: 0
+      value: 0.07598102
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: endColour.g
-      value: 0.41568628
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: endColour.b
-      value: 0.52156866
+      value: 0.44852942
       objectReference: {fileID: 0}
     - target: {fileID: 114766790167337846, guid: 4bfcd6caba6833a4b8190e8ca4e07602,
         type: 2}
       propertyPath: endColour.r
-      value: 0
+      value: 0.40235734
       objectReference: {fileID: 0}
     - target: {fileID: 1487764850064752, guid: 4bfcd6caba6833a4b8190e8ca4e07602, type: 2}
       propertyPath: m_Name
