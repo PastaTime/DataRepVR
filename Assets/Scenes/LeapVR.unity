@@ -1002,10 +1002,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalXVerts: 500
   totalZVerts: 500
-  colourDataPath: /Data/Pressure_surface.csv
-  heightDataPath: /Data/Pressure_surface.csv
-  startColour: {r: 0.018598635, g: 0, b: 0.31617647, a: 1}
-  endColour: {r: 0.31617647, g: 0, b: 0, a: 1}
+  colourDataPath: /Data/Pressure_tropopause.csv
+  heightDataPath: /Data/Pressure_tropopause.csv
+  startColour: {r: 0.31617647, g: 0, b: 0.2789792, a: 1}
+  endColour: {r: 0.2324827, g: 0.36764705, b: 0, a: 1}
   activeOnLoad: 0
   xSuperSamplingFactor: 3
   zSuperSamplingFactor: 3
@@ -1229,6 +1229,16 @@ Prefab:
         type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114767117848334714, guid: 940d0d337543a71479a6fd0aac395bc2,
+        type: 2}
+      propertyPath: m_Text
+      value: Total Precipitable Water
+      objectReference: {fileID: 0}
+    - target: {fileID: 114146588645173512, guid: 940d0d337543a71479a6fd0aac395bc2,
+        type: 2}
+      propertyPath: m_Text
+      value: Pressure at Tropopause
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 940d0d337543a71479a6fd0aac395bc2, type: 2}
@@ -2505,8 +2515,8 @@ MonoBehaviour:
   totalZVerts: 500
   colourDataPath: /Data/Geopotential_height_surface.csv
   heightDataPath: /Data/Geopotential_height_surface.csv
-  startColour: {r: 0, g: 0.043137256, b: 0.20784314, a: 1}
-  endColour: {r: 0.25490198, g: 0.29411766, b: 0.019607844, a: 1}
+  startColour: {r: 0, g: 0.044016216, b: 0.20588237, a: 1}
+  endColour: {r: 0.25623435, g: 0.29411763, b: 0.01946365, a: 1}
   activeOnLoad: 0
   xSuperSamplingFactor: 3
   zSuperSamplingFactor: 3
@@ -2613,10 +2623,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalXVerts: 500
   totalZVerts: 500
-  colourDataPath: /Data/Categorical_rain_surface.csv
-  heightDataPath: /Data/Categorical_rain_surface.csv
-  startColour: {r: 0, g: 0, b: 0, a: 1}
-  endColour: {r: 0, g: 0.41568628, b: 0.52156866, a: 1}
+  colourDataPath: /Data/Precipitable_water_entire_atmosphere_single_layer.csv
+  heightDataPath: /Data/Precipitable_water_entire_atmosphere_single_layer.csv
+  startColour: {r: 0.06275354, g: 0.24264705, b: 0.07598102, a: 1}
+  endColour: {r: 0.40235734, g: 0, b: 0.44852942, a: 1}
   activeOnLoad: 0
   xSuperSamplingFactor: 3
   zSuperSamplingFactor: 3
